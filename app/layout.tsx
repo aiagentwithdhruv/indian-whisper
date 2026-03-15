@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import VoiceAssistant from "./components/VoiceAssistant";
+// import VoiceAssistant from "./components/VoiceAssistant"; // TODO: fix Gemini TTS then re-enable
 
 const inter = Inter({
   variable: "--font-inter",
@@ -46,7 +46,7 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased bg-[#0A0A0B] text-white`}>
         {children}
-        <VoiceAssistant />
+        {/* <VoiceAssistant /> */}
       </body>
     </html>
   );
