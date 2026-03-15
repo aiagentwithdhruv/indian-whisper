@@ -87,8 +87,7 @@ export default function Hero() {
           </a>
         </div>
         <div className="animate-fade-in-up animation-delay-600 mt-3 text-sm text-[#71717A]">
-            v1.0.0 · 2 MB · macOS 14+ · 100% Free
-          </div>
+          v1.0.0 · 2 MB · macOS 14+ · 100% Free
         </div>
 
         {/* Stats */}
