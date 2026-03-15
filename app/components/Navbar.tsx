@@ -50,6 +50,7 @@ export default function Navbar() {
             ROI Calculator
           </a>
           <a href="#models" className="hover:text-white transition-colors">Models</a>
+          <a href="/blog" className="hover:text-white transition-colors">Blog</a>
           <a href="#download" className="hover:text-white transition-colors">Download</a>
         </div>
 
