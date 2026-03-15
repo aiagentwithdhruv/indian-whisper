@@ -36,6 +36,15 @@ export default function Navbar() {
           <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
           <a href="#models" className="hover:text-white transition-colors">Models</a>
           <a href="#download" className="hover:text-white transition-colors">Download</a>
+          <a
+            href="#calculator"
+            className="flex items-center gap-1.5 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-400">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" />
+            </svg>
+            ROI Calculator
+          </a>
         </div>
 
         <a

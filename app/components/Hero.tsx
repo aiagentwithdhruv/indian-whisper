@@ -1,6 +1,35 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+const TYPEWRITER_TEXT = "Building the future with voice...";
+const TYPEWRITER_SPEED = 60; // ms per character
+const RESET_DELAY = 2000; // ms to wait after full text before reset
+
 export default function Hero() {
+  const [displayed, setDisplayed] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && displayed.length < TYPEWRITER_TEXT.length) {
+      timeout = setTimeout(() => {
+        setDisplayed(TYPEWRITER_TEXT.slice(0, displayed.length + 1));
+      }, TYPEWRITER_SPEED);
+    } else if (!isDeleting && displayed.length === TYPEWRITER_TEXT.length) {
+      timeout = setTimeout(() => setIsDeleting(true), RESET_DELAY);
+    } else if (isDeleting && displayed.length > 0) {
+      timeout = setTimeout(() => {
+        setDisplayed(TYPEWRITER_TEXT.slice(0, displayed.length - 1));
+      }, TYPEWRITER_SPEED / 2);
+    } else if (isDeleting && displayed.length === 0) {
+      setIsDeleting(false);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, isDeleting]);
+
   return (
     <section className="hero-gradient relative min-h-screen flex items-center justify-center px-6 pt-16">
       {/* Subtle grid */}
@@ -73,6 +102,24 @@ export default function Hero() {
             <span className="text-sm text-[#71717A]">—</span>
             <span className="text-sm font-mono text-white">Cmd + D</span>
             <span className="text-sm text-[#71717A]">to start</span>
+          </div>
+        </div>
+
+        {/* Typewriter demo */}
+        <div className="mt-8 flex justify-center">
+          <div className="inline-flex items-center gap-0 rounded-xl bg-[#0D0D0F] border border-white/8 shadow-xl overflow-hidden">
+            {/* Terminal header dots */}
+            <div className="flex items-center gap-1.5 px-4 py-2.5 border-r border-white/5">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+            </div>
+            <div className="px-5 py-2.5 flex items-center gap-2 min-w-[280px]">
+              <span className="text-purple-400 text-xs font-mono select-none">voice</span>
+              <span className="text-[#71717A] text-xs font-mono select-none">→</span>
+              <span className="text-[#E2E8F0] text-xs font-mono">{displayed}</span>
+              <span className="w-0.5 h-3.5 bg-blue-400 animate-blink inline-block" />
+            </div>
           </div>
         </div>
       </div>
