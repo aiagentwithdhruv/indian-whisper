@@ -9,28 +9,59 @@ export default function VoiceAssistant() {
   const [status, setStatus] = useState<"idle" | "listening" | "thinking" | "speaking">("idle");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const speak = useCallback((text: string) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1.05;
-    utterance.pitch = 1.0;
+  const playAudio = useCallback((base64Audio: string, mimeType: string) => {
+    // Stop any current audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
 
-    // Try to pick a natural female voice
-    const voices = speechSynthesis.getVoices();
-    const preferred = voices.find(
-      (v) => v.name.includes("Samantha") || v.name.includes("Karen") || v.name.includes("Google UK English Female")
-    );
-    if (preferred) utterance.voice = preferred;
+    const byteChars = atob(base64Audio);
+    const byteArray = new Uint8Array(byteChars.length);
+    for (let i = 0; i < byteChars.length; i++) {
+      byteArray[i] = byteChars.charCodeAt(i);
+    }
+    const blob = new Blob([byteArray], { type: mimeType });
+    const url = URL.createObjectURL(blob);
 
-    utterance.onstart = () => {
+    const audio = new Audio(url);
+    audioRef.current = audio;
+
+    audio.onplay = () => {
       setIsSpeaking(true);
       setStatus("speaking");
     };
-    utterance.onend = () => {
+    audio.onended = () => {
       setIsSpeaking(false);
       setStatus("idle");
+      URL.revokeObjectURL(url);
+      audioRef.current = null;
+    };
+    audio.onerror = () => {
+      setIsSpeaking(false);
+      setStatus("idle");
+      URL.revokeObjectURL(url);
+      audioRef.current = null;
     };
 
+    audio.play().catch(() => {
+      setStatus("idle");
+    });
+  }, []);
+
+  // Fallback: browser TTS (only if Gemini audio fails)
+  const speakFallback = useCallback((text: string) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.05;
+    const voices = speechSynthesis.getVoices();
+    const preferred = voices.find(
+      (v) => v.name.includes("Samantha") || v.name.includes("Karen")
+    );
+    if (preferred) utterance.voice = preferred;
+    utterance.onstart = () => { setIsSpeaking(true); setStatus("speaking"); };
+    utterance.onend = () => { setIsSpeaking(false); setStatus("idle"); };
     speechSynthesis.speak(utterance);
   }, []);
 
@@ -43,28 +74,37 @@ export default function VoiceAssistant() {
         body: JSON.stringify({ message: text }),
       });
       const data = await res.json();
-      if (data.reply) {
-        speak(data.reply);
+
+      if (data.audio) {
+        // Gemini native AI voice
+        playAudio(data.audio, data.mimeType || "audio/wav");
+      } else if (data.reply) {
+        // Fallback to browser TTS
+        speakFallback(data.reply);
       } else {
-        speak("Sorry, I couldn't process that. Try again.");
-        setStatus("idle");
+        speakFallback("Sorry, I couldn't process that. Try again.");
       }
     } catch {
-      speak("Something went wrong. Please try again.");
-      setStatus("idle");
+      speakFallback("Something went wrong. Please try again.");
     }
-  }, [speak]);
+  }, [playAudio, speakFallback]);
+
+  const stopAudio = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    speechSynthesis.cancel();
+    setIsSpeaking(false);
+    setStatus("idle");
+  }, []);
 
   const toggleListening = useCallback(() => {
-    // If speaking, stop
     if (isSpeaking) {
-      speechSynthesis.cancel();
-      setIsSpeaking(false);
-      setStatus("idle");
+      stopAudio();
       return;
     }
 
-    // If listening, stop
     if (isListening) {
       recognitionRef.current?.stop();
       setIsListening(false);
@@ -74,7 +114,7 @@ export default function VoiceAssistant() {
 
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR) {
-      speak("Voice input requires Chrome or Edge browser.");
+      speakFallback("Voice input requires Chrome or Edge browser.");
       return;
     }
 
@@ -86,45 +126,37 @@ export default function VoiceAssistant() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     recognition.onresult = (event: any) => {
       const text = event.results[0][0].transcript;
-      if (text) {
-        askAI(text);
-      }
+      if (text) askAI(text);
     };
 
-    recognition.onerror = () => {
-      setIsListening(false);
-      setStatus("idle");
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
+    recognition.onerror = () => { setIsListening(false); setStatus("idle"); };
+    recognition.onend = () => { setIsListening(false); };
 
     recognitionRef.current = recognition;
     recognition.start();
     setIsListening(true);
     setStatus("listening");
-  }, [isListening, isSpeaking, askAI, speak]);
+  }, [isListening, isSpeaking, askAI, speakFallback, stopAudio]);
+
+  const handleOpen = useCallback(() => {
+    setIsOpen(true);
+    // Auto-greet with Gemini voice
+    setTimeout(() => askAI("Say a brief, friendly greeting introducing yourself as the IndianWhisper voice assistant."), 300);
+  }, [askAI]);
+
+  const handleClose = useCallback(() => {
+    stopAudio();
+    recognitionRef.current?.stop();
+    setIsListening(false);
+    setStatus("idle");
+    setIsOpen(false);
+  }, [stopAudio]);
 
   return (
     <>
-      {/* Floating button — bottom right */}
+      {/* Floating button */}
       <button
-        onClick={() => {
-          if (!isOpen) {
-            setIsOpen(true);
-            // Auto-greet on first open
-            setTimeout(() => speak("Hi! I'm the IndianWhisper assistant. Ask me anything about the app — tap the mic and speak!"), 300);
-          } else {
-            // Close and cleanup
-            speechSynthesis.cancel();
-            recognitionRef.current?.stop();
-            setIsListening(false);
-            setIsSpeaking(false);
-            setStatus("idle");
-            setIsOpen(false);
-          }
-        }}
+        onClick={isOpen ? handleClose : handleOpen}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
           isOpen
             ? "bg-white/10 border border-white/20 hover:bg-white/15"
@@ -147,7 +179,6 @@ export default function VoiceAssistant() {
       {/* Voice panel */}
       {isOpen && (
         <div className="fixed bottom-24 right-6 z-50 w-72 glass-card glow-card-purple rounded-2xl overflow-hidden shadow-2xl">
-          {/* Header */}
           <div className="px-5 py-3 border-b border-white/5 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -157,13 +188,11 @@ export default function VoiceAssistant() {
             </div>
             <div>
               <div className="text-sm font-semibold">IndianWhisper AI</div>
-              <div className="text-xs text-[#71717A]">Voice-only assistant</div>
+              <div className="text-xs text-[#71717A]">Powered by Gemini voice</div>
             </div>
           </div>
 
-          {/* Status area */}
           <div className="px-5 py-8 flex flex-col items-center gap-4">
-            {/* Animated circle */}
             <div className="relative">
               <div
                 className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
@@ -186,11 +215,7 @@ export default function VoiceAssistant() {
                 {status === "thinking" && (
                   <div className="flex gap-1.5">
                     {[0, 1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="w-2 h-2 rounded-full bg-purple-400 animate-bounce"
-                        style={{ animationDelay: `${i * 0.15}s` }}
-                      />
+                      <div key={i} className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
                     ))}
                   </div>
                 )}
@@ -210,20 +235,14 @@ export default function VoiceAssistant() {
                 )}
               </div>
 
-              {/* Pulse rings when active */}
               {(status === "listening" || status === "speaking") && (
                 <>
-                  <span className={`absolute inset-0 rounded-full btn-pulse-ring ${
-                    status === "listening" ? "border-cyan-500/40" : "border-green-500/40"
-                  }`} />
-                  <span className={`absolute inset-0 rounded-full btn-pulse-ring ${
-                    status === "listening" ? "border-cyan-500/40" : "border-green-500/40"
-                  }`} style={{ animationDelay: "0.8s" }} />
+                  <span className={`absolute inset-0 rounded-full btn-pulse-ring ${status === "listening" ? "border-cyan-500/40" : "border-green-500/40"}`} />
+                  <span className={`absolute inset-0 rounded-full btn-pulse-ring ${status === "listening" ? "border-cyan-500/40" : "border-green-500/40"}`} style={{ animationDelay: "0.8s" }} />
                 </>
               )}
             </div>
 
-            {/* Status text */}
             <div className="text-sm text-center">
               {status === "idle" && <span className="text-[#71717A]">Tap to speak</span>}
               {status === "listening" && <span className="text-cyan-400">Listening...</span>}
@@ -232,7 +251,6 @@ export default function VoiceAssistant() {
             </div>
           </div>
 
-          {/* Mic button */}
           <div className="px-5 pb-5 flex justify-center">
             <button
               onClick={toggleListening}
@@ -245,10 +263,7 @@ export default function VoiceAssistant() {
               }`}
             >
               {status === "listening" ? (
-                <>
-                  <div className="w-3 h-3 rounded-sm bg-red-400" />
-                  Stop
-                </>
+                <><div className="w-3 h-3 rounded-sm bg-red-400" /> Stop</>
               ) : status === "speaking" ? (
                 "Tap to interrupt"
               ) : (
