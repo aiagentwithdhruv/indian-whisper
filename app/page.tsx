@@ -1,12 +1,14 @@
 import LightStreaks from "./components/LightStreaks";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import LiveDemo from "./components/LiveDemo";
 import HowItWorks from "./components/HowItWorks";
 import Features from "./components/Features";
 import Calculator from "./components/Calculator";
 import ModelTable from "./components/ModelTable";
 import Comparison from "./components/Comparison";
 import Download from "./components/Download";
+import FeedbackForm from "./components/FeedbackForm";
 import Support from "./components/Support";
 import Footer from "./components/Footer";
 import SectionDivider from "./components/SectionDivider";
@@ -21,6 +23,14 @@ export default function Home() {
         <div className="relative">
           <LightStreaks />
           <Hero />
+        </div>
+
+        {/* Live Demo — try voice in browser */}
+        <div className="relative overflow-hidden">
+          <SectionDivider />
+          <AmbientGlow position="center" color="blue" size={600} />
+          <AmbientGlow position="top-left" color="purple" size={350} />
+          <LiveDemo />
         </div>
 
         {/* How It Works */}
@@ -69,10 +79,16 @@ export default function Home() {
           <Download />
         </div>
 
-        {/* Support & Feedback */}
+        {/* Feedback Form */}
         <div className="relative overflow-hidden">
           <SectionDivider />
           <AmbientGlow position="bottom-left" color="purple" size={400} />
+          <FeedbackForm />
+        </div>
+
+        {/* Support & Feedback */}
+        <div className="relative overflow-hidden">
+          <SectionDivider />
           <AmbientGlow position="top-right" color="blue" size={350} />
           <Support />
         </div>

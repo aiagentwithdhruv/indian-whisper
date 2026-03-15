@@ -31,20 +31,26 @@ export default function Navbar() {
           <span className="font-semibold text-lg">IndianWhisper</span>
         </div>
 
-        <div className="hidden md:flex items-center gap-8 text-sm text-[#A1A1AA]">
+        <div className="hidden md:flex items-center gap-6 text-sm text-[#A1A1AA]">
+          <a
+            href="#try-it"
+            className="flex items-center gap-1.5 text-green-400 hover:text-green-300 transition-colors font-medium"
+          >
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-subtle-pulse" />
+            Try Live
+          </a>
           <a href="#features" className="hover:text-white transition-colors">Features</a>
-          <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
-          <a href="#models" className="hover:text-white transition-colors">Models</a>
-          <a href="#download" className="hover:text-white transition-colors">Download</a>
           <a
             href="#calculator"
             className="flex items-center gap-1.5 text-blue-400 hover:text-blue-300 transition-colors font-medium"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-400">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-400">
               <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" />
             </svg>
             ROI Calculator
           </a>
+          <a href="#models" className="hover:text-white transition-colors">Models</a>
+          <a href="#download" className="hover:text-white transition-colors">Download</a>
         </div>
 
         <a
