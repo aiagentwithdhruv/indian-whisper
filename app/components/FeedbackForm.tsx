@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 
 export default function FeedbackForm() {
   const [name, setName] = useState("");
@@ -8,14 +8,60 @@ export default function FeedbackForm() {
   const [type, setType] = useState<"feedback" | "bug" | "feature">("feedback");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null);
+
+  const toggleVoice = useCallback(() => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      alert("Voice input requires Chrome or Edge browser.");
+      return;
+    }
+
+    const recognition = new SR();
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    recognition.onresult = (event: any) => {
+      let text = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          text += event.results[i][0].transcript + " ";
+        }
+      }
+      if (text) {
+        setMessage((prev) => prev + text);
+      }
+    };
+
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+
+    recognitionRef.current = recognition;
+    recognition.start();
+    setIsListening(true);
+  }, [isListening]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
 
-    setSubmitting(true);
+    // Stop voice if active
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    }
 
-    // Submit to formsubmit.co (free, no signup)
+    setSubmitting(true);
     try {
       await fetch("https://formsubmit.co/ajax/aiwithdhruv@gmail.com", {
         method: "POST",
@@ -31,7 +77,6 @@ export default function FeedbackForm() {
       setName("");
       setMessage("");
     } catch {
-      // Fallback: open mailto
       window.location.href = `mailto:aiwithdhruv@gmail.com?subject=${encodeURIComponent(`[IndianWhisper ${type}]`)}&body=${encodeURIComponent(`Name: ${name || "Anonymous"}\nType: ${type}\n\n${message}`)}`;
     }
     setSubmitting(false);
@@ -69,7 +114,7 @@ export default function FeedbackForm() {
             Share Your <span className="gradient-text">Feedback</span>
           </h2>
           <p className="mt-3 text-[#A1A1AA] text-sm">
-            Bug, idea, or just a kind word — we read every message.
+            Bug, idea, or just a kind word — type it or speak it.
           </p>
         </div>
 
@@ -105,21 +150,51 @@ export default function FeedbackForm() {
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/8 text-white placeholder-[#71717A] text-sm focus:outline-none focus:border-purple-500/40 focus:ring-1 focus:ring-purple-500/20 transition-all"
           />
 
-          {/* Message */}
-          <textarea
-            placeholder={
-              type === "bug"
-                ? "What happened? What did you expect?"
-                : type === "feature"
-                ? "What would you love to see in IndianWhisper?"
-                : "Tell us what you think..."
-            }
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={4}
-            required
-            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/8 text-white placeholder-[#71717A] text-sm focus:outline-none focus:border-purple-500/40 focus:ring-1 focus:ring-purple-500/20 transition-all resize-none"
-          />
+          {/* Message with voice button */}
+          <div className="relative">
+            <textarea
+              placeholder={
+                type === "bug"
+                  ? "What happened? What did you expect?"
+                  : type === "feature"
+                  ? "What would you love to see in IndianWhisper?"
+                  : "Tell us what you think..."
+              }
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={4}
+              required
+              className="w-full px-4 py-3 pr-14 rounded-xl bg-white/5 border border-white/8 text-white placeholder-[#71717A] text-sm focus:outline-none focus:border-purple-500/40 focus:ring-1 focus:ring-purple-500/20 transition-all resize-none"
+            />
+            {/* Voice mic button */}
+            <button
+              type="button"
+              onClick={toggleVoice}
+              className={`absolute bottom-3 right-3 w-9 h-9 rounded-lg flex items-center justify-center transition-all ${
+                isListening
+                  ? "bg-red-500/20 border border-red-500/40 text-red-400"
+                  : "bg-white/5 border border-white/10 text-[#71717A] hover:text-purple-400 hover:border-purple-500/30"
+              }`}
+              title={isListening ? "Stop recording" : "Speak your feedback"}
+            >
+              {isListening ? (
+                <div className="w-3 h-3 rounded-sm bg-red-400" />
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" x2="12" y1="19" y2="22" />
+                </svg>
+              )}
+            </button>
+            {isListening && (
+              <div className="absolute bottom-3 right-14 flex items-center gap-1">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-0.5 bg-red-400 rounded-full wave-bar" style={{ height: 6 }} />
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Submit */}
           <button
