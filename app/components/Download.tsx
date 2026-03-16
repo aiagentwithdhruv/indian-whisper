@@ -17,7 +17,7 @@ export default function Download() {
             <span className="absolute inset-0 rounded-2xl btn-pulse-ring" style={{ animationDelay: "0.8s" }} />
 
             <a
-              href="/IndianWhisper-v1.0.0.dmg"
+              href="/releases/IndianWhisper-v1.0.0.dmg"
               className="relative glow-blue inline-flex items-center gap-4 px-10 py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-xl hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-[1.02]"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
