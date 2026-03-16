@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import HeroCanvas from "./HeroCanvas";
 
 const TYPEWRITER_TEXT = "Building the future with voice...";
 const TYPEWRITER_SPEED = 60; // ms per character
@@ -32,6 +33,8 @@ export default function Hero() {
 
   return (
     <section className="hero-gradient relative min-h-screen flex items-center justify-center px-6 pt-16">
+      {/* Animated particle background */}
+      <HeroCanvas />
       {/* Subtle grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
