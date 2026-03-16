@@ -3,6 +3,6 @@
   "minimumOS": "14.0",
   "releaseDate": "2026-03-16",
   "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v1.0.0.dmg",
-  "releaseNotes": "Initial release — Community Edition with all features unlocked. On-device Whisper AI, auto-type, smart punctuation, voice commands, Hindi support, 7 LLM providers.",
-  "sha256": "4b0ad4d1bfd3364d9a79007a4c66937ec474acb3e8c91f4c3eefcfa2599721cf"
+  "releaseNotes": "Bug fixes and improvements.",
+  "sha256": "195bbcbbdcd678852e672b4abb808952b350e140f738f2a3d2ba377b901b2d34"
 }
