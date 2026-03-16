@@ -53,8 +53,26 @@ export default function Download() {
           </div>
         </div>
 
+        {/* macOS security note */}
+        <div className="mt-10 glass-card rounded-xl p-5 max-w-lg mx-auto text-left border border-yellow-500/20">
+          <div className="flex items-start gap-3">
+            <span className="text-yellow-400 text-lg mt-0.5">&#9888;</span>
+            <div>
+              <h3 className="font-semibold text-sm text-yellow-400">First time opening?</h3>
+              <p className="text-[#A1A1AA] text-sm mt-1">
+                macOS may show &quot;IndianWhisper can&apos;t be opened&quot;. This is normal for apps outside the App Store.
+              </p>
+              <div className="mt-3 space-y-2 text-sm text-[#A1A1AA]">
+                <p><strong className="text-white">Option 1:</strong> Right-click the app &rarr; Click <strong className="text-white">Open</strong> &rarr; Click <strong className="text-white">Open</strong> again</p>
+                <p><strong className="text-white">Option 2:</strong> Go to <strong className="text-white">System Settings &rarr; Privacy &amp; Security</strong> &rarr; Click <strong className="text-white">Open Anyway</strong></p>
+                <p><strong className="text-white">Option 3:</strong> Run in Terminal: <code className="bg-white/10 px-2 py-0.5 rounded text-xs font-mono">xattr -cr /Applications/IndianWhisper.app</code></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* System requirements */}
-        <div className="mt-12 glass-card glow-card-purple animate-float rounded-2xl p-6 max-w-lg mx-auto text-left">
+        <div className="mt-8 glass-card glow-card-purple animate-float rounded-2xl p-6 max-w-lg mx-auto text-left">
           <h3 className="font-semibold mb-4 text-sm text-[#A1A1AA] uppercase tracking-wider">System Requirements</h3>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
