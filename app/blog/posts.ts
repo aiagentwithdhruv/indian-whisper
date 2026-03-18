@@ -412,4 +412,150 @@ Together, these tools let you build at 5-10x the speed of keyboard-only developm
 
 Try [IndianWhisper](https://indianwhisper.com) free — the [live demo](https://indianwhisper.com/#try-it) works in your browser, no install needed.`,
   },
+  {
+    slug: "i-built-a-voice-ai-app-and-gave-it-away-free",
+    title: "I Built a Voice AI App and Gave It Away Free — Here's Why",
+    description: "I paid Rs.3,800 for a voice typing app. Then I built a better one in one night and made it free. This is the story of IndianWhisper and why free tools win.",
+    date: "2026-03-18",
+    readTime: "8 min",
+    tags: ["founder-story", "build-in-public", "voice-ai", "open-source"],
+    content: `## I Paid Rs.3,800 for Something I Could Build Myself
+
+It started with frustration.
+
+I was building AI products — full-stack apps with FastAPI, Next.js, Supabase, LangGraph. The kind of work where you write code for 2 hours and then spend another 3 hours typing Slack messages, commit messages, documentation, PR reviews, and emails.
+
+I think at 150 WPM. I type at 45 WPM. There is a constant bottleneck between what I want to say and what my fingers can produce.
+
+So I bought Wispr Flow. Rs.3,800 per year. A Mac app that lets you speak and it types for you. Everywhere. In VS Code, in Slack, in Chrome. It is genuinely good.
+
+But then I looked at my students.
+
+### The Rs.3,800 Problem
+
+I teach AI engineering to 500+ students. Most of them are in India. For an Indian student or early-career developer, Rs.3,800 is not nothing — that is a month of internet, or two weeks of food.
+
+When I told my class about voice typing, the first question was always: **"Is there a free version?"**
+
+The answer was no. Wispr is $50/month internationally. BridgeVoice — another competitor — also $50/month. Apple's built-in dictation is decent but cannot auto-type into VS Code or Terminal.
+
+There was no good free option. So I built one.
+
+### One Night, One App
+
+I am not going to pretend this was a heroic 6-month engineering effort. It was not.
+
+The building blocks already exist:
+- **WhisperKit** by Argmax — runs OpenAI's Whisper model on-device on Apple Silicon
+- **Swift** — Apple's native language with full macOS access
+- **CGEvent** — Apple's API for simulating keyboard events (auto-type)
+
+The hard part was not the technology. It was the polish:
+
+- Making the menu bar app feel native
+- Getting accessibility permissions to work reliably
+- Adding smart punctuation ("comma" types a comma)
+- Voice commands ("scratch that" to undo)
+- Supporting 5 different Whisper model sizes
+- Building an LLM cleanup layer with 7 providers
+- Making it work in EVERY app — VS Code, Terminal, Slack, Chrome, Notes
+
+14 Swift files. 2MB download. One night.
+
+### Why Free?
+
+People ask me this a lot. "You could charge Rs.500/month and make good money."
+
+Here is my thinking:
+
+**1. Voice input should be infrastructure, not a product.**
+
+Typing is free. Your keyboard does not charge you per keystroke. Voice-to-text is just another input method — it should be equally free.
+
+**2. Free tools build distribution.**
+
+I am not trying to build a voice AI company. I am an AI engineer who builds products for clients. Every student who uses IndianWhisper knows my name. Every LinkedIn post about it reaches 10,000+ people. That is marketing I could not buy.
+
+**3. The real money is in what comes next.**
+
+IndianWhisper is a tool. The skills I demonstrated building it — shipping production Swift apps, Next.js websites, Chrome extensions, auto-update systems — those skills are worth Rs.3 lakh/month to the right client.
+
+**4. Open source compounds.**
+
+When you give something away, people contribute. They find bugs. They suggest features. They share it with their network. One free tool creates more value than a hundred paid-but-unused products.
+
+### What I Actually Shipped
+
+In one session, here is what got built:
+
+**Mac App (Swift):**
+- 14 source files, WhisperKit 0.9.0+
+- 5 Whisper models (75MB to 3GB)
+- Auto-type via CGEvent — works in any app
+- Smart punctuation and voice commands
+- Hindi/Hinglish support
+- 7-provider LLM text cleanup
+- Auto-update system with version checking
+- 2MB DMG, macOS 14+
+
+**Website (Next.js 16):**
+- Premium dark UI with animated light streaks
+- Live voice demo (browser, no install)
+- ROI calculator showing time and money saved
+- SEO-optimized blog posts
+- Feedback form with voice input
+- Model comparison table
+- Download with Gatekeeper bypass instructions
+
+**Chrome Extension:**
+- Floating mic button on every webpage
+- Works on Gmail, Slack, Docs, LinkedIn — any text field
+- Smart punctuation support
+- Keyboard shortcut (Ctrl+Shift+S)
+- Under 50KB, zero performance impact
+- Submitted to Chrome Web Store
+
+### The Response
+
+I posted on LinkedIn: "I paid Rs. 3,800 for a voice typing app. Then I built a better one. For free."
+
+Within 48 hours:
+- People started downloading and testing
+- Comments asking for Windows and Android versions
+- Sales teams started using it
+- Students in my bootcamp adopted it
+
+The demand validated what I already knew: **people want voice input, they just do not want to pay $600/year for it.**
+
+### What Is Next
+
+The roadmap is clear:
+
+1. **Chrome Extension** — submitted, launching this week. Works on every OS.
+2. **Windows** — native app for developers on Windows
+3. **Android** — APK download, no Play Store needed
+4. **iOS** — PWA or App Store when it makes sense
+
+The Mac app plus Chrome extension covers 90% of use cases. If you can open Chrome, you can use IndianWhisper. On any device. For free.
+
+### The Lesson
+
+**Do not compete on features. Compete on access.**
+
+Wispr is a more polished product than IndianWhisper. They have a dedicated team, years of refinement, better error correction. I am not going to pretend otherwise.
+
+But Wispr costs $600/year. IndianWhisper costs $0. For a student in Bangalore, for a freelancer in Lagos, for a developer in Jakarta — that difference is everything.
+
+The best product is not always the most polished. Sometimes it is the one that is available.
+
+### Try It
+
+- **Website:** [indianwhisper.com](https://indianwhisper.com)
+- **Mac Download:** [Direct DMG](https://indianwhisper.com/releases/IndianWhisper-v1.0.0.dmg)
+- **Chrome Extension:** Coming this week
+- **Live Demo:** [Try in browser](https://indianwhisper.com/#try-it) — no install needed
+- **GitHub:** [Open source](https://github.com/aiagentwithdhruv/indian-whisper)
+
+Your voice is faster than your fingers. Stop paying for that privilege.`,
+  },
 ];
