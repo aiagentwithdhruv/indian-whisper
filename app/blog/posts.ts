@@ -10,6 +10,126 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "macwhisper-vs-indianwhisper",
+    title: "MacWhisper vs IndianWhisper: Privacy, Price, and the India Gap",
+    description: "MacWhisper Pro is €59 lifetime. IndianWhisper is free. Real choice is not price — it is where your audio goes and how far past your Mac the tool reaches.",
+    date: "2026-04-28",
+    readTime: "8 min",
+    tags: ["comparison", "macwhisper", "privacy", "voice-typing", "on-device", "hindi"],
+    content: `[MacWhisper Pro](https://goodsnooze.gumroad.com/l/macwhisper) is €59 lifetime on Gumroad, or $6.99/month on the App Store. IndianWhisper is free. Forever. No subscription, no file caps.
+
+If the comparison stopped at price, this would be a 200-word post. Both apps run OpenAI's Whisper models on your Mac. The real differences sit underneath: which accents the model handles, how far past your Mac the tool reaches, and which bytes ever leave your laptop.
+
+I built IndianWhisper. This is the comparison I wish I had read before paying for a lifetime tier last year.
+
+## Where MacWhisper genuinely wins
+
+A comparison post that is not fair is just an ad. There are jobs MacWhisper does better today.
+
+**File-based transcription.** Drop a folder of recordings on MacWhisper. It chews through them with batch processing, timestamped output, and SRT/VTT export. IndianWhisper does live dictation, not file batch. If you process recorded interviews or podcasts, MacWhisper Pro is the better tool for that job.
+
+**YouTube URL ingest.** Paste a link, get a transcript. We do not have this.
+
+**Speaker diarization.** Two-speaker conversations come out labelled in MacWhisper Pro. We do not diarize today. For doctor-patient consultations or two-host podcasts, that is a real edge.
+
+**Maturity.** MacWhisper has shipped since 2022. The polish on file-import, the model picker, and the export menu reflects three years of iteration. IndianWhisper is one year old.
+
+If your work is "transcribe these 20 hours of recordings," MacWhisper Pro is the right answer. The €59 one-time is fair pricing for that workflow.
+
+The rest of this post is about every other workflow.
+
+## Where IndianWhisper wins
+
+**Indian accents and Hindi / Hinglish, first-class.** This is why the project exists. Whisper Large handles Indian English well; both apps benefit. IndianWhisper layers a punctuation + voice-command pass tuned on Hinglish code-switching. Say a sentence Hindi-English-Hindi mid-stride and IndianWhisper outputs clean text — Devanagari where you want it, English where you want it. MacWhisper produces Whisper's raw output, sometimes transliterated, sometimes oddly capitalised.
+
+**Free, with no asterisk.** MacWhisper free runs only the small Whisper models (Tiny + Base) and is missing batch processing, speaker diarization, and SRT/VTT export. IndianWhisper free is unlimited dictation, [all five Whisper models](https://indianwhisper.com/blog/whisper-ai-models-explained-which-one-to-use) (Tiny 75 MB → Large 3 GB), the full cleanup layer, and the Chrome extension. No paywalled Pro mode. Payment infrastructure exists but is turned off until there is a paid feature worth charging for.
+
+**Chrome extension reach.** MacWhisper is a Mac app. It dictates into the focused window via system input. The IndianWhisper Chrome extension is a different surface — a floating mic button that drops cleaned text into Gmail compose, Slack web, Google Docs, LinkedIn DMs, ChatGPT, and Notion, on any laptop where Chrome runs. If half your day is in web apps, the extension is the difference between "I dictate sometimes" and "I dictate everything."
+
+**Optional LLM cleanup with your own keys.** A finished Whisper transcript still has filler words and half-formed sentences. IndianWhisper's optional cleanup routes the text (not the audio) through one of seven LLMs you choose — Groq, Claude, OpenAI, Gemini, Moonshot, DeepSeek, or OpenRouter — using a key you bring. MacWhisper has no comparable feature today.
+
+**Voice editing commands.** "Scratch that" deletes the last sentence. "Delete word" deletes the previous word. "Clear all" wipes the buffer. Spoken inline while you dictate. MacWhisper relies on macOS dictation defaults, which are weaker.
+
+## The privacy question (this is where most readers actually live)
+
+Both apps load Whisper models locally and transcribe on your Mac's CPU/GPU. For audio, that is not marketing — it is what the code does. Apple Silicon runs Whisper Large at usable speed; Intel Macs are slower but still local.
+
+What changes between the two apps is the optional layer above transcription.
+
+**MacWhisper Pro (Gumroad, €59 lifetime):** Audio stays on your machine. Transcripts stay on your machine. There is no first-party cloud step. (The App Store version has its own caveats — review the listing if you go that route.)
+
+**IndianWhisper (free):** Audio stays on your machine for Whisper transcription. If you turn on optional LLM cleanup, the *finished text transcript* (not audio) goes to whichever LLM provider's key you supplied. If you leave LLM cleanup off — the default — nothing leaves your laptop.
+
+What this means in practice:
+
+- **Doctors and lawyers handling protected content:** Leave LLM cleanup off. Audio and text stay on the Mac. Both apps clear this bar; pair with FileVault for hardware-disk encryption.
+- **Journalists handling source recordings:** Both apps run the same way for audio. If you use cleanup, point it at a self-hosted LLM via OpenRouter or skip the layer.
+- **Compliance reviews:** The bytes that leave the machine are auditable. If your review board wants "no third-party processors," turn off cleanup. If they accept named processors with DPAs, pick one of the seven and bring your own enterprise key.
+
+A deeper write-up on what "on-device" actually means at the network layer is in our [on-device vs cloud privacy](https://indianwhisper.com/blog/on-device-vs-cloud-voice-recognition-privacy) post.
+
+## The feature matrix
+
+| Feature | MacWhisper Pro (Gumroad €59 lifetime) | IndianWhisper (free) |
+|---|---|---|
+| Price | €59 one-time (≈ $69 USD) | **₹0 / $0 — no subscription, no caps** |
+| Free tier | Tiny + Base models only, no batch / no diarization / no SRT export | **Unlimited dictation, all 5 Whisper models** |
+| On-device audio | Yes | **Yes** |
+| Optional cloud LLM cleanup | No (text stays local) | **Yes — 7 providers, your key, off by default** |
+| Indian English / Hindi tuning | Whisper default | **Tuned punctuation + Hinglish handling** |
+| Chrome extension (Gmail / Slack / Docs / ChatGPT / Notion) | No | **Yes — live** |
+| Real-time dictation | Yes | **Yes** |
+| File / folder batch transcription | **Yes — strong** | Not yet |
+| Speaker diarization | **Yes (Pro)** | Not yet |
+| YouTube URL transcription | **Yes (Pro)** | Not yet |
+| Voice editing commands (scratch that, delete word) | macOS dictation defaults | **Yes — built-in** |
+| System-wide hotkey | Yes | **Yes — Cmd+D, configurable** |
+| Whisper models bundled | Multiple (largest in Pro) | **All 5 (Tiny 75 MB → Large 3 GB)** |
+| Last shipping update | Active | **Active — auto-update every 6 hours** |
+
+A quick note: this is "MacWhisper Pro on Gumroad" vs. "IndianWhisper free." The Gumroad lifetime is the version most reviewers benchmark. The Mac App Store SKU is structured differently and is priced as a subscription — I would compare against that separately if you are considering it.
+
+## A 10-minute dictation session, both apps
+
+I ran the same 10-minute block on each app, same M5 Mac, Whisper Large on both sides:
+
+**Email reply in Gmail (web).** MacWhisper triggers macOS dictation in Chrome's text field — works, but no inline editing. IndianWhisper's extension floats a mic over the field; smart punctuation, "Scratch that" rewinds the last sentence by voice.
+
+**Slack message to a colleague (web Slack).** MacWhisper relies on system dictation — punctuation is a coin flip. IndianWhisper's extension drops cleaned text with the question mark and comma in the right places.
+
+**Google Doc with a paragraph mixing English and Hindi.** MacWhisper handles the English; the Hindi comes through transliterated (Latin script of Devanagari) — usable but not what was wanted. IndianWhisper's Hinglish pass keeps the Hindi sentence in clean Devanagari and the English sentence in English, correctly separated.
+
+**A 14-minute audio file of a recorded interview, into MacWhisper's batch import.** Drag, drop, transcript with timestamps and speaker labels, export to SRT. Smooth. IndianWhisper does not handle file batch today. Score one for MacWhisper.
+
+If your week is 80% live web-app dictation and 20% file batch, IndianWhisper is the daily driver and you keep MacWhisper around for the file work. If the mix is inverted, flip the order. (More on the [voice-vs-keyboard speed math](https://indianwhisper.com/blog/voice-typing-vs-keyboard-typing-speed-comparison) in another post.)
+
+## FAQ
+
+**Is IndianWhisper as accurate as MacWhisper?**
+For audio, yes — same Whisper models, same on-device runtime. IndianWhisper pulls ahead on Indian English, Hindi, and Hinglish because of the layers above Whisper. For pure American English on a clean mic, the apps are functionally tied.
+
+**Why is IndianWhisper free?**
+The Mac app is the front door. We will eventually charge for higher-volume or team features — the payment plumbing exists, turned off. Users first, revenue later.
+
+**Does either app send my audio to the cloud?**
+For Whisper transcription: no, both run locally. MacWhisper Pro on Gumroad has no first-party cloud step. IndianWhisper's optional LLM cleanup sends the *finished text* (not audio) to whichever provider key you supplied, only if you turn it on. Default off.
+
+**Which is better for legal or medical work?**
+Both clear the audio-stays-local bar. Pick MacWhisper Pro if you need diarization and file-batch workflows for depositions. Pick IndianWhisper if you dictate live notes into web apps and want the cleanup layer kept off.
+
+**Can I run both?**
+Yes. Different hotkeys, different surfaces, no conflict. Most heavy users we have talked to keep both — IndianWhisper for daily web-app dictation, MacWhisper for batch transcription.
+
+**Chrome extension on Windows or Linux?**
+The extension runs wherever Chrome runs. The Mac app is macOS 14+. Windows and Linux native apps are on the roadmap, not shipped today.
+
+## The single move worth making this week
+
+If you are about to pay €59 for MacWhisper Pro and your work is mostly live dictation in browsers and Hindi-English mix typing, install IndianWhisper free first. Run it for a week. If file batch + speaker diarization end up being the missing piece, then buy MacWhisper Pro and keep both. You are out nothing and you have ground truth.
+
+[Download IndianWhisper free →](https://indianwhisper.com/download)`,
+  },
+  {
     slug: "voice-typing-vs-keyboard-typing-speed-comparison",
     title: "Voice Typing vs Keyboard: The Speed Gap Nobody Talks About",
     description: "The average person types 40 WPM but speaks at 150 WPM. That's 800+ hours wasted per year. Here's the data behind why voice is 3.75x faster.",
