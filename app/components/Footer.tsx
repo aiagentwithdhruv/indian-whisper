@@ -29,7 +29,7 @@ export default function Footer() {
                 </div>
               </div>
               <p className="text-sm text-[#A1A1AA] max-w-sm leading-relaxed">
-                100% on-device voice transcription for Mac. Speak naturally, type instantly. No cloud, no subscription, no data collection.
+                Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. Speak naturally, type instantly. No subscription, no data collection.
               </p>
               <div className="flex items-center gap-1 mt-4 text-xs text-[#71717A]">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

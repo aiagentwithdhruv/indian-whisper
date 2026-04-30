@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "IndianWhisper — Voice to Text, 100% On-Device",
   description:
-    "Free, on-device voice transcription for Mac. Powered by Whisper AI. Your voice data never leaves your computer. Built for Indian developers.",
+    "Free voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. On-device on Mac — your voice data never leaves your computer. Built for Indian developers.",
   keywords: [
     "voice to text",
     "speech recognition",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "IndianWhisper — Stop Typing. Start Speaking.",
     description:
-      "100% on-device voice transcription for Mac. Free forever. No cloud, no subscriptions.",
+      "Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. Free forever. No subscription.",
     url: "https://indianwhisper.com",
     siteName: "IndianWhisper",
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "IndianWhisper — Voice to Text, 100% On-Device",
-    description: "Free, on-device voice transcription for Mac.",
+    description: "Voice-to-text for Mac, Windows & Chrome. Hindi/Hinglish/English. Free.",
   },
 };
 
