@@ -92,13 +92,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* CTA */}
         <div className="mt-16 glass-card glow-card-blue rounded-2xl p-8 text-center">
           <h3 className="text-xl font-bold mb-2">Ready to stop typing?</h3>
-          <p className="text-[#A1A1AA] text-sm mb-6">Download IndianWhisper free — or try the live demo in your browser.</p>
+          <p className="text-[#A1A1AA] text-sm mb-6">Free voice-to-text for Mac, Windows, and Chrome. No subscription.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/#download"
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-sm hover:from-blue-500 hover:to-blue-400 transition-all"
+              className="px-6 py-3 rounded-xl bg-[#18D1E0] text-black font-semibold text-sm hover:bg-[#18D1E0]/90 transition-all"
             >
-              Download for macOS
+              See Downloads
             </Link>
             <Link
               href="/#try-it"
