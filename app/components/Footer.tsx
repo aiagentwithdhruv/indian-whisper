@@ -46,6 +46,7 @@ export default function Footer() {
                 <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="#calculator" className="hover:text-white transition-colors">ROI Calculator</a></li>
                 <li><a href="#models" className="hover:text-white transition-colors">Models</a></li>
+                <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#download" className="hover:text-white transition-colors">Download</a></li>
               </ul>
             </div>
