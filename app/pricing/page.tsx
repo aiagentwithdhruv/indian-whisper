@@ -57,7 +57,7 @@ const COMPARISON = [
   },
   {
     tool: "Wispr Flow",
-    pricing: "$8/month",
+    pricing: "$10/month",
     hindi: false,
     onDevice: "—",
     freeTier: false,
