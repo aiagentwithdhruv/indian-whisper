@@ -64,10 +64,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Author */}
         <div className="flex items-center gap-3 mb-10 pb-10 border-b border-white/5">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-sm font-bold">D</div>
+          <div className="w-10 h-10 rounded-full bg-[#18D1E0] flex items-center justify-center text-sm font-bold text-black">D</div>
           <div>
             <div className="text-sm font-medium">Dhruv</div>
-            <div className="text-xs text-[#71717A]">AiwithDhruv · AI Developer</div>
+            <div className="text-xs text-[#71717A]">AIwithDhruv · AI Builder</div>
           </div>
         </div>
 
