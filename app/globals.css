@@ -70,6 +70,15 @@ body {
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.15), 0 0 60px rgba(59, 130, 246, 0.06);
 }
 
+.glow-card-cyan {
+  border-color: rgba(24, 209, 224, 0.15);
+  box-shadow: 0 0 20px rgba(24, 209, 224, 0.06);
+}
+.glow-card-cyan:hover {
+  border-color: rgba(24, 209, 224, 0.35);
+  box-shadow: 0 0 30px rgba(24, 209, 224, 0.15), 0 0 60px rgba(24, 209, 224, 0.06);
+}
+
 .glow-card-purple {
   border-color: rgba(139, 92, 246, 0.18);
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.06);
