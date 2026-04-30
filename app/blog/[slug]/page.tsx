@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </svg>
             All articles
           </Link>
-          <Link href="/#download" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
+          <Link href="/#download" className="text-sm text-[#18D1E0] hover:text-[#18D1E0]/80 transition-colors">
             Download IndianWhisper
           </Link>
         </div>
@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Tags */}
         <div className="flex flex-wrap items-center gap-3 mb-6">
           {post.tags.map((tag) => (
-            <span key={tag} className="px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-xs border border-blue-500/20">
+            <span key={tag} className="px-2.5 py-0.5 rounded-full bg-[#18D1E0]/10 text-[#18D1E0] text-xs border border-[#18D1E0]/20">
               {tag}
             </span>
           ))}
@@ -78,10 +78,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
             prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
             prose-p:text-[#A1A1AA] prose-p:leading-relaxed
-            prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300
+            prose-a:text-[#18D1E0] prose-a:no-underline hover:prose-a:text-[#18D1E0]/80
             prose-strong:text-white
             prose-li:text-[#A1A1AA]
-            prose-code:text-purple-400 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+            prose-code:text-[#E2E8F0] prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
             prose-table:text-sm
             prose-th:text-left prose-th:text-[#71717A] prose-th:font-medium prose-th:border-white/5
             prose-td:text-[#A1A1AA] prose-td:border-white/5
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         />
 
         {/* CTA */}
-        <div className="mt-16 glass-card glow-card-blue rounded-2xl p-8 text-center">
+        <div className="mt-16 glass-card glow-card-cyan rounded-2xl p-8 text-center">
           <h3 className="text-xl font-bold mb-2">Ready to stop typing?</h3>
           <p className="text-[#A1A1AA] text-sm mb-6">Free voice-to-text for Mac, Windows, and Chrome. No subscription.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
