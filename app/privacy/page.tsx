@@ -1,6 +1,9 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Privacy Policy — IndianWhisper",
-  description: "IndianWhisper privacy policy. Your voice data never leaves your computer.",
+  description:
+    "What IndianWhisper stores, where, and how to delete it. On-device by default. Cloud sync only when you sign in.",
 };
 
 export default function Privacy() {
@@ -8,78 +11,171 @@ export default function Privacy() {
     <main className="min-h-screen bg-[#0A0A0B] text-white px-6 py-24">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-2">Privacy Policy</h1>
-        <p className="text-[#71717A] mb-12">Last updated: March 17, 2026</p>
+        <p className="text-[#71717A] mb-4">Last updated: May 10, 2026</p>
+        <p className="text-[#A1A1AA] leading-relaxed mb-12">
+          Plain-language version. We don&apos;t sell your data. We don&apos;t track you across the web.
+          Most users never sign in — for them, IndianWhisper runs 100% on-device. If you do sign in to
+          sync transcripts across devices, we store specific fields in our database and you can ask us
+          to delete them at any time. Details below.
+        </p>
 
-        <div className="space-y-8 text-[#A1A1AA] leading-relaxed">
+        <div className="space-y-10 text-[#A1A1AA] leading-relaxed">
           <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Overview</h2>
-            <p>
-              IndianWhisper is built with privacy as a core principle. Your voice data never leaves
-              your computer. We do not collect, store, transmit, or sell any personal data, voice
-              recordings, or transcribed text.
+            <h2 className="text-xl font-semibold text-white mb-3">1. What we collect</h2>
+            <p className="mb-4">
+              <strong className="text-white">Free / anonymous users (no sign-in).</strong> Nothing
+              leaves your device. The Mac app uses WhisperKit on Apple&apos;s on-device CoreML; the
+              Windows app uses local Whisper.cpp; the Chrome extension uses your browser&apos;s built-in
+              Web Speech API. We don&apos;t see your audio, your transcripts, your usage, or your IP
+              address. No account is required to use the free tier.
             </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Mac App</h2>
-            <p>
-              The IndianWhisper Mac app uses WhisperKit to run speech recognition entirely on your
-              device. All audio processing happens locally using Apple&apos;s CoreML framework. No audio
-              or text is sent to any server. The optional LLM cleanup feature, if enabled by the user,
-              sends only the transcribed text (not audio) to the user&apos;s chosen AI provider using the
-              user&apos;s own API key.
+            <p className="mb-4">
+              <strong className="text-white">Signed-in users (Pro, or free users who choose to
+              sign in for cloud sync).</strong> When you sign in, you opt in to sending your
+              transcripts to our database so they can sync across your devices. For each transcript,
+              we store the following columns:
             </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Chrome Extension</h2>
-            <p>
-              The IndianWhisper Chrome extension uses the browser&apos;s built-in Web Speech API for
-              speech recognition. Voice processing is handled by Chrome — we have no access to your
-              audio or transcribed text. The extension does not make any network requests, does not
-              use analytics or tracking, and does not require an account.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Website</h2>
-            <p>
-              The indianwhisper.com website does not use cookies, analytics, or tracking scripts.
-              The feedback form stores your message for product improvement purposes only. The live
-              voice demo uses the Web Speech API in your browser — no audio leaves your device.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Data Collection</h2>
-            <p>We collect <strong className="text-white">zero</strong> data. Specifically:</p>
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>No voice recordings</li>
-              <li>No transcribed text</li>
-              <li>No usage analytics</li>
-              <li>No cookies or tracking</li>
-              <li>No personal information</li>
-              <li>No account or sign-up required</li>
+            <ul className="list-disc pl-6 space-y-1 mb-4">
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">raw_text</code> — the full transcript text</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">cleaned_text</code> — optional LLM-cleaned version (only if you ran cleanup)</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">language</code> — detected BCP-47 code (e.g. <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">hi-IN</code>, <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">en-IN</code>)</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">model_used</code> — which transcription model produced it</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">duration_seconds</code>, <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">word_count</code>, <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">char_count</code> — basic metrics</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">audio_sha256</code> — a hash of the audio (used only for dedupe; we do <em>not</em> store the audio file itself)</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">app_context</code> — which app or website you were dictating into (e.g. <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">{`{"app": "Slack"}`}</code>) so the dashboard can group by source</li>
+              <li><code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">metadata</code> — flexible JSON for future fields, currently empty by default</li>
             </ul>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Third-Party Services</h2>
             <p>
-              IndianWhisper does not integrate with any third-party analytics, advertising, or data
-              collection services. The Chrome extension uses only Chrome&apos;s built-in Web Speech API.
-              The Mac app uses only Apple&apos;s on-device CoreML and WhisperKit.
+              We also store the email address you used to sign in (for authentication), and a
+              per-device <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">device_id</code> so you can revoke a specific machine. We do <strong className="text-white">not</strong> store
+              the raw audio file. Ever.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Open Source</h2>
+            <h2 className="text-xl font-semibold text-white mb-3">2. Where we store it</h2>
             <p>
-              IndianWhisper is open source. You can verify our privacy claims by reviewing the source
-              code at{" "}
+              Supabase (Postgres 15) in region <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">ap-south-1</code> (Mumbai, India). Picking
+              an Indian region is intentional: it keeps latency low for Indian users and keeps
+              personal data local under the Digital Personal Data Protection Act 2023. Backups and
+              point-in-time recovery snapshots stay in the same region.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">3. Why we store it</h2>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>Sync your transcripts across the devices you sign in on (Mac, Windows, Chrome, the future Studio web app).</li>
+              <li>Search across your dictation history (semantic search is on the roadmap, hence the chunked-embedding table).</li>
+              <li>Restore your work if you change machines or lose access to a local copy.</li>
+            </ul>
+            <p className="mt-4">
+              We do <strong className="text-white">not</strong> use your transcripts to train models, sell to advertisers, or
+              share with third parties for marketing. Period.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">4. Retention</h2>
+            <p>
+              We keep your transcripts until you delete them. When you delete a transcript, we set a{" "}
+              <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">deleted_at</code> timestamp on the row (soft delete) so a misclick can be undone for
+              up to 30 days. After 30 days, a scheduled job hard-deletes the row from the database
+              and from backups on their next rotation.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">5. How to delete your data</h2>
+            <p className="mb-3">
+              Right now (May 2026): email <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">support@indianwhisper.com</a> from your
+              account email. We&apos;ll confirm and hard-delete within 5 business days.
+            </p>
+            <p>
+              In Month 2 (target: June 2026): a one-click <strong className="text-white">&quot;Delete my account and all
+              data&quot;</strong> button in the in-app account dashboard.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">6. Who else has access</h2>
+            <p className="mb-3">
+              Nobody outside of you. Every table that contains user data has Postgres Row-Level
+              Security enabled with the rule <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">auth.uid() = user_id</code>. Even if a bug
+              shipped a wrong query, the database itself would refuse to return another user&apos;s rows.
+            </p>
+            <p>
+              We don&apos;t routinely read transcripts. The only situation where a member of our team
+              would look at a row is if you write to support and explicitly ask us to investigate
+              something specific (e.g. &quot;why didn&apos;t this transcript sync?&quot;). We&apos;ll ask for written
+              consent in the support thread before we run that query, and we&apos;ll only inspect the
+              specific row you reference.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">7. Cookies</h2>
+            <p>
+              The Mac app, Windows app, and Chrome extension use no cookies at all. The website at
+              indianwhisper.com sets a Supabase auth cookie only after you sign in, and only to keep
+              you signed in. We do <strong className="text-white">not</strong> use Google Analytics, Facebook
+              Pixel, Mixpanel, or any third-party tracking script.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">8. Third parties we share data with</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>
+                <strong className="text-white">Lemon Squeezy</strong> — handles payment as our Merchant
+                of Record. They see your billing email, country, and the amount paid. They process
+                taxes (GST / VAT / sales tax) on our behalf. They never see your transcripts.
+              </li>
+              <li>
+                <strong className="text-white">Resend</strong> — sends one-time login codes to your
+                email. They see your email address and the code. They don&apos;t see your transcripts.
+              </li>
+              <li>
+                <strong className="text-white">Supabase</strong> — our database and auth host. They are
+                a data processor under our agreement; they don&apos;t access your data for any purpose
+                outside running the database.
+              </li>
+              <li>
+                <strong className="text-white">Vercel</strong> — hosts the indianwhisper.com website and
+                API. They see request metadata (URL, status code, timing) but not your transcript
+                content.
+              </li>
+            </ul>
+            <p className="mt-3">
+              That&apos;s the complete list. No ad networks, no analytics SaaS, no data brokers.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">9. Your rights</h2>
+            <p className="mb-3">
+              Under the DPDP Act 2023 (India) and GDPR (EU), you can ask us to:
+            </p>
+            <ul className="list-disc pl-6 space-y-1">
+              <li><strong className="text-white">Access</strong> — give you a copy of everything we store about you.</li>
+              <li><strong className="text-white">Correct</strong> — fix anything wrong (e.g. a typo in your email).</li>
+              <li><strong className="text-white">Delete</strong> — wipe your account and every row tied to your <code className="text-[#E2E8F0] bg-white/5 px-1.5 py-0.5 rounded">user_id</code>.</li>
+              <li><strong className="text-white">Port</strong> — export your transcripts in JSON or CSV.</li>
+              <li><strong className="text-white">Withdraw consent</strong> — stop the cloud sync at any time. (Your local app keeps working.)</li>
+            </ul>
+            <p className="mt-3">
+              Email <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">support@indianwhisper.com</a> with the request. Response
+              within 5 business days.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white mb-3">10. Source code</h2>
+            <p>
+              The website and Chrome extension are open source. You can audit how we collect data at{" "}
               <a
                 href="https://github.com/aiagentwithdhruv/indian-whisper"
-                className="text-blue-400 hover:underline"
+                className="text-[#18D1E0] hover:text-[#18D1E0]/80"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -90,23 +186,22 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-white mb-3">Contact</h2>
+            <h2 className="text-xl font-semibold text-white mb-3">11. Contact</h2>
             <p>
-              For privacy questions, reach out via the feedback form on{" "}
-              <a href="https://indianwhisper.com/#feedback" className="text-blue-400 hover:underline">
-                indianwhisper.com
-              </a>{" "}
-              or email{" "}
-              <a href="mailto:aiwithdhruv@gmail.com" className="text-blue-400 hover:underline">
-                aiwithdhruv@gmail.com
-              </a>
-              .
+              Operator: AIwithDhruv (Dhruv Tomar). India-based.<br />
+              Email: <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">support@indianwhisper.com</a>
+            </p>
+            <p className="mt-3">
+              When this policy changes, we update the &quot;Last updated&quot; date at the top and notify
+              signed-in users by email at least 14 days before any material change takes effect.
             </p>
           </section>
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 text-sm text-[#71717A]">
-          <a href="/" className="text-blue-400 hover:underline">&larr; Back to IndianWhisper</a>
+          <a href="/" className="text-[#18D1E0] hover:text-[#18D1E0]/80">&larr; Back to IndianWhisper</a>
+          <span className="mx-3 text-white/10">·</span>
+          <a href="/terms" className="text-[#18D1E0] hover:text-[#18D1E0]/80">Terms of Service</a>
         </div>
       </div>
     </main>
