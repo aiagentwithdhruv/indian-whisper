@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Main footer grid */}
-          <div className="grid md:grid-cols-4 gap-10 mb-12">
+          <div className="grid md:grid-cols-5 gap-10 mb-12">
             {/* Brand column */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
@@ -29,13 +29,13 @@ export default function Footer() {
                 </div>
               </div>
               <p className="text-sm text-[#A1A1AA] max-w-sm leading-relaxed">
-                Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. Speak naturally, type instantly. No subscription, no data collection.
+                Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. Speak naturally, type instantly. No third-party tracking, ever.
               </p>
               <div className="flex items-center gap-1 mt-4 text-xs text-[#71717A]">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                 </svg>
-                Your voice data never leaves your computer
+                On-device by default · Cloud sync only when you sign in
               </div>
             </div>
 
@@ -81,6 +81,21 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4 text-white">Legal</h4>
+              <ul className="space-y-3 text-sm text-[#71717A]">
+                <li><a href="/privacy" className="hover:text-[#18D1E0] transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms" className="hover:text-[#18D1E0] transition-colors">Terms of Service</a></li>
+                <li><a href="/terms#refund" className="hover:text-[#18D1E0] transition-colors">Refunds</a></li>
+                <li>
+                  <a href="mailto:support@indianwhisper.com" className="hover:text-[#18D1E0] transition-colors break-all">
+                    support@indianwhisper.com
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Bottom bar */}
@@ -98,11 +113,11 @@ export default function Footer() {
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <span>No analytics</span>
+              <span>No third-party tracking</span>
               <span className="text-white/10">|</span>
-              <span>No tracking</span>
+              <span>Mumbai data region</span>
               <span className="text-white/10">|</span>
-              <span>100% private</span>
+              <span>Delete anytime</span>
             </div>
           </div>
         </div>
