@@ -63,7 +63,7 @@ export default function Hero() {
         {/* Subtitle */}
         <p className="animate-fade-in-up animation-delay-400 mt-6 text-lg md:text-xl text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed">
           Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English.
-          On-device on Mac — your voice data <span className="text-white font-medium">never leaves your computer</span>.
+          On-device by default — your audio recordings <span className="text-white font-medium">never leave your machine</span>. Sign in for cross-device transcript sync.
         </p>
 
         {/* CTA */}

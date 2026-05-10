@@ -4,7 +4,7 @@ export default function Comparison() {
       name: "IndianWhisper",
       price: "Free",
       priceDetail: "no limits",
-      privacy: "100% on-device",
+      privacy: "On-device by default",
       hindiSupport: true,
       openSource: true,
       llmCleanup: true,

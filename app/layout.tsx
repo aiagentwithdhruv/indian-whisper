@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "IndianWhisper — Voice to Text, 100% On-Device",
+  title: "IndianWhisper — Voice to Text, On-Device by Default",
   description:
-    "Free voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. On-device on Mac — your voice data never leaves your computer. Built for Indian developers.",
+    "Free voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. On-device by default — your audio recordings never leave your machine. Sign in for cross-device transcript sync. Built for Indian developers.",
   keywords: [
     "voice to text",
     "voice typing",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "IndianWhisper — Voice to Text, 100% On-Device",
+    title: "IndianWhisper — Voice to Text, On-Device by Default",
     description: "Voice-to-text for Mac, Windows & Chrome. Hindi/Hinglish/English. Free.",
   },
 };

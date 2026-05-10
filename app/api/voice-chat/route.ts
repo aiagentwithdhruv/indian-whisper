@@ -6,7 +6,7 @@ About IndianWhisper:
 - Built by Dhruv (AIwithDhruv) — an AI Builder from India
 - Free tier: 60 minutes/day, Tiny + Base Whisper models, 3 LLM cleanups/day. No card needed.
 - Pro: $12/month or $99/year. Lifetime: $249 (first 100 buyers). 30-day money-back.
-- Mac app: 100% on-device using WhisperKit (5 Whisper models from Tiny 75MB to Large V3 3GB). Voice never leaves the computer.
+- Mac app: On-device by default using WhisperKit (5 Whisper models from Tiny 75MB to Large V3 3GB). Audio recordings never leave the computer. Signed-in users opt into cross-device transcript text sync via Supabase.
 - Windows app: Cloud transcription via Groq (whisper-large-v3) — bias-prompted for Indian English. Audio is sent to Groq, not stored.
 - Chrome extension: uses the browser's Web Speech API. Works on any website (Gmail, Slack, ChatGPT, LinkedIn, etc.).
 - Languages: Hindi, Hinglish, English. AI text cleanup via 7 LLM providers (Groq, Claude, OpenAI, Gemini, Moonshot, DeepSeek, OpenRouter) — Pro only for full set, Groq free on the free tier.

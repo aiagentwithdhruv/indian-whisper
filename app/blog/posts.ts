@@ -174,7 +174,7 @@ Three reasons:
 Modern voice-to-text tools like IndianWhisper solve all three problems:
 
 - **Accuracy**: Whisper AI models achieve 95%+ accuracy on English, even with Indian accents
-- **Privacy**: 100% on-device processing. Your voice never leaves your Mac
+- **Privacy**: Audio stays on-device. Sign in for transcript sync; opt out by not signing in.
 - **Natural**: Smart punctuation means you say "comma" and it types ",". Say "new line" and it moves down. No editing needed.
 
 ### The Real Advantage: Thinking Speed
@@ -268,7 +268,7 @@ As voice AI becomes ubiquitous, the privacy question will get louder:
 
 On-device tools that guarantee zero cloud processing will command a premium — or in IndianWhisper's case, earn loyalty by being free AND private.
 
-The apps that win will be the ones that can say: **"Your voice never leaves your computer."** Not as marketing, but as an architectural guarantee.
+The apps that win will be the ones that can say: **"Your audio never leaves your machine."** Not as marketing, but as an architectural guarantee.
 
 ### 7. Voice Will Be the Default Mobile Input by 2028
 
