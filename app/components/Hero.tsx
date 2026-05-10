@@ -96,7 +96,7 @@ export default function Hero() {
         {/* Stats */}
         <div className="mt-16 flex items-center justify-center gap-8 md:gap-16 text-center">
           {[
-            { value: "100%", label: "On-Device" },
+            { value: "Audio", label: "Stays Local" },
             { value: "0", label: "Cloud Calls" },
             { value: "Free", label: "No Subscription" },
             { value: "42x", label: "Real-time Speed" },
