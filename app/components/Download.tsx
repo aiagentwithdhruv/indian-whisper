@@ -50,6 +50,72 @@ export default function Download() {
           </div>
         </div>
 
+        {/* First-time install — Gatekeeper + SmartScreen bypass (expanded by default) */}
+        <div className="mt-8 grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {/* Mac bypass */}
+          <div className="glass-card rounded-2xl p-6 text-left border border-[#18D1E0]/20">
+            <h3 className="font-semibold text-base text-white mb-2 leading-snug">
+              macOS may say &quot;Apple cannot check it for malicious software&quot;
+            </h3>
+            <p className="text-[#A1A1AA] text-sm leading-relaxed mb-5">
+              This is normal for apps not yet notarized by Apple. IndianWhisper runs fully on-device — your audio never leaves your Mac unless you sign in for cloud sync.
+            </p>
+            <ol className="space-y-2.5 text-sm text-[#A1A1AA]">
+              <li className="flex gap-3">
+                <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">1.</span>
+                <span>Open Finder &rarr; Applications</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">2.</span>
+                <span>Right-click (or Control-click) IndianWhisper &rarr; click <strong className="text-white font-medium">Open</strong></span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">3.</span>
+                <span>Click <strong className="text-white font-medium">Open</strong> in the dialog that appears</span>
+              </li>
+            </ol>
+            <p className="text-[#71717A] text-xs mt-5 leading-relaxed">
+              That&apos;s a one-time approval. macOS remembers your choice; future launches are silent.
+            </p>
+          </div>
+
+          {/* Windows bypass */}
+          <div className="glass-card rounded-2xl p-6 text-left border border-[#18D1E0]/20">
+            <h3 className="font-semibold text-base text-white mb-2 leading-snug">
+              Windows SmartScreen may say &quot;Windows protected your PC&quot;
+            </h3>
+            <p className="text-[#A1A1AA] text-sm leading-relaxed mb-5">
+              Same story — Windows flags installers that haven&apos;t built reputation yet. IndianWhisper is open source; you can audit the code at{" "}
+              <a
+                href="https://github.com/aiagentwithdhruv/indianwhisper-windows"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#18D1E0] hover:text-[#18D1E0]/80 break-words"
+              >
+                github.com/aiagentwithdhruv/indianwhisper-windows
+              </a>
+              .
+            </p>
+            <ol className="space-y-2.5 text-sm text-[#A1A1AA]">
+              <li className="flex gap-3">
+                <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">1.</span>
+                <span>Click <strong className="text-white font-medium">More info</strong> (small text under the warning)</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">2.</span>
+                <span>Click <strong className="text-white font-medium">Run anyway</strong></span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">3.</span>
+                <span>The installer launches normally</span>
+              </li>
+            </ol>
+            <p className="text-[#71717A] text-xs mt-5 leading-relaxed">
+              If the installer hangs: right-click the <code className="bg-white/5 px-1.5 py-0.5 rounded text-[11px] font-mono text-[#E2E8F0]">.exe</code> &rarr; <strong className="text-white font-medium">Properties</strong> &rarr; tick <strong className="text-white font-medium">Unblock</strong> &rarr; <strong className="text-white font-medium">Apply</strong> &rarr; re-run.
+            </p>
+          </div>
+        </div>
+
         {/* Linux coming soon (single pill) */}
         <div className="mt-8 flex justify-center">
           <div className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-[#71717A] text-sm">
@@ -61,45 +127,6 @@ export default function Download() {
               <line x1="10.88" x2="15.46" y1="21.94" y2="14" />
             </svg>
             Linux — Coming Soon
-          </div>
-        </div>
-
-        {/* Install instructions — both platforms */}
-        <div className="mt-10 grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {/* macOS */}
-          <div className="glass-card rounded-xl p-5 text-left border border-yellow-500/20">
-            <div className="flex items-start gap-3">
-              <span className="text-yellow-400 text-lg mt-0.5">&#9888;</span>
-              <div>
-                <h3 className="font-semibold text-sm text-yellow-400">macOS — first time opening?</h3>
-                <p className="text-[#A1A1AA] text-sm mt-1">
-                  macOS may show &quot;IndianWhisper can&apos;t be opened&quot;. This is normal for apps outside the App Store.
-                </p>
-                <div className="mt-3 space-y-2 text-sm text-[#A1A1AA]">
-                  <p><strong className="text-white">Option 1:</strong> Right-click the app &rarr; Click <strong className="text-white">Open</strong> &rarr; Click <strong className="text-white">Open</strong> again</p>
-                  <p><strong className="text-white">Option 2:</strong> <strong className="text-white">System Settings &rarr; Privacy &amp; Security</strong> &rarr; <strong className="text-white">Open Anyway</strong></p>
-                  <p><strong className="text-white">Option 3:</strong> <code className="bg-white/10 px-2 py-0.5 rounded text-xs font-mono">xattr -cr /Applications/IndianWhisper.app</code></p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Windows */}
-          <div className="glass-card rounded-xl p-5 text-left border border-cyan-500/20">
-            <div className="flex items-start gap-3">
-              <span className="text-cyan-400 text-lg mt-0.5">&#9888;</span>
-              <div>
-                <h3 className="font-semibold text-sm text-cyan-400">Windows — SmartScreen warning?</h3>
-                <p className="text-[#A1A1AA] text-sm mt-1">
-                  Windows Defender SmartScreen may show &quot;Windows protected your PC&quot;. This is normal for unsigned apps until we add a code-signing certificate.
-                </p>
-                <div className="mt-3 space-y-2 text-sm text-[#A1A1AA]">
-                  <p><strong className="text-white">Step 1:</strong> Click <strong className="text-white">More info</strong> on the warning dialog</p>
-                  <p><strong className="text-white">Step 2:</strong> Click <strong className="text-white">Run anyway</strong></p>
-                  <p><strong className="text-white">Step 3:</strong> Allow microphone access when prompted</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
