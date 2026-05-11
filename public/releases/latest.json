@@ -1,8 +1,8 @@
 {
-  "version": "1.0.0",
+  "version": "2.4.0",
   "minimumOS": "14.0",
-  "releaseDate": "2026-03-16",
+  "releaseDate": "2026-05-12",
   "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v1.0.0.dmg",
-  "releaseNotes": "Bug fixes and improvements.",
-  "sha256": "195bbcbbdcd678852e672b4abb808952b350e140f738f2a3d2ba377b901b2d34"
+  "releaseNotes": "v2.4.0 — cloud sync + voice commands (copy/paste/cut + summarize) + start/stop sounds + push-to-talk on Left Option",
+  "sha256": "4e51eca332f7855f5e67a3f907547c76a2178fbfda1089e5f24a767195664aac"
 }
