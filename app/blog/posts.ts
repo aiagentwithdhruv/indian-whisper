@@ -10,6 +10,106 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "we-added-cloud-sync",
+    title: "We Added Cloud Sync. Here's Exactly What We Store.",
+    description: "As of v2.3.0, signed-in IndianWhisper transcripts sync across Mac, Windows, and Chrome. This post is the full list — every column, where it lives, who can read it, how to delete it. Written before the privacy policy update lands.",
+    date: "2026-05-12",
+    readTime: "5 min",
+    tags: ["cloud-sync", "privacy", "transparency", "v2.4.0", "dpdp", "supabase"],
+    content: `If you sign in to IndianWhisper as of v2.3.0, every transcription you make is saved to a database we run. This post is the exact list of what is saved, where it lives, who can read it, and how to remove it. Written before the privacy policy update lands this week so nobody has to find this out from fine print.
+
+[IMAGE: Hero — deep-dark BG + neon cyan illustration of three devices (Mac, Windows laptop, Chrome browser) syncing to a cloud labeled "Mumbai." Brand palette only.]
+
+## Why we built cloud sync
+
+The most-requested feature since the Mac app shipped was: "If I dictate something on my MacBook in the morning, why can't I see it on my Windows laptop in the evening?"
+
+The honest answer used to be: every transcript lived only on the device that produced it. Local-first was a privacy choice, but also a sync ceiling. Three apps, three separate libraries.
+
+v2.3.0 lifts that ceiling. Sign in once, and the same transcript library is visible from the Mac app, the Windows app, and the Chrome extension. Search a thing on any device — find it on every device. That is the killer feature, and it does not work without cloud storage.
+
+So we added cloud storage. And we are explaining it on day one.
+
+## Who actually triggers a cloud save
+
+Only signed-in users.
+
+If you do not sign in, the app behaves the same as v1: transcripts live on your device, audio never leaves your machine, our servers know nothing about you. Same promise as the day we shipped.
+
+If you do sign in — for cross-device sync, billing, or future team features — new transcriptions push to the cloud library. Old transcripts that lived locally before v2.3.0 are not retroactively uploaded. Only what you create after sign-in.
+
+There is no separate "send my data to the cloud" toggle. Signing in is the toggle.
+
+## What gets stored — column by column
+
+Here is the actual \`transcripts\` table schema in our Supabase project. Every row is one dictation:
+
+- **\`raw_text\`** — the original Whisper output, full transcript, no truncation
+- **\`cleaned_text\`** — the LLM-polished version (only if you enabled cleanup)
+- **\`language\`** — BCP-47 detected language code (\`hi-IN\`, \`en-IN\`, \`hi-Latn-IN\`, \`gu-IN\`, etc.)
+- **\`model_used\`** — which engine produced the text (\`whisper-tiny\`, \`gemini-2.5-flash\`, etc.)
+- **\`llm_cleanup_model\`** — which LLM you ran cleanup through, or \`null\`
+- **\`duration_seconds\`**, **\`word_count\`**, **\`char_count\`** — basic metadata
+- **\`source\`** — which app captured it (\`mac\`, \`chrome\`, \`windows\`, \`studio-upload\`, \`studio-live\`)
+- **\`kind\`** — type of capture (\`dictation\`, \`meeting\`, \`note\`, \`upload\`)
+- **\`app_context\`** — which app you were dictating into, e.g. \`{"app": "Xcode"}\` on Mac, \`{"host": "gmail.com"}\` in Chrome. Optional and easy to scrub.
+- **\`audio_sha256\`** — a one-way hash of the audio, used so re-syncing the same recording does not create duplicates
+- **\`voice_commands\`** — voice editing commands used in the session, e.g. \`["scratch_that", "delete_word"]\`
+- **\`created_at\`**, **\`updated_at\`** — timestamps
+
+**What is not stored:** the audio file itself. We never see the recording, never save it, never upload it. The \`audio_sha256\` field is a 256-bit fingerprint computed on your device — it lets us detect duplicates without seeing the bytes.
+
+If a column above ever changes — added, renamed, or removed — the migration ships in our open repo before going live in production. Schema is the contract.
+
+## Where the data lives
+
+Supabase, region \`ap-south-1\`. That is the Mumbai data center.
+
+Two reasons. First, latency — typically under 100ms for Indian users, fast enough for search results to feel instant. Second, data residency under the DPDP Act 2023. Personal data of Indian users stays in Indian infrastructure by default. Nothing routes through US data centers for storage or query.
+
+If you are based outside India, your transcripts still live in Mumbai for now. A multi-region option may ship later if demand justifies the operational complexity, but India-first stays the default.
+
+## Who can read your transcripts
+
+Only you.
+
+The database has row-level security on every user-content table. Every query, without exception, is scoped to your user ID by the JWT in your Supabase session. There is no admin escape hatch in the application layer.
+
+Right now, I am the only person with database-admin access, and I have not read a user transcript. When the team grows, access will be logged, auditable, and require a stated reason — and the policy will be public before any new person gets keys.
+
+For sensitive workflows — legal, medical, anything under NDA — the safest move stays the same as v1: do not sign in. Local-only mode is still the default for unauthenticated use, and nothing leaves the device.
+
+## How to delete your data
+
+Email **support@indianwhisper.com** with the subject "Delete my data." We soft-delete on request and hard-delete the row within 7 days. Hard-delete means the row is gone — not flagged, not anonymized, gone. Soft-deleted rows also auto-purge after 30 days even without an explicit request — the row is gone either way.
+
+A user-facing "Delete my data" button in Settings is the next ship. Until then, email is the path.
+
+Per-row delete from inside the app is on the roadmap; for now, full-account delete via the email above is the path.
+
+[IMAGE: In-body — sketched three-panel diagram (Sign-in → Cloud sync flow → Delete flow). Deep-dark BG, neon cyan accents on the active arrows.]
+
+## Why this post exists before the privacy policy update
+
+The privacy policy is being rewritten this week to reflect cloud sync. We could have shipped it quietly and let people stumble on it.
+
+We chose not to. The right move when you change what data you collect is to write a plain-English note to the people who trusted you with the previous version. That is this post.
+
+If anything here surprises you or feels incomplete, reply on LinkedIn or email support directly. Corrections in the next 48 hours go straight into the policy before it ships.
+
+## What is coming next
+
+The schema includes a \`transcript_chunks\` table with \`pgvector\` embeddings — semantic search across your full library. You will be able to ask "find the transcript where I talked about the Nginx config" and get the right paragraph, not just a keyword match. On the roadmap; shipping in a future release.
+
+After that: team workspaces (the \`org_id\` column is already in the schema, nullable, waiting), and native mobile to round out the surface area.
+
+## Try it
+
+Update to v2.3.0 at [indianwhisper.com/download](https://indianwhisper.com/download). Sign in once on any device, then on the others. Same library, everywhere.
+
+If you have questions about anything in this post — what we store, where, why, or how to remove it — reply on LinkedIn or email **support@indianwhisper.com**. The whole point of this post is that the questions are welcome.`,
+  },
+  {
     slug: "macwhisper-vs-indianwhisper",
     title: "MacWhisper vs IndianWhisper: Privacy, Price, and the India Gap",
     description: "MacWhisper Pro is €59 lifetime. IndianWhisper is free. Real choice is not price — it is where your audio goes and how far past your Mac the tool reaches.",
