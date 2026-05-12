@@ -12,11 +12,11 @@ export const posts: BlogPost[] = [
   {
     slug: "we-added-cloud-sync",
     title: "We Added Cloud Sync. Here's Exactly What We Store.",
-    description: "As of v2.3.0, signed-in IndianWhisper transcripts sync across Mac, Windows, and Chrome. This post is the full list — every column, where it lives, who can read it, how to delete it. Written before the privacy policy update lands.",
+    description: "As of v2.4.0, signed-in IndianWhisper transcripts sync across Mac, Windows, and Chrome. This post is the full list — every column, where it lives, who can read it, how to delete it. Written before the privacy policy update lands.",
     date: "2026-05-12",
     readTime: "5 min",
     tags: ["cloud-sync", "privacy", "transparency", "v2.4.0", "dpdp", "supabase"],
-    content: `If you sign in to IndianWhisper as of v2.3.0, every transcription you make is saved to a database we run. This post is the exact list of what is saved, where it lives, who can read it, and how to remove it. Written before the privacy policy update lands this week so nobody has to find this out from fine print.
+    content: `If you sign in to IndianWhisper as of v2.4.0, every transcription you make is saved to a database we run. This post is the exact list of what is saved, where it lives, who can read it, and how to remove it. Written before the privacy policy update lands this week so nobody has to find this out from fine print.
 
 [IMAGE: Hero — deep-dark BG + neon cyan illustration of three devices (Mac, Windows laptop, Chrome browser) syncing to a cloud labeled "Mumbai." Brand palette only.]
 
@@ -26,7 +26,7 @@ The most-requested feature since the Mac app shipped was: "If I dictate somethin
 
 The honest answer used to be: every transcript lived only on the device that produced it. Local-first was a privacy choice, but also a sync ceiling. Three apps, three separate libraries.
 
-v2.3.0 lifts that ceiling. Sign in once, and the same transcript library is visible from the Mac app, the Windows app, and the Chrome extension. Search a thing on any device — find it on every device. That is the killer feature, and it does not work without cloud storage.
+v2.4.0 lifts that ceiling. Sign in once, and the same transcript library is visible from the Mac app, the Windows app, and the Chrome extension. Search a thing on any device — find it on every device. That is the killer feature, and it does not work without cloud storage.
 
 So we added cloud storage. And we are explaining it on day one.
 
@@ -36,7 +36,7 @@ Only signed-in users.
 
 If you do not sign in, the app behaves the same as v1: transcripts live on your device, audio never leaves your machine, our servers know nothing about you. Same promise as the day we shipped.
 
-If you do sign in — for cross-device sync, billing, or future team features — new transcriptions push to the cloud library. Old transcripts that lived locally before v2.3.0 are not retroactively uploaded. Only what you create after sign-in.
+If you do sign in — for cross-device sync, billing, or future team features — new transcriptions push to the cloud library. Old transcripts that lived locally before v2.4.0 are not retroactively uploaded. Only what you create after sign-in.
 
 There is no separate "send my data to the cloud" toggle. Signing in is the toggle.
 
@@ -105,7 +105,7 @@ After that: team workspaces (the \`org_id\` column is already in the schema, nul
 
 ## Try it
 
-Update to v2.3.0 at [indianwhisper.com/download](https://indianwhisper.com/download). Sign in once on any device, then on the others. Same library, everywhere.
+Update to v2.4.0 at [indianwhisper.com/download](https://indianwhisper.com/download). Sign in once on any device, then on the others. Same library, everywhere.
 
 If you have questions about anything in this post — what we store, where, why, or how to remove it — reply on LinkedIn or email **support@indianwhisper.com**. The whole point of this post is that the questions are welcome.`,
   },
