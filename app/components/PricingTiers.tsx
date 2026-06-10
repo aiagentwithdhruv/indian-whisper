@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 
+// Payments open soon via Lemon Squeezy. Until then every paid CTA routes to
+// the free download — a dead checkout link costs more trust than honesty does.
+const EARLY_ACCESS_URL = "/#download";
 const LS_URLS = {
-  proMonthly: "https://aiwithdhruv.lemonsqueezy.com/buy/PLACEHOLDER-PRO-MONTHLY",
-  proAnnual: "https://aiwithdhruv.lemonsqueezy.com/buy/PLACEHOLDER-PRO-ANNUAL",
-  lifetime: "https://aiwithdhruv.lemonsqueezy.com/buy/PLACEHOLDER-LIFETIME",
+  proMonthly: EARLY_ACCESS_URL,
+  proAnnual: EARLY_ACCESS_URL,
+  lifetime: EARLY_ACCESS_URL,
 } as const;
 
 type ProEmphasis = "monthly" | "annual";
@@ -79,7 +82,7 @@ const TIERS: Tier[] = [
       "Custom voice commands",
       "3 devices",
     ],
-    ctaLabel: "Get Pro Monthly",
+    ctaLabel: "Free in Early Access",
     ctaHref: LS_URLS.proMonthly,
     ctaVariant: "primary",
     ctaDataLs: "pro-monthly",
@@ -100,7 +103,7 @@ const TIERS: Tier[] = [
       "Gemini Live + batch processing",
       "3 devices",
     ],
-    ctaLabel: "Get Pro Annual",
+    ctaLabel: "Free in Early Access",
     ctaHref: LS_URLS.proAnnual,
     ctaVariant: "primary",
     ctaDataLs: "pro-annual",
@@ -119,7 +122,7 @@ const TIERS: Tier[] = [
       "5 devices",
       "No subscription, ever",
     ],
-    ctaLabel: "Get Lifetime",
+    ctaLabel: "Free in Early Access",
     ctaHref: LS_URLS.lifetime,
     ctaVariant: "primary",
     ctaDataLs: "lifetime",

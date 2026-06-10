@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: "Can I switch from monthly to annual?",
-    a: "Yes. Email support@aiwithdhruv.com and we'll move you to annual billing. The remaining monthly time is credited toward your annual plan.",
+    a: "Yes. Email support@indianwhisper.com and we'll move you to annual billing. The remaining monthly time is credited toward your annual plan.",
   },
   {
     q: "What happens if I cancel?",
@@ -307,13 +307,10 @@ export default function PricingPage() {
                 Download Free
               </a>
               <a
-                href="https://aiwithdhruv.lemonsqueezy.com/buy/PLACEHOLDER-PRO-ANNUAL"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-ls-product="pro-annual"
+                href="/#download"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#18D1E0] text-black font-semibold hover:bg-[#18D1E0]/90 transition-all"
               >
-                Get Pro Annual — $99
+                Download — Free in Early Access
               </a>
             </div>
             <div className="mt-4 text-xs text-[#71717A]">30-day money-back</div>

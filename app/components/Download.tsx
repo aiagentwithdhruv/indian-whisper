@@ -17,7 +17,7 @@ export default function Download() {
               <span className="absolute inset-0 rounded-2xl btn-pulse-ring" />
               <span className="absolute inset-0 rounded-2xl btn-pulse-ring" style={{ animationDelay: "0.8s" }} />
               <a
-                href="/releases/IndianWhisper-v1.0.0.dmg"
+                href="/releases/IndianWhisper-v2.5.0.dmg"
                 className="relative glow-blue inline-flex items-center justify-center gap-3 w-full px-8 py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-lg hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-[1.02]"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -27,7 +27,7 @@ export default function Download() {
                 <span className="text-blue-200 text-sm font-normal">.dmg</span>
               </a>
             </div>
-            <div className="mt-3 text-sm text-[#71717A]">v1.0.0 · 2 MB · macOS 14+</div>
+            <div className="mt-3 text-sm text-[#71717A]">v2.5.0 · 4 MB · macOS 14+</div>
           </div>
 
           {/* Windows download */}
@@ -36,7 +36,7 @@ export default function Download() {
               <span className="absolute inset-0 rounded-2xl btn-pulse-ring" />
               <span className="absolute inset-0 rounded-2xl btn-pulse-ring" style={{ animationDelay: "0.8s" }} />
               <a
-                href="/releases/IndianWhisper-Windows-v1.0.0.exe"
+                href="/releases/windows/IndianWhisper%20Setup%202.2.2.exe"
                 className="relative glow-cyan inline-flex items-center justify-center gap-3 w-full px-8 py-5 rounded-2xl bg-gradient-to-r from-cyan-600 to-cyan-500 text-white font-semibold text-lg hover:from-cyan-500 hover:to-cyan-400 transition-all duration-300 transform hover:scale-[1.02]"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -46,7 +46,7 @@ export default function Download() {
                 <span className="text-cyan-200 text-sm font-normal">.exe</span>
               </a>
             </div>
-            <div className="mt-3 text-sm text-[#71717A]">v1.0.0 · ~80 MB · Windows 10/11 (x64)</div>
+            <div className="mt-3 text-sm text-[#71717A]">v2.2.2 · ~85 MB · Windows 10/11 (x64)</div>
           </div>
         </div>
 
@@ -85,16 +85,7 @@ export default function Download() {
               Windows SmartScreen may say &quot;Windows protected your PC&quot;
             </h3>
             <p className="text-[#A1A1AA] text-sm leading-relaxed mb-5">
-              Same story — Windows flags installers that haven&apos;t built reputation yet. IndianWhisper is open source; you can audit the code at{" "}
-              <a
-                href="https://github.com/aiagentwithdhruv/indianwhisper-windows"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#18D1E0] hover:text-[#18D1E0]/80 break-words"
-              >
-                github.com/aiagentwithdhruv/indianwhisper-windows
-              </a>
-              .
+              Same story — Windows flags installers that haven&apos;t built reputation yet. We&apos;re building that reputation one user at a time; the installer is exactly what the download button serves, checksummed on every release.
             </p>
             <ol className="space-y-2.5 text-sm text-[#A1A1AA]">
               <li className="flex gap-3">

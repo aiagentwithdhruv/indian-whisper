@@ -91,7 +91,9 @@ export default function LiveDemo() {
           </h2>
           <div className="glass-card rounded-2xl p-8">
             <p className="text-[#A1A1AA]">
-              Live demo requires Chrome or Edge browser. Open this page in Chrome to try voice-to-text in your browser.
+              This browser doesn&apos;t support the live demo — but the apps don&apos;t need it.{" "}
+              <a href="/#download" className="text-[#18D1E0] hover:text-[#18D1E0]/80">Download the Mac or Windows app</a>{" "}
+              for full on-device transcription, or open this page in Chrome to try the demo.
             </p>
           </div>
         </div>

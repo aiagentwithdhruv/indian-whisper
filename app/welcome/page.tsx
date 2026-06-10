@@ -170,10 +170,10 @@ export default async function WelcomePage({
               </li>
             </ul>
             <a
-              href="mailto:support@aiwithdhruv.com?subject=License%20key%20not%20received"
+              href="mailto:support@indianwhisper.com?subject=License%20key%20not%20received"
               className="mt-5 inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all"
             >
-              Email support@aiwithdhruv.com
+              Email support@indianwhisper.com
             </a>
           </div>
         </section>
@@ -193,7 +193,7 @@ export default async function WelcomePage({
               </ul>
             </div>
             <p className="mt-4 text-xs text-[#71717A] text-center">
-              30-day money-back. Email support@aiwithdhruv.com to refund anytime in the
+              30-day money-back. Email support@indianwhisper.com to refund anytime in the
               first 30 days, no questions asked.
             </p>
           </div>
