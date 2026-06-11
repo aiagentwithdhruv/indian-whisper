@@ -127,11 +127,11 @@ export default function Download() {
           <div className="glass-card glow-card-purple animate-float rounded-2xl p-6 text-left">
             <h3 className="font-semibold mb-4 text-sm text-[#A1A1AA] uppercase tracking-wider">macOS Requirements</h3>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span className="text-[#71717A]">OS</span><span>macOS 14 Sonoma or later</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">Chip</span><span>Apple Silicon &amp; Intel</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">RAM</span><span>4 GB min (8 GB for Large)</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">Disk</span><span>75 MB — 3 GB</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">Internet</span><span>Only for first model download</span></div>
+              <div className="flex justify-between gap-6"><span className="text-[#71717A] shrink-0">OS</span><span>macOS 14 Sonoma or later</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">Chip</span><span>Apple Silicon &amp; Intel</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">RAM</span><span>4 GB min (8 GB for Large)</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">Disk</span><span>75 MB — 3 GB</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">Internet</span><span>Only for first model download</span></div>
             </div>
           </div>
 
@@ -139,12 +139,12 @@ export default function Download() {
           <div className="glass-card glow-card-purple animate-float rounded-2xl p-6 text-left">
             <h3 className="font-semibold mb-4 text-sm text-[#A1A1AA] uppercase tracking-wider">Windows Requirements</h3>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span className="text-[#71717A]">OS</span><span>Windows 10 / 11 (x64)</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">CPU</span><span>x64 (Intel/AMD); ARM via x64 emulation</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">RAM</span><span>4 GB min (8 GB for Large)</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">GPU</span><span>Vulkan-capable for 6× speedup (AMD/NVIDIA/Intel modern)</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">Disk</span><span>200 MB — 3 GB</span></div>
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-[#71717A]">Internet</span><span>Only for first model download (or Groq cloud STT)</span></div>
+              <div className="flex justify-between gap-6"><span className="text-[#71717A] shrink-0">OS</span><span>Windows 10 / 11 (x64)</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">CPU</span><span className="text-right">x64 (Intel/AMD); ARM via x64 emulation</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">RAM</span><span>4 GB min (8 GB for Large)</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">GPU</span><span className="text-right">Vulkan-capable for 6× speedup (AMD/NVIDIA/Intel modern)</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">Disk</span><span>200 MB — 3 GB</span></div>
+              <div className="flex justify-between gap-6 border-t border-white/5 pt-3"><span className="text-[#71717A] shrink-0">Internet</span><span className="text-right">Only for first model download (or Groq cloud STT)</span></div>
             </div>
           </div>
         </div>
