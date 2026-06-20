@@ -55,27 +55,27 @@ export default function Download() {
           {/* Mac bypass */}
           <div className="glass-card rounded-2xl p-6 text-left border border-[#18D1E0]/20">
             <h3 className="font-semibold text-base text-white mb-2 leading-snug">
-              macOS may say &quot;Apple cannot check it for malicious software&quot;
+              macOS may say &quot;not opened&quot; or &quot;Apple could not verify&quot;
             </h3>
             <p className="text-[#A1A1AA] text-sm leading-relaxed mb-5">
-              This is normal for apps not yet notarized by Apple. IndianWhisper runs fully on-device — your audio never leaves your Mac unless you sign in for cloud sync.
+              Normal for apps not yet notarized by Apple. IndianWhisper runs fully on-device — your audio never leaves your Mac unless you sign in for cloud sync. Here&apos;s the one-time approval:
             </p>
             <ol className="space-y-2.5 text-sm text-[#A1A1AA]">
               <li className="flex gap-3">
                 <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">1.</span>
-                <span>Open Finder &rarr; Applications</span>
+                <span>Open IndianWhisper from Applications. macOS blocks it — click <strong className="text-white font-medium">Done</strong> (do not click Move to Trash).</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">2.</span>
-                <span>Right-click (or Control-click) IndianWhisper &rarr; click <strong className="text-white font-medium">Open</strong></span>
+                <span>Open <strong className="text-white font-medium">System Settings &rarr; Privacy &amp; Security</strong>, scroll to the <strong className="text-white font-medium">Security</strong> section.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-[#18D1E0] font-semibold tabular-nums shrink-0 w-5">3.</span>
-                <span>Click <strong className="text-white font-medium">Open</strong> in the dialog that appears</span>
+                <span>Next to &quot;IndianWhisper was blocked,&quot; click <strong className="text-white font-medium">Open Anyway</strong> &rarr; confirm with Touch ID or password.</span>
               </li>
             </ol>
             <p className="text-[#71717A] text-xs mt-5 leading-relaxed">
-              That&apos;s a one-time approval. macOS remembers your choice; future launches are silent.
+              One-time only — future launches are silent. On older macOS (13 and earlier) you can instead right-click the app &rarr; <strong className="text-[#A1A1AA] font-medium">Open</strong> &rarr; Open.
             </p>
           </div>
 
