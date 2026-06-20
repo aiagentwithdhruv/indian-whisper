@@ -1,8 +1,8 @@
 {
-  "version": "2.5.0",
+  "version": "2.5.1",
   "minimumOS": "14.0",
-  "releaseDate": "2026-06-11",
-  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.5.0.dmg",
-  "releaseNotes": "v2.5.0 — client-ready reliability: visible permission warnings (Accessibility/mic) with one-click fixes, model download retry, transcription never lost to clipboard restore, persistent logs",
-  "sha256": "e54fcc8a2bcd6c2c04ef0d380ab0c2647d78f9c5d437913b54b84bf74f692c46"
+  "releaseDate": "2026-06-13",
+  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.5.1.dmg",
+  "releaseNotes": "v2.5.1 — fixed model download appearing stuck at 0%: now shows real download progress so first-launch setup is clear",
+  "sha256": "4a11777d8ac4a4aab215e521716f64aaa53664c409c3622114cbf53a6f70609a"
 }
