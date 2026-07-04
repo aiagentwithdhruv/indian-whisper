@@ -1,8 +1,8 @@
 {
-  "version": "2.5.1",
+  "version": "2.6.0",
   "minimumOS": "14.0",
-  "releaseDate": "2026-06-13",
-  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.5.1.dmg",
-  "releaseNotes": "v2.5.1 — fixed model download appearing stuck at 0%: now shows real download progress so first-launch setup is clear",
-  "sha256": "4a11777d8ac4a4aab215e521716f64aaa53664c409c3622114cbf53a6f70609a"
+  "releaseDate": "2026-07-04",
+  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.6.0.dmg",
+  "releaseNotes": "v2.6.0 — Wispr-class speed: words appear WHILE you speak in cloud mode, instant typing + background AI cleanup in local mode, faster end-of-speech detection",
+  "sha256": "2dd63dce0120589c741524000d1d8c4807e6dfdc9ec46d0b6c381eba2476efd5"
 }

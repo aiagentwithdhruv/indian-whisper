@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           {/* macOS */}
           <a
-            href="/releases/IndianWhisper-v2.5.1.dmg"
+            href="/releases/IndianWhisper-v2.6.0.dmg"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-blue-500/10 hover:border-blue-500/30 transition-all"
             aria-label="Download IndianWhisper for macOS"
           >
@@ -70,7 +70,7 @@ export default function Navbar() {
 
           {/* Windows */}
           <a
-            href="/releases/windows/IndianWhisper%20Setup%202.2.2.exe"
+            href="/releases/windows/IndianWhisper%20Setup%202.2.3.exe"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-all"
             aria-label="Download IndianWhisper for Windows"
           >

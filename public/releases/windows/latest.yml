@@ -1,8 +1,8 @@
-version: 2.2.2
+version: 2.2.3
 files:
-  - url: IndianWhisper Setup 2.2.2.exe
-    sha512: g5he8ihgGd1PxgOx9nusFQH4NU1yEv/traN6xMKZGST6/quiqMT+05ypFtkaZH+m6r5jv+Y/v+ZNjwFK400J/w==
-    size: 89336742
-path: IndianWhisper Setup 2.2.2.exe
-sha512: g5he8ihgGd1PxgOx9nusFQH4NU1yEv/traN6xMKZGST6/quiqMT+05ypFtkaZH+m6r5jv+Y/v+ZNjwFK400J/w==
-releaseDate: '2026-06-10T22:21:49.424Z'
+  - url: IndianWhisper Setup 2.2.3.exe
+    sha512: +Js5wroApTJcTawz4f7WHOrjQ88xRfzGzrHVlsy/piIsiWGyNV6avtj9SliIudSm/eH/fjpTqL5FG/pU9tm9wA==
+    size: 89337754
+path: IndianWhisper Setup 2.2.3.exe
+sha512: +Js5wroApTJcTawz4f7WHOrjQ88xRfzGzrHVlsy/piIsiWGyNV6avtj9SliIudSm/eH/fjpTqL5FG/pU9tm9wA==
+releaseDate: '2026-07-04T16:05:29.452Z'
