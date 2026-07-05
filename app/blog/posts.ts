@@ -10,6 +10,77 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "words-appear-while-you-speak",
+    title: "Words Now Appear While You're Still Speaking. Here's What I Changed.",
+    description: "v2.6.0 makes IndianWhisper feel instant — text streams to your cursor mid-sentence instead of arriving a second after you stop. The fix wasn't a new model or a new vendor. It was three self-inflicted bottlenecks in code I had already written.",
+    date: "2026-07-05",
+    readTime: "5 min",
+    tags: ["speed", "latency", "v2.6.0", "wispr-flow", "engineering", "dictation"],
+    content: `I use my own dictation app all day. Last week I finally admitted something: it felt slower than Wispr Flow, and I knew it every single time I finished a sentence and waited for the text to land.
+
+The gap was about a second. That sounds small. It is not. A second of dead air after every phrase is the difference between a tool that keeps up with your thinking and a tool you keep checking on.
+
+So I did what I should have done a month ago: I stopped guessing and researched how the fast dictation tools actually work. Then I opened my own code. What I found was uncomfortable and useful in equal measure — all three bottlenecks were self-inflicted, and none of them needed a new model, a new vendor, or a rewrite to fix.
+
+v2.6.0 shipped yesterday. This is what changed.
+
+[IMAGE: Hero — deep-dark BG, neon cyan waveform flowing directly into typed text mid-word, suggesting text appearing during speech. Brand palette only.]
+
+## What the fast tools actually do
+
+The benchmark for "fast" in this category is well known. The best dictation tools hold themselves to a total budget of roughly 700 milliseconds from the moment you stop speaking to the moment finished text is sitting at your cursor — transcription, cleanup, network, everything.
+
+Two details of how they hit that number matter more than any model choice.
+
+First: audio starts streaming to the transcription engine while you are still talking. By the time you finish a sentence, most of the transcription work is already done. The engine is not starting when you stop — it is finishing.
+
+Second: nothing waits for anything it doesn't have to. Transcription and cleanup are pipelined so aggressively that the "polish" step costs almost no wall-clock time.
+
+Neither of these is exotic. Which brings me to the uncomfortable part.
+
+## Bottleneck one: I was streaming, then throwing the stream away
+
+IndianWhisper's cloud mode already had a streaming connection — a live WebSocket that sends audio continuously and receives transcribed text back in fragments, while you speak. The right architecture. Built months ago.
+
+And then my code collected every incoming fragment into a buffer and did nothing with it until the engine declared the sentence finished. Only then did it type the whole thing at once.
+
+I had built streaming infrastructure and then serialized it back into a batch system. The single biggest advantage of a live connection — text can appear the moment it exists — was being thrown away in about five lines of buffering logic.
+
+v2.6.0 types each fragment the moment it arrives. Say a long sentence and the first words hit your cursor while you are mid-thought. There is a small piece of reconciliation logic that patches the text in place if the final version differs from what was streamed — in practice you almost never see it fire.
+
+## Bottleneck two: a second AI call standing in front of the keyboard
+
+In local mode, the pipeline was: transcribe the audio, then send the raw text to a language model to clean it up — remove the "um"s, fix punctuation — and only type after the cleaned version came back.
+
+That cleanup call is worth having. Standing between you and your text, it is not. It added half a second to a full second of pure waiting to every single phrase, for a polish step whose output is usually identical to what a good transcription already produces.
+
+Now the raw transcription types instantly, and cleanup runs behind it. When the polished version lands a few hundred milliseconds later and actually differs, the typed text quietly replaces itself. If a newer phrase has already been typed, the patch stands down — your newest words are never stomped by an old correction.
+
+You get the text at transcription speed and the polish at cleanup speed, instead of getting both at the sum of the two.
+
+## Bottleneck three: waiting too long to believe you'd stopped talking
+
+Every dictation engine has to decide when you have finished a sentence. That decision has a knob — how much silence counts as "done."
+
+My batch pipeline had that knob tuned tight months ago. The streaming pipeline, the one that matters most, was still running on the engine's default — nearly a full second of silence before it would close a sentence and finalize the text.
+
+One configuration block: end-of-speech sensitivity set high, silence window cut to half a second. Sentences now close roughly twice as fast after you stop speaking.
+
+[IMAGE: In-body — hand-sketched three-panel diagram titled "where the second went": buffered stream / blocking cleanup / slow endpointing, each with a cyan strike through it. Notebook style, greyscale + cyan.]
+
+## The lesson I keep re-learning
+
+None of this required new technology. The streaming connection existed. The cleanup service existed. The tuning parameter existed. What was missing was the discipline to measure where the time actually went instead of assuming the pipeline I had built months ago was still the pipeline I thought it was.
+
+v2.6.0 also ships latency instrumentation, so from now on "it feels slow" is a log line with a number in it, not a vibe.
+
+If you tried IndianWhisper before and it felt a beat behind your voice — that beat is gone. [Download the latest build](/#download), turn on cloud transcription, and watch the words race you.
+
+And if it still feels slow on your machine, email support@indianwhisper.com with what you saw. The instrumentation means I can now actually find it.
+
+— Dhruv`,
+  },
+  {
     slug: "we-added-cloud-sync",
     title: "We Added Cloud Sync. Here's Exactly What We Store.",
     description: "As of v2.4.0, signed-in IndianWhisper transcripts sync across Mac, Windows, and Chrome. This post is the full list — every column, where it lives, who can read it, how to delete it. Written before the privacy policy update lands.",
