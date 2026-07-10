@@ -10,6 +10,122 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "wispr-flow-vs-indianwhisper",
+    title: "Wispr Flow vs IndianWhisper (2026): An Honest Comparison",
+    description: "Wispr Flow is the most polished dictation tool on the market. IndianWhisper is built for how India actually talks. Here's a builder's honest breakdown of where each one wins \u2014 pricing, privacy, Hinglish, and offline use.",
+    date: "2026-07-09",
+    readTime: "6 min",
+    tags: ["wispr-flow", "comparison", "hinglish", "pricing", "privacy", "dictation"],
+    content: `I build IndianWhisper, so read this knowing that. But I also believe comparison posts that pretend the competitor has no strengths are useless — you can smell the bias in the first paragraph. Wispr Flow is a genuinely excellent product with serious funding behind it. If it didn't have real weaknesses for users like me, I would not have built this app.
+
+Here is the honest breakdown.
+
+## What Wispr Flow gets right
+
+Wispr Flow is probably the smoothest dictation experience money can buy right now. Text lands fast and already formatted. Their engineering bar is high — they run a custom speech pipeline tuned relentlessly for latency, and it shows. The product feels premium, the onboarding is polished, and they cover Mac, Windows, and iPhone.
+
+If you dictate exclusively in American or British English and price is not a concern, Wispr Flow is a strong default. That is the fair version of the story.
+
+## Where the two products split
+
+The split comes down to four things: language, privacy, price, and ownership.
+
+### 1. Hinglish and Indian languages
+
+Wispr Flow supports many languages, and Hindi is among their larger non-English segments. But supporting Hindi and being built for how Indians actually speak are different things. Most of us do not speak pure Hindi or pure English — we switch mid-sentence, sometimes mid-phrase. "Meeting ko reschedule kar do to Thursday afternoon" is one sentence in one breath.
+
+Code-switching is where general-purpose engines stumble, because they are trained to lock onto one language and treat the other as noise. IndianWhisper is built around this pattern as the primary case, not the edge case — Indian English accents, Hinglish switching, and 11 Indian languages, with the accuracy work concentrated exactly there.
+
+If your dictation is mostly English with an Indian accent, both tools will serve you. If your natural speech weaves Hindi and English together, this is the difference you will feel in the first minute.
+
+### 2. Where your voice goes
+
+Wispr Flow is a cloud product. Your audio streams to their servers for processing — that is how their pipeline works, and they are upfront about it.
+
+IndianWhisper is on-device by default. The Whisper models run locally on your machine; your audio never leaves it unless you explicitly turn on cloud mode or sign in for sync. For everyday notes this may not matter to you. For client work, legal drafts, patient notes, or anything under NDA, it is the whole decision. Voice is uniquely sensitive data — it carries your identity, not just your words.
+
+### 3. Price, in rupees
+
+Wispr Flow Pro runs $15/month, or $12/month billed annually — roughly ₹1,000–1,250/month at current rates. Their free tier caps you at 2,000 words per week, which a heavy dictation user burns through in a day or two.
+
+IndianWhisper's core is free — on-device transcription, Hinglish accuracy, voice commands, no word caps on the free tier's daily time allowance. Paid tiers (in ₹, priced for India, with a one-time lifetime option) unlock the bigger models and unlimited use. A lifetime option is something subscription-only tools structurally cannot offer you.
+
+### 4. Ownership and openness
+
+Wispr Flow is a VC-backed company whose pipeline lives on their servers. IndianWhisper ships the models to your machine. If I disappear tomorrow, the app on your Mac keeps transcribing — nothing about its core needs my servers to exist.
+
+## The honest verdict table
+
+| | Wispr Flow | IndianWhisper |
+|---|---|---|
+| Polish & latency | Excellent | Fast (streaming mode types while you speak) |
+| Hinglish / code-switching | Supported, not specialized | Built for it |
+| Indian languages | Limited | 11 languages |
+| Privacy | Cloud processing | On-device by default |
+| Free tier | 2,000 words/week | Daily time allowance, full accuracy |
+| Price | $15/mo (~₹1,250) | Free core · India-priced paid tiers · lifetime option |
+| Platforms | Mac, Windows, iPhone | Mac, Windows, Chrome extension |
+| iPhone app | Yes | Not yet |
+
+## Who should pick which
+
+Pick Wispr Flow if: you dictate in pure English, you want the most polished experience available, the subscription price is irrelevant to you, and cloud processing of your voice is acceptable.
+
+Pick IndianWhisper if: you speak Hinglish or any Indian language, your dictation includes anything confidential, you want your money to buy something once, or you simply want to try serious dictation without a subscription.
+
+You can [download IndianWhisper free](/#download) — Mac, Windows, and Chrome — and judge the Hinglish difference yourself in under two minutes. That first minute of speaking naturally, without translating yourself into "dictation English" first, is the entire pitch.
+
+— Dhruv`,
+  },
+  {
+    slug: "i-stopped-typing-prompts-to-my-ai-coding-agent",
+    title: "I Stopped Typing Prompts to My AI Coding Agent. I Talk to It Now.",
+    description: "The best prompts to Claude Code and Cursor are long, specific, and conversational \u2014 exactly the kind of text nobody wants to type. Dictation turns a 40-word prompt into a 10-second sentence. Here's my setup, fully offline.",
+    date: "2026-07-09",
+    readTime: "5 min",
+    tags: ["claude-code", "cursor", "ai-coding", "dictation", "developer-workflow", "productivity"],
+    content: `There's a quiet workflow shift happening among developers who use AI coding agents: they've stopped typing their prompts. They talk.
+
+It sounds like a gimmick until you notice the mismatch that makes it work. The best prompts to Claude Code, Cursor, or any coding agent are long, specific, and conversational — "look at the auth middleware, the session refresh is firing twice on tab focus, I think the listener isn't being cleaned up, check the useEffect in SessionProvider and fix the teardown." That's a forty-word prompt. Forty words is a chore to type. It's a ten-second sentence to say.
+
+Typing pressure pushes you toward short prompts. Short prompts get worse results. Dictation removes the pressure, so you naturally give the agent the context it actually needs. The prompt quality goes up because the input cost went down.
+
+## Why this is suddenly everywhere
+
+Agents got good enough that the bottleneck moved. A year ago the model was the constraint; now, for a lot of tasks, the constraint is how fast and how completely you can tell it what you want. Voice is simply a higher-bandwidth channel for intent. You think out loud at 150 words per minute; most developers type at 50-70.
+
+There's a second, less obvious reason: prompts are not code. Code punishes imprecision — one wrong character breaks everything, which is why dictating code never took off. Prompts are the opposite. They reward the rambling specificity of natural speech. All the "and also," "wait, actually," "the thing I mean is" texture that would be terrible in a function body is exactly what makes a prompt rich.
+
+## My setup
+
+I use IndianWhisper (disclosure: I build it) with a push-to-talk key. The flow:
+
+1. Cursor or terminal focused, Claude Code waiting for input
+2. Hold the push-to-talk key, describe what I want — as long as it needs to be
+3. Release. The text lands at the cursor, cleaned up — fillers stripped, punctuation fixed
+4. Enter. Agent goes to work
+
+The details that matter for this workflow specifically:
+
+**It has to work offline and on-device.** Your prompts contain your architecture, your bugs, your client's business logic. Piping that audio through a third-party cloud on top of the agent you're already trusting is a second data exposure most client contracts never contemplated. On-device transcription means the audio never leaves the machine — the only thing that goes anywhere is the text you were going to send the agent anyway.
+
+**It has to handle how you actually speak.** I think in Hinglish. Mid-prompt I'll say "iss function ko refactor karo but keep the return type same." A dictation engine that panics at code-switching turns that into soup. One built for it doesn't blink. The same applies to speaking technical vocabulary with an Indian accent — "kubernetes," "postgres," "middleware" should not come out mangled.
+
+**Cleanup has to be automatic.** Raw speech is full of "um, so, basically." A dictation tool with an LLM cleanup pass hands the agent tight text without you thinking about it.
+
+## Where it works beyond prompts
+
+Once the habit forms, it spreads. Commit messages — spoken in five seconds while your hands leave the keyboard. PR descriptions. Slack updates explaining what you shipped. Code review comments, where tone matters and typing makes everyone terse. The rubber-duck effect is real too: describing a bug out loud to your agent is rubber-duck debugging where the duck can actually fix it.
+
+## Try the workflow
+
+Any dictation tool can technically do this. If you want the on-device, code-switching-friendly version: [IndianWhisper is free to download](/#download) for Mac and Windows, with a Chrome extension for browser work. Set the push-to-talk key, open your agent, and describe your next bug out loud instead of typing it.
+
+The first time you watch a long, precise prompt appear from a ten-second sentence — and the agent nails it on the first pass because you finally gave it enough context — the keyboard starts feeling like the slow way to talk to a machine.
+
+— Dhruv`,
+  },
+  {
     slug: "words-appear-while-you-speak",
     title: "Words Now Appear While You're Still Speaking. Here's What I Changed.",
     description: "v2.6.0 makes IndianWhisper feel instant — text streams to your cursor mid-sentence instead of arriving a second after you stop. The fix wasn't a new model or a new vendor. It was three self-inflicted bottlenecks in code I had already written.",
