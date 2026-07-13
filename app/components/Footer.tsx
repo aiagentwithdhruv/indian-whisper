@@ -17,11 +17,14 @@ export default function Footer() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-[#101014] border border-white/10 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-                  <svg width="24" height="24" viewBox="0 0 1024 1024" fill="none" aria-hidden="true">
-                    <rect x="238" y="420" width="130" height="290" rx="65" fill="#6E7681" />
-                    <rect x="656" y="420" width="130" height="290" rx="65" fill="#6E7681" />
-                    <rect x="447" y="380" width="130" height="400" rx="65" fill="#18D1E0" />
-                    <circle cx="512" cy="240" r="88" fill="#2BE3F2" />
+                  <svg width="26" height="26" viewBox="0 0 1024 1024" fill="none" aria-hidden="true">
+                    <rect x="214" y="490" width="76" height="112" rx="38" fill="#3B4048" />
+                    <rect x="734" y="490" width="76" height="112" rx="38" fill="#3B4048" />
+                    <rect x="344" y="446" width="76" height="200" rx="38" fill="#7E8792" />
+                    <rect x="604" y="446" width="76" height="200" rx="38" fill="#7E8792" />
+                    <rect x="474" y="376" width="76" height="340" rx="38" fill="#18D1E0" />
+                    <circle cx="512" cy="286" r="80" fill="#18D1E0" opacity="0.35" />
+                    <circle cx="512" cy="286" r="52" fill="#2BE3F2" />
                   </svg>
                 </div>
                 <div>
