@@ -1,8 +1,8 @@
 {
-  "version": "2.6.1",
+  "version": "2.7.0",
   "minimumOS": "14.0",
   "releaseDate": "2026-07-13",
-  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.6.1.dmg",
-  "releaseNotes": "v2.6.1 \u2014 New Pulse-i icon, new voice commands (stop / select all / press enter), Accessibility permission now sticks across updates, Whisper models moved out of Documents (no more folder-access prompt)",
-  "sha256": "32ae88eb23895ef26586c660761678d530d3c08627f4cfdda3ab8e4b913cd451"
+  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.7.0.dmg",
+  "releaseNotes": "v2.7.0 \u2014 Speak a list, get a list: 'first\u2026 second\u2026 third' becomes real bullet points. Your Hinglish stays Hinglish (cleanup no longer translates). Multi-line text pastes safely in WhatsApp/Slack \u2014 never sends mid-list. Plus hardened AI cleanup: bad model responses can never reach your document.",
+  "sha256": "f7a44506aeabca0417fcc4cb4e6e8c9543d0531a1bf51b658941accb364c8bd1"
 }
