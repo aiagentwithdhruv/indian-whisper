@@ -65,7 +65,7 @@ export default function Navbar() {
 
           {/* Windows */}
           <a
-            href="/releases/windows/IndianWhisper%20Setup%202.2.3.exe"
+            href="/releases/windows/IndianWhisper%20Setup%202.3.0.exe"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-cyan-500/10 hover:border-cyan-500/30 transition-all"
             aria-label="Download IndianWhisper for Windows"
           >

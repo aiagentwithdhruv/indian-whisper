@@ -36,7 +36,7 @@ export default function Download() {
               <span className="absolute inset-0 rounded-2xl btn-pulse-ring" />
               <span className="absolute inset-0 rounded-2xl btn-pulse-ring" style={{ animationDelay: "0.8s" }} />
               <a
-                href="/releases/windows/IndianWhisper%20Setup%202.2.3.exe"
+                href="/releases/windows/IndianWhisper%20Setup%202.3.0.exe"
                 className="relative glow-cyan inline-flex items-center justify-center gap-3 w-full px-8 py-5 rounded-2xl bg-gradient-to-r from-cyan-600 to-cyan-500 text-white font-semibold text-lg hover:from-cyan-500 hover:to-cyan-400 transition-all duration-300 transform hover:scale-[1.02]"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -46,7 +46,7 @@ export default function Download() {
                 <span className="text-cyan-200 text-sm font-normal">.exe</span>
               </a>
             </div>
-            <div className="mt-3 text-sm text-[#71717A]">v2.2.3 · ~85 MB · Windows 10/11 (x64)</div>
+            <div className="mt-3 text-sm text-[#71717A]">v2.3.0 · ~85 MB · Windows 10/11 (x64)</div>
           </div>
         </div>
 
