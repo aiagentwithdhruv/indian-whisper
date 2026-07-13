@@ -21,14 +21,15 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-              <line x1="12" x2="12" y1="19" y2="22" />
+          <div className="w-8 h-8 rounded-lg bg-[#101014] border border-white/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 1024 1024" fill="none" aria-hidden="true">
+              <rect x="238" y="420" width="130" height="290" rx="65" fill="#6E7681" />
+              <rect x="656" y="420" width="130" height="290" rx="65" fill="#6E7681" />
+              <rect x="447" y="380" width="130" height="400" rx="65" fill="#18D1E0" />
+              <circle cx="512" cy="240" r="88" fill="#2BE3F2" />
             </svg>
           </div>
-          <span className="font-semibold text-lg">IndianWhisper</span>
+          <span className="font-semibold text-lg">Indian<span className="text-[#A1A1AA]">Whisper</span></span>
         </div>
 
         <div className="hidden md:flex items-center gap-6 text-sm text-[#A1A1AA]">
@@ -58,7 +59,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           {/* macOS */}
           <a
-            href="/releases/IndianWhisper-v2.6.0.dmg"
+            href="/releases/IndianWhisper-v2.6.1.dmg"
             className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-blue-500/10 hover:border-blue-500/30 transition-all"
             aria-label="Download IndianWhisper for macOS"
           >

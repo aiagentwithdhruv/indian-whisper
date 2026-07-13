@@ -16,15 +16,16 @@ export default function Footer() {
             {/* Brand column */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                    <line x1="12" x2="12" y1="19" y2="22" />
+                <div className="w-10 h-10 rounded-xl bg-[#101014] border border-white/10 flex items-center justify-center shadow-lg shadow-cyan-500/10">
+                  <svg width="24" height="24" viewBox="0 0 1024 1024" fill="none" aria-hidden="true">
+                    <rect x="238" y="420" width="130" height="290" rx="65" fill="#6E7681" />
+                    <rect x="656" y="420" width="130" height="290" rx="65" fill="#6E7681" />
+                    <rect x="447" y="380" width="130" height="400" rx="65" fill="#18D1E0" />
+                    <circle cx="512" cy="240" r="88" fill="#2BE3F2" />
                   </svg>
                 </div>
                 <div>
-                  <span className="font-bold text-lg">IndianWhisper</span>
+                  <span className="font-bold text-lg">Indian<span className="text-[#A1A1AA]">Whisper</span></span>
                   <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Community Edition</span>
                 </div>
               </div>
