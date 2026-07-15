@@ -10,6 +10,85 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "we-stopped-pressing-cmd-d",
+    title: "We Stopped Pressing Cmd+D",
+    description:
+      "v2.4.0 added three small things — push-to-talk, in-stream voice commands, and a barely-audible recording sound. None of them belongs on a pricing page. Together they changed how the app feels to use. The honest write-up: what shipped, what broke, and what it changed.",
+    date: "2026-07-15",
+    readTime: "6 min",
+    tags: ["voice-commands", "push-to-talk", "ux", "mac", "ergonomics"],
+    content: `A note before we start: I wrote this when v2.4.0 shipped in mid-May and never hit publish — it sat in the drafts folder while we kept building. The Mac app is on v2.7.0 today, but everything below is still how the app works, and the thinking behind it hasn't changed. Publishing it now as part of clearing the build-log backlog.
+
+Back in May I was tapping Cmd+D maybe two hundred times a day. Cmd+D to start dictating. Cmd+D to stop. Cmd+D when I forgot whether I had started. Cmd+D twice when the menu bar told me a second too late.
+
+I am not anymore. Not because we changed the hotkey. Because we stopped relying on the hotkey at all.
+
+v2.4.0 of IndianWhisper for Mac shipped three small things in the same release: push-to-talk on a modifier key, a handful of in-stream voice commands, and two very short sounds. None of them is a feature you would put on a pricing page. Together they reshape what the app feels like to use.
+
+This is the write-up. What changed, why, and what broke.
+
+## The change: hold to talk, release to paste
+
+The old model was a toggle. Tap Cmd+D, the app starts listening. Tap it again, the app stops, transcribes, pastes. Simple enough on paper. In practice it has two failure modes that compound:
+
+- You forget which state you are in. The menu bar icon is the only state indicator, and it lives in a corner you are not looking at. So you tap, look up at the icon, sometimes tap again to be safe, and now the recording is gone.
+- You finish your sentence and there is a half-second gap before the auto-stop fires. That gap collects "um"s, ambient noise, and the click of you tapping the hotkey again.
+
+The new model is push-to-talk. Hold the Left Option key. Speak. Release. The recording stops at the exact moment your thumb leaves the key. Auto-paste fires within the next two hundred milliseconds.
+
+You stop thinking about state. There is no toggle to forget. The recording exists only as long as you are physically holding it open. The mental load drops to zero.
+
+Why Left Option specifically: I already use Right Option for another tool, and the right-hand modifier is congested on every keyboard I own. Left Option is mostly idle in normal typing. If you want a different key, the Settings panel has a picker — Left Option, Right Option, Control, Command, or off entirely if you prefer the toggle.
+
+The toggle still works. Both gestures coexist. But since push-to-talk landed, I have used the toggle a handful of times — almost always when one hand was busy and I needed to start dictation with the other. Otherwise: hold, speak, release. Two hundred Cmd+D presses a day collapsed to zero.
+
+## The voice commands
+
+The second change is a small set of phrases the app recognizes while you are speaking, and acts on instead of transcribing.
+
+If you say "scratch that" or "delete word" the obvious thing happens — it deletes. We have had those for a while. v2.4.0 added a few more. "Copy that" and "cut that" act on the current text using the system clipboard. "Press enter" and "press return" send a newline so you can dictate the next paragraph without reaching for the keyboard. "Summarize this" runs the last transcript through the configured LLM and pastes a thirty-to-fifty-percent compression in place of the original.
+
+The commands are deliberately limited. We did not add every imaginable phrase, because every phrase you add to the command set is a phrase you can no longer dictate as content. "Copy that report" used to be a valid sentence. Now the first two words are a command. The commands earn their place by being things you do *to* what you just said, not things you might *say*.
+
+The summarize command is the one that surprised me. I expected it to be a novelty I would forget about. Instead I use it constantly — speak the long version, say "summarize this", let the model tighten it. The full version stays in the transcript history if I want to recover it. The pasted version is the tight one.
+
+## The sound
+
+The third change is two sounds. A short Tink on the moment the recording starts. A short Pop on the moment it stops. Both quiet enough that they do not interrupt a meeting; both clear enough that you know what just happened without looking.
+
+I did not think this would matter. The recording indicator on the menu bar already exists. Adding a sound felt like skeuomorphism. I built it anyway because two early users had asked for it.
+
+It matters more than I expected. The Tink confirms that the app heard your modifier press. The Pop confirms that the recording is closed and transcription has started. You stop second-guessing the state. You stop holding the key for an extra half second "just to be sure." Your right hand leaves the keyboard the instant the Pop fires, because you have an audible receipt that the work is done.
+
+The sound is on by default and there is a toggle in Settings to turn it off. The default volume is low — about thirty percent of the system Tink — because the goal is acknowledgement, not announcement.
+
+## The bug we shipped, and then fixed
+
+The first build of push-to-talk fired the Tink twice on every press, and the Pop twice on every release. Two presses, four sounds. I caught it the first day, partly because I could not stop noticing it. The fix took one commit: a one-hundred-millisecond debounce on the modifier-key event monitor, and a log line so we could verify the fix from the trace.
+
+I am writing this paragraph because it is the kind of thing a polished company would not mention. We do not have that luxury yet. The right thing for a product at this stage is to say: yes, the first build had a double-fire bug, here is what caused it, here is what fixed it. If you are somehow still on a v2.4.0 build from before the patch, update — current builds are long past it.
+
+The same applies to the second thing I want to flag: every time we ship a new build, macOS regenerates the app's signature, and the system forgets you previously granted Accessibility permission. You have to re-grant it in System Settings → Privacy & Security → Accessibility before push-to-talk auto-paste will work. This is a structural Apple thing, not a bug, but it is annoying and the clean answer is proper notarized signing under a paid Apple Developer membership. When the app has the revenue to justify that spend, this re-grant dance ends.
+
+## Where Windows and Chrome stand
+
+The voice commands shipped on Windows first — copy, cut, summarize all work there. Hold-to-talk on Right Alt and the two sounds are in the Windows build that is going through testing now; it rolls out once it passes a proper smoke test rather than on a promised date, because shipping a keyboard hook that half-works is worse than shipping it a week later.
+
+The Chrome extension has its own constraints — modifier-only push-to-talk in a browser context is genuinely harder than in a native app — so there, voice commands and an audible cue come first, and push-to-talk when it can be done right.
+
+## What this changes about who should download
+
+The product was useful before. People used it the way people use any dictation tool — for transcribing recordings, drafting emails, dictating documents. It worked, but the friction of starting and stopping kept the use cases short and intentional.
+
+The change since v2.4.0 is that dictation can be ambient. You hold a key, you talk, you let go. The cost of a single dictation drops below the cost of typing for most things over twenty words. I now dictate Slack messages I would have typed before. I dictate commit messages. I dictate the first draft of LinkedIn posts and edit them with my hands. I dictated most of this blog post.
+
+If you tried IndianWhisper months ago and thought "fine, but not enough to change my habits," try the current build. The hotkey is no longer the rate limiter. Your patience is.
+
+You can [download the latest Mac build here](/download). If you find a bug, the most useful thing you can do is email support@indianwhisper.com with the steps to reproduce it. We read everything and we ship fixes the same week when we can.
+
+— Dhruv`,
+  },
+  {
     slug: "wispr-flow-vs-indianwhisper",
     title: "Wispr Flow vs IndianWhisper (2026): An Honest Comparison",
     description: "Wispr Flow is the most polished dictation tool on the market. IndianWhisper is built for how India actually talks. Here's a builder's honest breakdown of where each one wins \u2014 pricing, privacy, Hinglish, and offline use.",
