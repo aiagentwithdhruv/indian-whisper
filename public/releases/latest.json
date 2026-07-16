@@ -1,8 +1,8 @@
 {
-  "version": "2.7.0",
+  "version": "3.0.0",
   "minimumOS": "14.0",
-  "releaseDate": "2026-07-13",
-  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v2.7.0.dmg",
-  "releaseNotes": "v2.7.0 \u2014 Speak a list, get a list: 'first\u2026 second\u2026 third' becomes real bullet points. Your Hinglish stays Hinglish (cleanup no longer translates). Multi-line text pastes safely in WhatsApp/Slack \u2014 never sends mid-list. Plus hardened AI cleanup: bad model responses can never reach your document.",
-  "sha256": "f7a44506aeabca0417fcc4cb4e6e8c9543d0531a1bf51b658941accb364c8bd1"
+  "releaseDate": "2026-07-16",
+  "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v3.0.0.dmg",
+  "releaseNotes": "v3.0.0 \u2014 The smooth one. Text appears exactly once: speak, release, and your words land clean in one paste \u2014 no flicker, no mid-typing corrections. New Home tab with your words, WPM and day streak. Optional Groq cloud mode (~0.5s). Better model by default. Your last words are never cut off. Works fully offline.",
+  "sha256": "7e270284571dfa996ac9f0ad7c5595166b1968acac2f5fb0092ea02607382ead"
 }
