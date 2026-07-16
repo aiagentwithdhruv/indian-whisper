@@ -10,6 +10,63 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "why-hinglish-breaks-speech-to-text",
+    title: "Why Hinglish Breaks Every Speech-to-Text App (I Measured It)",
+    description:
+      "I spent a night feeding Hinglish into Whisper and measuring what came back. The language setting is a translation switch in disguise, and the fix nobody documents is a decoder prior. Here are the actual results.",
+    date: "2026-07-16",
+    readTime: "6 min",
+    tags: ["hinglish", "whisper", "code-switching", "engineering", "hindi", "transcription"],
+    content: `I build voice products for a living, and this week one of them mangled its own name three different ways in a single evening. The same night, a Hinglish sentence I spoke came back written in Devanagari — with the English words transliterated INTO Devanagari. "Super cool" became "वपर पूल".
+
+So I stopped shipping and started measuring. This post is what a night of controlled tests against Whisper (Groq's whisper-large-v3-turbo) actually showed about Hinglish — and why most transcription apps get it structurally wrong, not accidentally wrong.
+
+![Two voices, one sentence — what code-switching actually asks of a speech engine.](/blog-images/hinglish-hero.png)
+
+## The language setting is a translation switch in disguise
+
+Every Whisper-family API has a \`language\` parameter, and every integration guide tells you to set it. Here is what it actually did in my tests:
+
+| Setting | What you'd expect | What actually happened |
+|---|---|---|
+| \`language: "en"\` | English transcription | **Whisper TRANSLATED my Hindi into English.** A Hindi clip came back as "Today was very long. I worked hard…" — a paraphrase, silently replacing my words |
+| \`language: "hi"\` | Hindi transcription | English words got pushed into Devanagari script |
+| unset (auto-detect) | Chaos | The only setting that survived English, Hindi AND Hinglish |
+
+Read that first row again. Setting \`language: "en"\` doesn't force English *transcription* — it forces English *output*. If the speaker used Hindi, the model quietly translates. For a journal, a meeting note, or a legal draft, that means the words on the page are not the words you said. No error, no warning.
+
+For a code-switching speaker, both fixed settings are wrong by definition. "Meeting ko reschedule kar do to Thursday afternoon" is one sentence, spoken in one breath. It is not a Hindi sentence and it is not an English sentence, and an engine forced to pick one will damage it either way.
+
+## Auto-detect alone doesn't save you
+
+With \`language\` unset, the transcription stopped translating — but the decoder still had no idea what my product names were, and it invented homophones every single time. That's not a bug in Whisper; the default decoder has simply never heard of your product, your colleagues, or your city's street names. It reaches for the nearest word it knows.
+
+The documented fix is the \`prompt\` parameter. What the docs don't tell you is how it actually behaves.
+
+## The prompt is a decoder prior, not an instruction
+
+Whisper doesn't *read* your prompt like an assistant. It conditions on it as if it were the transcript that came immediately before your audio. That one fact explains all four behaviors I measured:
+
+- **Names must appear inside sentences, not in a comma-list.** A bare list of product names still produced mangled homophones. The same names used inside a natural example sentence came back spelled correctly every time.
+- **The script of the prompt controls the script of the output.** A romanised prompt held my Hinglish in Latin script. Adding one Devanagari sentence to the prompt preserved pure-Hindi passages in Devanagari. You are not telling the model what to do — you are showing it what "the conversation so far" looks like.
+- **Recency wins.** Whatever sits at the END of the prompt pulls hardest on the output. Put your most common speech pattern last.
+- **A generic example can collide with real speech.** One of my exemplar sentences was too close to something I actually said — and it dragged my real Hindi sentence into Latin script. Your examples need to establish a pattern without impersonating the user.
+
+I also tried plain instructions — "transcribe in the script spoken", that kind of thing. They did almost nothing. Examples did everything. If you take one line away from this post: **Whisper listens to what your prompt does, not what it says.**
+
+## Why this is the whole product
+
+None of the above is exotic knowledge. It's a night of tests anyone could run. But general-purpose transcription apps can't act on it, because their defaults are built for the average English speaker — one language per utterance, one script, dictionary words.
+
+Hinglish is not an edge case in India. It is the default register of how a few hundred million people actually speak — Hindi and English woven mid-sentence, sometimes mid-phrase. An engine tuned for single-language speech treats half of every sentence as noise to be corrected.
+
+That's the gap IndianWhisper is built around: code-switching as the primary case, not the exception. Indian English accents, Hinglish switching, and the script coming out the way you'd write it yourself — with the accuracy work concentrated exactly where general tools stumble.
+
+If you dictate the way you actually talk — "kal ka standup move kar do, and send the summary to Rahul" — [download the Mac app](/download) and try one real sentence. That first minute is the entire pitch.
+
+— Dhruv`,
+  },
+  {
     slug: "we-stopped-pressing-cmd-d",
     title: "We Stopped Pressing Cmd+D",
     description:

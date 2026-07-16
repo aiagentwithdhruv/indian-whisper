@@ -134,6 +134,8 @@ function markdownToHtml(md: string): string {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     // Inline code
     .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Images (must run BEFORE links — ![alt](src) would otherwise match the link rule)
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="w-full rounded-xl my-6" loading="lazy" />')
     // Links
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
     // List items
