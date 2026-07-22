@@ -10,6 +10,102 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "wispr-flow-alternative",
+    title: "Looking for a Wispr Flow Alternative? Here's What to Check Before You Switch (2026)",
+    description:
+      "Wispr Flow is excellent \u2014 and $15/month, cloud-only, with no offline mode. If you're searching for a Wispr Flow alternative, here's an honest checklist and where IndianWhisper fits: on-device, one-time-price option, built for Indian English and Hinglish.",
+    date: "2026-07-22",
+    readTime: "6 min",
+    tags: ["wispr-flow-alternative", "dictation", "hinglish", "privacy", "pricing"],
+    content: `If you typed "Wispr Flow alternative" into Google, you already know what Wispr does well — the dictation itself is genuinely smooth. People go looking for an alternative for one of four reasons, and it's worth being precise about yours, because the right alternative depends on it.
+
+![One voice, two paths — the cloud way and the on-device way.](/blog-images/wispr-flow-alternative-hero.jpg)
+
+## The four reasons people leave Wispr Flow
+
+**1. Price.** $15/month is roughly ₹1,250 — every month, forever. For students, indie developers, and anyone earning in rupees, a subscription priced in Silicon Valley dollars is the single most common dealbreaker. If you dictate daily, you're not questioning the value — you're questioning the currency.
+
+**2. Cloud-only.** Every word you dictate into Wispr Flow travels to servers in the US for processing. Their own documentation is upfront about this. For everyday notes, fine. For client work, legal drafts, medical notes, anything under NDA — your dictation is your most sensitive data stream, and there is no offline mode. On a train, on a flight, on hotel Wi-Fi: no connection, no dictation.
+
+**3. Network latency.** Because everything is a round trip, Wispr's famous speed is really your Wi-Fi's speed. Users on slower or spottier connections — which describes a lot of real life in India — report exactly the delays the product is supposed to eliminate.
+
+**4. Language.** Wispr has improved its Hindi support, credit where due. But if your natural speech weaves Hindi and English mid-sentence — "meeting ko reschedule kar do to Thursday" — you want an engine where code-switching is the primary use case, not a supported edge case.
+
+## The checklist for any Wispr Flow alternative
+
+Before switching to anything (including ours), check:
+
+- **Does it work offline?** If the engine is cloud-only, you've traded one dependency for another.
+- **Where does your audio go?** On-device processing means your voice never leaves your machine — not "encrypted in transit," but *never leaves*.
+- **What does it cost in YOUR currency, and is there a one-time option?** Subscription fatigue is real. A lifetime license is something subscription-only tools structurally cannot offer.
+- **Does it handle how you actually speak?** Test with your real mixed-language sentences, not demo English.
+- **Does text land cleanly?** The mark of a mature tool: text appears once, already formatted — no mid-typing corrections flickering in your document.
+
+## Where IndianWhisper fits
+
+Full disclosure: I build IndianWhisper, so weigh this section accordingly. It exists because I was a paying Wispr Flow user who needed the things above.
+
+- **On-device by default.** Whisper models run locally on your Mac. Offline flights, hospital basements, NDA work — all fine. Cloud mode exists as an *option* (your API key, your choice), not a requirement.
+- **Built for Hinglish and Indian English.** Code-switching is the primary engineering target: "mujhe kal office jaana hai" stays exactly that, in Roman script, not translated or mangled.
+- **Insert-once smoothness.** Speak, release, and the finished text lands in one clean paste — same architecture philosophy as Wispr, without the cloud dependency.
+- **India-first pricing.** The core is free — real dictation, real accuracy, no card required. Paid tiers are priced in rupees, with a one-time lifetime option.
+- **Light.** Native Swift app, a few MB — not an 800MB-RAM Electron shell.
+
+**What Wispr still does better, honestly:** an iPhone keyboard app (ours is coming), a longer track record, and more polish in the companion apps. If those are your priorities and the subscription doesn't bother you, staying is a rational choice.
+
+## Try the two-minute test
+
+[Download IndianWhisper free](/#download) — Mac, Windows, and Chrome. Turn off your Wi-Fi, hold the hotkey, and dictate the most natural mixed-language sentence you'd actually say at work. That one test — offline, in your real voice — tells you everything a comparison table can't.
+
+— Dhruv`,
+  },
+  {
+    slug: "superwhisper-alternative",
+    title: "Superwhisper Alternative for Indian English & Hinglish (2026 Honest Guide)",
+    description:
+      "Superwhisper proved on-device dictation works on a Mac. But if you speak Indian English or Hinglish, accuracy is the real test. An honest look at when Superwhisper fits \u2014 and when IndianWhisper is the better pick.",
+    date: "2026-07-22",
+    readTime: "5 min",
+    tags: ["superwhisper-alternative", "dictation", "hinglish", "on-device", "mac"],
+    content: `Superwhisper deserves respect: it proved that on-device Whisper dictation on a Mac is viable, private, and fast. If you're searching for an alternative anyway, it's usually for one of three specific reasons.
+
+![Speech processed on the chip in front of you — nowhere else.](/blog-images/superwhisper-alternative-hero.jpg)
+
+## Why people look past Superwhisper
+
+**1. Indian accents and mixed language.** Superwhisper runs generic Whisper models with generic settings. They're good at standard American/British English. Speak with an Indian accent, or slide between Hindi and English mid-sentence, and you'll spend more time correcting than you saved by dictating. The model isn't the whole story — *how* it's configured for code-switching (language detection, script handling, cleanup prompts that preserve rather than translate) is where the accuracy for Indian speech is actually won or lost.
+
+**2. Pricing structure.** $8.49/month or a ~$250 lifetime — again, dollar pricing. Fine value for US salaries; a harder swallow in rupees, especially when the app hasn't proven itself on your accent yet.
+
+**3. The cleanup gap.** Raw Whisper output needs polish — fillers removed, punctuation fixed, your "um basically" tidied away — without your meaning being rewritten. Tools differ wildly here, and this is exactly where a transcript in mixed Hindi-English gets silently "translated" into English by careless AI cleanup. (We learned that the hard way and built a specific rule against it.)
+
+## What to check in any on-device dictation app
+
+- **Your accent, your mix**: dictate one honest Hinglish sentence before judging anything.
+- **Script fidelity**: Roman-script Hindi should stay Roman. Devanagari should be a choice, not a surprise.
+- **Cleanup that respects your words**: fillers gone, language untouched.
+- **One clean insert**: no flicker, no corrections crawling through your document after the fact.
+- **Rupee pricing** if you earn in rupees.
+
+## Where IndianWhisper fits
+
+I build IndianWhisper — bias declared. It's the same on-device philosophy as Superwhisper, with the engineering aimed squarely at Indian speech:
+
+- **Hinglish as the primary case** — code-switching preserved, Roman script by default, a dedicated Devanagari mode when you want pure Hindi.
+- **AI cleanup with a language-preservation rule** — your Hindi words are never translated to English by the polish step.
+- **Insert-once delivery** — text lands in one paste, already clean, safe even in WhatsApp (no accidental sends).
+- **Free core, India-first paid tiers** — free tier with real accuracy, paid in ₹, lifetime option.
+- **Mac, Windows, and Chrome** — Superwhisper is Mac-only; if you also work on a Windows machine, one tool covers both.
+
+**Where Superwhisper is still ahead, honestly:** an iOS app, more model-tinkering options for power users, and years of Mac-community trust. If you dictate pure English and love tweaking model settings, it remains a fine tool.
+
+## The honest test
+
+[Download IndianWhisper free](/#download), switch off Wi-Fi, and speak the sentence you'd actually say to a colleague — accent, mixed language and all. Two minutes, no card, and your own ears are the benchmark.
+
+— Dhruv`,
+  },
+  {
     slug: "why-hinglish-breaks-speech-to-text",
     title: "Why Hinglish Breaks Every Speech-to-Text App (I Measured It)",
     description:
