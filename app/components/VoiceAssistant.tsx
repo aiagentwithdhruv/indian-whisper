@@ -180,12 +180,8 @@ export default function VoiceAssistant() {
       {isOpen && (
         <div className="fixed bottom-24 right-6 z-50 w-72 glass-card glow-card-purple rounded-2xl overflow-hidden shadow-2xl">
           <div className="px-5 py-3 border-b border-white/5 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-              </svg>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/icon-256.png" alt="" aria-hidden="true" className="w-8 h-8" />
             <div>
               <div className="text-sm font-semibold">IndianWhisper AI</div>
               <div className="text-xs text-[#71717A]">Powered by Gemini voice</div>
