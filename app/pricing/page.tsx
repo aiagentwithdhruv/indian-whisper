@@ -7,7 +7,7 @@ import HashScroll from "@/app/components/HashScroll";
 export const metadata: Metadata = {
   title: "Pricing — IndianWhisper Voice Typing",
   description:
-    "Free voice-to-text for Mac, Windows, Chrome. Pro from $12/month. Lifetime $249. 30-day money-back. No subscription required for the free tier.",
+    "Free voice-to-text for Mac, Windows, Chrome. Pro from ₹499/month. Lifetime ₹4,999. 30-day money-back. No subscription required for the free tier.",
 };
 
 const TIER_IDS = ["free", "pro-monthly", "pro-annual", "lifetime"] as const;
@@ -49,7 +49,7 @@ const Cross = () => (
 const COMPARISON = [
   {
     tool: "IndianWhisper",
-    pricing: "$0 free · $99/yr · $249 lifetime",
+    pricing: "₹0 free · ₹3,999/yr · ₹4,999 lifetime",
     hindi: true,
     onDevice: "Mac",
     freeTier: true,
@@ -104,15 +104,15 @@ const FAQS = [
   },
   {
     q: "Refunds?",
-    a: "30-day money-back, no questions asked. Email support and the refund processes through Lemon Squeezy within a few business days.",
+    a: "30-day money-back, no questions asked. Email support and Dodo Payments processes the refund within a few business days.",
   },
   {
     q: "Does Lifetime include future Big Updates?",
     a: "Yes. All future updates are included forever — new Whisper model versions, new LLM providers, new platforms (when we ship Linux), all of it.",
   },
   {
-    q: "Why USD pricing in India?",
-    a: "Most of our buyers are international. Lemon Squeezy handles GST, VAT, and local currency conversion automatically at checkout — you'll see the local equivalent before paying.",
+    q: "Why INR pricing?",
+    a: "IndianWhisper is India-built and priced in rupees. Dodo Payments acts as Merchant of Record and handles GST, VAT, and other applicable taxes at checkout.",
   },
 ];
 

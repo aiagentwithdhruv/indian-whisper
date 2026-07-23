@@ -127,7 +127,7 @@ export default function Privacy() {
             <h2 className="text-xl font-semibold text-white mb-3">8. Third parties we share data with</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li>
-                <strong className="text-white">Lemon Squeezy</strong> — handles payment as our Merchant
+                <strong className="text-white">Dodo Payments</strong> — handles payment as our Merchant
                 of Record. They see your billing email, country, and the amount paid. They process
                 taxes (GST / VAT / sales tax) on our behalf. They never see your transcripts.
               </li>

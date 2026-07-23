@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-// Payments open soon via Lemon Squeezy. Until then every paid CTA routes to
-// the free download — a dead checkout link costs more trust than honesty does.
-const EARLY_ACCESS_URL = "/#download";
-const LS_URLS = {
-  proMonthly: EARLY_ACCESS_URL,
-  proAnnual: EARLY_ACCESS_URL,
-  lifetime: EARLY_ACCESS_URL,
+const DODO_CHECKOUT_URLS = {
+  proMonthly:
+    "https://test.checkout.dodopayments.com/buy/pdt_0NjpMEimrdcyHhweCLl40?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
+  proAnnual:
+    "https://test.checkout.dodopayments.com/buy/pdt_0NjpMEtLqorBhSLxTIXZq?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
+  lifetime:
+    "https://test.checkout.dodopayments.com/buy/pdt_0NjpMF45Sw8i2X6wPRqxX?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
 } as const;
 
 type ProEmphasis = "monthly" | "annual";
@@ -40,7 +40,6 @@ type Tier = {
   ctaLabel: string;
   ctaHref: string;
   ctaVariant: "primary" | "ghost";
-  ctaDataLs?: "pro-monthly" | "pro-annual" | "lifetime";
   refundNote?: string;
   highlightOn: "always" | "annual" | "monthly" | "never";
   scarcity?: string;
@@ -50,7 +49,7 @@ const TIERS: Tier[] = [
   {
     key: "free",
     name: "Free",
-    price: "$0",
+    price: "₹0",
     cadence: "forever",
     subhead: "For everyone. Get started in 60 seconds.",
     bullets: [
@@ -70,7 +69,7 @@ const TIERS: Tier[] = [
   {
     key: "pro-monthly",
     name: "Pro Monthly",
-    price: "$12",
+    price: "₹499",
     cadence: "/month",
     subhead: "For power users. Pay as you go.",
     bullets: [
@@ -82,38 +81,36 @@ const TIERS: Tier[] = [
       "Custom voice commands",
       "3 devices",
     ],
-    ctaLabel: "Free in Early Access",
-    ctaHref: LS_URLS.proMonthly,
+    ctaLabel: "Choose Monthly",
+    ctaHref: DODO_CHECKOUT_URLS.proMonthly,
     ctaVariant: "primary",
-    ctaDataLs: "pro-monthly",
     refundNote: "30-day money-back",
     highlightOn: "monthly",
   },
   {
     key: "pro-annual",
     name: "Pro Annual",
-    price: "$99",
+    price: "₹3,999",
     cadence: "/year",
-    subhead: "Same as Pro Monthly. Save 31% ($45/yr).",
+    subhead: "Same as Pro Monthly. Save ₹1,989/year.",
     bullets: [
       "Everything in Pro Monthly",
-      "$99/yr vs $144/yr — save $45",
+      "₹3,999/yr vs ₹5,988/yr — save ₹1,989",
       "Unlimited transcription",
       "All 5 models + 7 LLM providers",
       "Gemini Live + batch processing",
       "3 devices",
     ],
-    ctaLabel: "Free in Early Access",
-    ctaHref: LS_URLS.proAnnual,
+    ctaLabel: "Choose Annual",
+    ctaHref: DODO_CHECKOUT_URLS.proAnnual,
     ctaVariant: "primary",
-    ctaDataLs: "pro-annual",
     refundNote: "30-day money-back",
     highlightOn: "annual",
   },
   {
     key: "lifetime",
     name: "Lifetime",
-    price: "$249",
+    price: "₹4,999",
     cadence: "once",
     subhead: "Pay once. Use forever.",
     bullets: [
@@ -122,10 +119,9 @@ const TIERS: Tier[] = [
       "5 devices",
       "No subscription, ever",
     ],
-    ctaLabel: "Free in Early Access",
-    ctaHref: LS_URLS.lifetime,
+    ctaLabel: "Get Lifetime",
+    ctaHref: DODO_CHECKOUT_URLS.lifetime,
     ctaVariant: "primary",
-    ctaDataLs: "lifetime",
     refundNote: "30-day money-back",
     highlightOn: "never",
     scarcity: "First 100 buyers only",
@@ -183,7 +179,7 @@ export default function PricingTiers() {
                     : "bg-[#18D1E0]/15 text-[#18D1E0]"
                 }`}
               >
-                save 31%
+                save 33%
               </span>
             </button>
           </div>
@@ -238,7 +234,6 @@ export default function PricingTiers() {
 
                 <a
                   href={tier.ctaHref}
-                  {...(tier.ctaDataLs ? { "data-ls-product": tier.ctaDataLs } : {})}
                   {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className={`mt-6 inline-flex items-center justify-center px-5 py-3 rounded-xl text-sm font-semibold transition-all ${
                     tier.ctaVariant === "primary"

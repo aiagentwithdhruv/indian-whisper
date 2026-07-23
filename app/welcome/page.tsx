@@ -89,14 +89,14 @@ export default async function WelcomePage({
               <p className="text-[#E2E8F0] text-base">
                 Look for the license key in your inbox at{" "}
                 <span className="text-white font-mono break-all">{email}</span>. The
-                email comes from <span className="text-white">Lemon Squeezy</span> with
-                the subject line <span className="text-white">&ldquo;Your IndianWhisper license key&rdquo;</span>.
+                email comes from <span className="text-white">Dodo Payments</span> and
+                includes your IndianWhisper license key.
               </p>
             ) : (
               <p className="text-[#E2E8F0] text-base">
                 Look for the license key in the email address you used at checkout. The
-                email comes from <span className="text-white">Lemon Squeezy</span> with
-                the subject line <span className="text-white">&ldquo;Your IndianWhisper license key&rdquo;</span>.
+                email comes from <span className="text-white">Dodo Payments</span> and
+                includes your IndianWhisper license key.
               </p>
             )}
             <p className="mt-3 text-sm text-[#71717A]">
@@ -159,7 +159,7 @@ export default async function WelcomePage({
               <li className="flex items-start gap-2">
                 <Check />
                 <span>
-                  Search for <span className="text-white font-mono">lemonsqueezy</span>
+                  Search for <span className="text-white font-mono">Dodo Payments</span>
                 </span>
               </li>
               <li className="flex items-start gap-2">

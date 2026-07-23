@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service — IndianWhisper",
   description:
-    "IndianWhisper terms of service. Lemon Squeezy as Merchant of Record, 30-day money-back, India governing law.",
+    "IndianWhisper terms of service. Dodo Payments as Merchant of Record, 30-day money-back, India governing law.",
 };
 
 export default function Terms() {
@@ -11,7 +11,7 @@ export default function Terms() {
     <main className="min-h-screen bg-[#0A0A0B] text-white px-6 py-24">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-2">Terms of Service</h1>
-        <p className="text-[#71717A] mb-4">Last updated: May 10, 2026</p>
+        <p className="text-[#71717A] mb-4">Last updated: July 24, 2026</p>
         <p className="text-[#A1A1AA] leading-relaxed mb-12">
           The deal between you and IndianWhisper. We&apos;ve kept this short and in plain English so you
           can actually read it. By installing the app, the Chrome extension, or signing in to the
@@ -46,9 +46,9 @@ export default function Terms() {
             <p>
               The Pro tier and cloud sync require sign-in via email one-time-password (no password
               for you to remember or for us to leak). You&apos;re responsible for keeping access to that
-              email secure. One Pro Lifetime license activates up to 3 machines; one Pro Monthly /
-              Annual subscription activates 1 machine at a time and you can switch machines from the
-              account dashboard.
+              email secure. One Pro Lifetime license activates up to 5 machines; one Pro Monthly /
+              Annual subscription activates up to 3 machines. You can free a device slot from the
+              License tab in IndianWhisper Settings.
             </p>
           </section>
 
@@ -57,18 +57,18 @@ export default function Terms() {
             <p className="mb-3">
               Paid plans are sold through{" "}
               <a
-                href="https://www.lemonsqueezy.com/"
+                href="https://dodopayments.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#18D1E0] hover:text-[#18D1E0]/80"
               >
-                Lemon Squeezy
+                Dodo Payments
               </a>
               , who acts as the <strong className="text-white">Merchant of Record</strong> for every
               IndianWhisper purchase. That means:
             </p>
             <ul className="list-disc pl-6 space-y-1">
-              <li>Lemon Squeezy is the seller of record on your invoice / card statement.</li>
+              <li>Dodo Payments is the seller of record on your invoice / card statement.</li>
               <li>They calculate, collect, and remit GST, VAT, US sales tax, and any other applicable taxes worldwide.</li>
               <li>They handle PCI compliance and store your payment method (we don&apos;t see card numbers).</li>
               <li>Their Terms and Privacy apply to the payment transaction in addition to ours.</li>
@@ -88,8 +88,8 @@ export default function Terms() {
               <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">
                 support@indianwhisper.com
               </a>{" "}
-              with the order ID from your Lemon Squeezy receipt. We don&apos;t require a reason. Refunds
-              are processed by Lemon Squeezy and typically land back on your card within 5 business
+              with the order ID from your Dodo Payments receipt. We don&apos;t require a reason. Refunds
+              are processed by Dodo Payments and typically land back on your card within 5 business
               days.
             </p>
             <p>

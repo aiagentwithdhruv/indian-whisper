@@ -6,7 +6,7 @@ import { useEffect } from "react";
  * Tiny mount-time scroller. If the page loads with a hash that matches
  * a known id, smooth-scroll that element into view after hydration.
  * Used by /pricing to honor /pricing#lifetime from the Mac app's
- * UpgradeSheet "Get Lifetime $249" button.
+ * UpgradeSheet pricing buttons.
  */
 export default function HashScroll({ ids }: { ids: readonly string[] }) {
   useEffect(() => {
