@@ -7,6 +7,7 @@ import Features from "./components/Features";
 import Calculator from "./components/Calculator";
 import ModelTable from "./components/ModelTable";
 import Comparison from "./components/Comparison";
+import PricingTiers from "./components/PricingTiers";
 import Download from "./components/Download";
 import FeedbackForm from "./components/FeedbackForm";
 import Support from "./components/Support";
@@ -70,6 +71,13 @@ export default function Home() {
           <AmbientGlow position="top-right" color="pink" size={400} />
           <AmbientGlow position="bottom-left" color="blue" size={450} />
           <Comparison />
+        </div>
+
+        {/* Pricing */}
+        <div className="relative overflow-hidden">
+          <SectionDivider />
+          <AmbientGlow position="top-left" color="blue" size={450} />
+          <PricingTiers />
         </div>
 
         {/* Download */}
