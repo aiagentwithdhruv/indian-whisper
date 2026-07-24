@@ -4,11 +4,11 @@ import { useState } from "react";
 
 const DODO_CHECKOUT_URLS = {
   proMonthly:
-    "https://test.checkout.dodopayments.com/buy/pdt_0NjpMEimrdcyHhweCLl40?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
+    "https://checkout.dodopayments.com/buy/pdt_0NjthCq3IAMmh7efWMsg0?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
   proAnnual:
-    "https://test.checkout.dodopayments.com/buy/pdt_0NjpMEtLqorBhSLxTIXZq?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
+    "https://checkout.dodopayments.com/buy/pdt_0NjthCtIzpUOzeW59DJFr?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
   lifetime:
-    "https://test.checkout.dodopayments.com/buy/pdt_0NjpMF45Sw8i2X6wPRqxX?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
+    "https://checkout.dodopayments.com/buy/pdt_0NjthCvL983YYMkOC60IG?quantity=1&redirect_url=https%3A%2F%2Findianwhisper.com%2Fthanks",
 } as const;
 
 type ProEmphasis = "monthly" | "annual";
