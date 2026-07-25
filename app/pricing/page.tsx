@@ -84,7 +84,7 @@ const COMPARISON = [
 const FAQS = [
   {
     q: "Is the free tier really free forever?",
-    a: "Yes. No credit card needed. The free tier covers 60 minutes/day with the Tiny and Base Whisper models, three LLM cleanups per day, smart punctuation, and auto-type to any app. Use it forever, on one device.",
+    a: "Yes. No credit card needed. The free tier covers 10 minutes/day with the Tiny and Base Whisper models, three AI cleanups per day, smart punctuation, and auto-type to any app. Use it forever, on one device.",
   },
   {
     q: "Can I switch from monthly to annual?",

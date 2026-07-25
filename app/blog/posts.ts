@@ -647,7 +647,7 @@ The rest of this post is about every other workflow.
 
 **Chrome extension reach.** MacWhisper is a Mac app. It dictates into the focused window via system input. The IndianWhisper Chrome extension is a different surface — a floating mic button that drops cleaned text into Gmail compose, Slack web, Google Docs, LinkedIn DMs, ChatGPT, and Notion, on any laptop where Chrome runs. If half your day is in web apps, the extension is the difference between "I dictate sometimes" and "I dictate everything."
 
-**Optional LLM cleanup with your own keys.** A finished Whisper transcript still has filler words and half-formed sentences. IndianWhisper's optional cleanup routes the text (not the audio) through one of seven LLMs you choose — Groq, Claude, OpenAI, Gemini, Moonshot, DeepSeek, or OpenRouter — using a key you bring. MacWhisper has no comparable feature today.
+**Optional LLM cleanup with your own keys.** A finished Whisper transcript still has filler words and half-formed sentences. IndianWhisper's optional cleanup routes the text (not the audio) through an AI cleanup layer, and you can point it at your own key if you prefer. MacWhisper has no comparable feature today.
 
 **Voice editing commands.** "Scratch that" deletes the last sentence. "Delete word" deletes the previous word. "Clear all" wipes the buffer. Spoken inline while you dictate. MacWhisper relies on macOS dictation defaults, which are weaker.
 
@@ -1034,7 +1034,7 @@ Small to Large is diminishing returns — 2-3% accuracy for 3-7x more resources.
 
 Whisper was trained on 680,000 hours of multilingual audio. It handles Indian English well, especially the Base model and above. For Hindi/Hinglish mixed speech, Small or higher is recommended.
 
-IndianWhisper adds an optional AI cleanup layer on top of Whisper — 7 LLM providers (Groq, Claude, OpenAI, Gemini) that fix any remaining transcription errors and add proper formatting.
+IndianWhisper adds an optional AI cleanup layer on top of Whisper that fixes any remaining transcription errors and adds proper formatting.
 
 ### Try Them All
 

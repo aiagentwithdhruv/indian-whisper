@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DownloadPicker from "./DownloadPicker";
 
 const DODO_CHECKOUT_URLS = {
   proMonthly:
@@ -39,6 +40,8 @@ type Tier = {
   bullets: string[];
   ctaLabel: string;
   ctaHref: string;
+  /** "picker" opens the platform modal instead of navigating. */
+  ctaAction?: "picker";
   ctaVariant: "primary" | "ghost";
   refundNote?: string;
   highlightOn: "always" | "annual" | "monthly" | "never";
@@ -53,16 +56,17 @@ const TIERS: Tier[] = [
     cadence: "forever",
     subhead: "For everyone. Get started in 60 seconds.",
     bullets: [
-      "60 minutes/day local transcription",
+      "10 minutes/day local transcription",
       "Tiny + Base Whisper models",
-      "3 LLM cleanups/day (Groq)",
+      "3 AI cleanups/day",
       "Basic voice commands",
       "Auto-type to any app",
       "Smart punctuation",
       "1 device",
     ],
     ctaLabel: "Download Free",
-    ctaHref: "/",
+    ctaHref: "/#download",
+    ctaAction: "picker",
     ctaVariant: "ghost",
     highlightOn: "never",
   },
@@ -75,7 +79,7 @@ const TIERS: Tier[] = [
     bullets: [
       "Unlimited transcription",
       "All 5 Whisper models (Tiny → Large V3)",
-      "All 7 LLM providers",
+      "Unlimited AI cleanup",
       "Gemini Live streaming",
       "Batch file transcription",
       "Custom voice commands",
@@ -97,7 +101,7 @@ const TIERS: Tier[] = [
       "Everything in Pro Monthly",
       "₹3,999/yr vs ₹5,988/yr — save ₹1,989",
       "Unlimited transcription",
-      "All 5 models + 7 LLM providers",
+      "All 5 models + unlimited AI cleanup",
       "Gemini Live + batch processing",
       "3 devices",
     ],
@@ -130,6 +134,7 @@ const TIERS: Tier[] = [
 
 export default function PricingTiers() {
   const [emphasis, setEmphasis] = useState<ProEmphasis>("annual");
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   const isHighlighted = (tier: Tier) =>
     tier.highlightOn === "always" ||
@@ -235,6 +240,14 @@ export default function PricingTiers() {
                 <a
                   href={tier.ctaHref}
                   {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...(tier.ctaAction === "picker"
+                    ? {
+                        onClick: (e: React.MouseEvent) => {
+                          e.preventDefault();
+                          setPickerOpen(true);
+                        },
+                      }
+                    : {})}
                   className={`mt-6 inline-flex items-center justify-center px-5 py-3 rounded-xl text-sm font-semibold transition-all ${
                     tier.ctaVariant === "primary"
                       ? "bg-[#18D1E0] text-black hover:bg-[#18D1E0]/90"
@@ -254,6 +267,8 @@ export default function PricingTiers() {
           })}
         </div>
       </div>
+
+      <DownloadPicker open={pickerOpen} onClose={() => setPickerOpen(false)} />
     </section>
   );
 }

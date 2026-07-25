@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const PRO_RECAP = [
   "Unlimited transcription",
   "All 5 Whisper models (Tiny → Large V3)",
-  "All 7 LLM providers",
+  "Unlimited AI cleanup",
   "Gemini Live streaming transcription",
   "Batch file transcription",
   "Custom voice commands",

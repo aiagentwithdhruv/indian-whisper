@@ -50,7 +50,7 @@ export default function Features() {
         </svg>
       ),
       title: "AI Text Cleanup",
-      description: "Optional LLM polish with 7 providers (Groq, Claude, OpenAI, Gemini). Fix grammar and formatting in real-time.",
+      description: "Optional AI polish on every dictation. Fix grammar and formatting in real-time.",
       accent: "from-pink-500/20 to-pink-600/5",
     },
     {
