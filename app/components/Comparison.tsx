@@ -3,7 +3,7 @@ export default function Comparison() {
     {
       name: "IndianWhisper",
       price: "Free",
-      priceDetail: "no limits",
+      priceDetail: "Pro ₹499/mo",
       privacy: "On-device by default",
       hindiSupport: true,
       openSource: true,

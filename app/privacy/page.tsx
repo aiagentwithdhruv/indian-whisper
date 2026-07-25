@@ -88,7 +88,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-xl font-semibold text-white mb-3">5. How to delete your data</h2>
             <p className="mb-3">
-              Right now (May 2026): email <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">support@indianwhisper.com</a> from your
+              Right now (May 2026): email <a href="mailto:aiwithdhruv@gmail.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">aiwithdhruv@gmail.com</a> from your
               account email. We&apos;ll confirm and hard-delete within 5 business days.
             </p>
             <p>
@@ -164,7 +164,7 @@ export default function Privacy() {
               <li><strong className="text-white">Withdraw consent</strong> — stop the cloud sync at any time. (Your local app keeps working.)</li>
             </ul>
             <p className="mt-3">
-              Email <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">support@indianwhisper.com</a> with the request. Response
+              Email <a href="mailto:aiwithdhruv@gmail.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">aiwithdhruv@gmail.com</a> with the request. Response
               within 5 business days.
             </p>
           </section>
@@ -189,7 +189,7 @@ export default function Privacy() {
             <h2 className="text-xl font-semibold text-white mb-3">11. Contact</h2>
             <p>
               Operator: AIwithDhruv (Dhruv Tomar). India-based.<br />
-              Email: <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">support@indianwhisper.com</a>
+              Email: <a href="mailto:aiwithdhruv@gmail.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">aiwithdhruv@gmail.com</a>
             </p>
             <p className="mt-3">
               When this policy changes, we update the &quot;Last updated&quot; date at the top and notify

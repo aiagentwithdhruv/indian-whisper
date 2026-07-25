@@ -85,8 +85,8 @@ export default function Terms() {
               <strong className="text-white">30-day money-back guarantee</strong> on every paid plan
               — Pro Monthly, Pro Annual, and Pro Lifetime. If IndianWhisper isn&apos;t working for you
               within 30 days of purchase, email{" "}
-              <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">
-                support@indianwhisper.com
+              <a href="mailto:aiwithdhruv@gmail.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">
+                aiwithdhruv@gmail.com
               </a>{" "}
               with the order ID from your Dodo Payments receipt. We don&apos;t require a reason. Refunds
               are processed by Dodo Payments and typically land back on your card within 5 business
@@ -186,8 +186,8 @@ export default function Terms() {
             <p>
               Operator: AIwithDhruv (Dhruv Tomar). India-based.<br />
               Email:{" "}
-              <a href="mailto:support@indianwhisper.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">
-                support@indianwhisper.com
+              <a href="mailto:aiwithdhruv@gmail.com" className="text-[#18D1E0] hover:text-[#18D1E0]/80">
+                aiwithdhruv@gmail.com
               </a>
             </p>
             <p className="mt-3">

@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: "Can I switch from monthly to annual?",
-    a: "Yes. Email support@indianwhisper.com and we'll move you to annual billing. The remaining monthly time is credited toward your annual plan.",
+    a: "Yes. Email aiwithdhruv@gmail.com and we'll move you to annual billing. The remaining monthly time is credited toward your annual plan.",
   },
   {
     q: "What happens if I cancel?",

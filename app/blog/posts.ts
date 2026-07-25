@@ -10,6 +10,88 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "dictation-app-without-subscription",
+    title: "Dictation Without a Subscription: What Voice Typing Should Actually Cost (2026)",
+    description:
+      "Every good dictation app is a subscription. Here's the honest reason why, the one architecture that makes a one-time price possible, and the five things to check before you buy any lifetime license.",
+    date: "2026-07-25",
+    readTime: "7 min",
+    tags: ["dictation", "pricing", "one-time-purchase", "privacy", "on-device"],
+    content: `If you searched for a dictation app without a subscription, you already know the frustration. Every tool that actually works well wants ten to twenty dollars a month, forever, for something you use to type — the most basic thing a computer does.
+
+![One key that stopped repeating.](/blog-images/pay-once-hero.png)
+
+I want to explain why that happened, because the reason is real and not just greed. And then I want to explain the one architectural decision that makes a different price possible — because that decision is the entire reason IndianWhisper can charge once when most tools structurally cannot.
+
+## Why voice tools became subscriptions
+
+Almost every dictation app you can name sends your audio to a server. You speak, the audio is uploaded, a large model on someone's GPU turns it into text, and the text comes back.
+
+That round trip costs the company money **every single time you speak**. Not once — every time. GPU minutes, bandwidth, storage, the engineering to keep it all up.
+
+When your cost per customer never stops, your revenue per customer cannot stop either. A subscription is not a pricing trick in that model. It is the only honest way to run it. A one-time price for unlimited cloud transcription would mean losing money on every heavy user, forever.
+
+So if a tool processes in the cloud, expect a subscription. That is not a company being difficult. That is arithmetic.
+
+## The architecture that changes the math
+
+Now flip it.
+
+IndianWhisper runs the speech model **on your Mac**. The Whisper model downloads once and lives on your machine. When you speak, your audio goes to your own processor and the text comes back from your own processor. Nothing is uploaded. There is no server in the loop.
+
+Which means my cost when you transcribe for eight hours straight is **zero**. Not low — actually zero. Your electricity, your silicon, your data.
+
+When the marginal cost of usage is zero, a one-time price stops being a gimmick and starts being the obvious structure. I am not subsidising your usage out of a monthly fee, because your usage does not cost me anything.
+
+That is the whole reason a lifetime licence exists here and cannot exist on a cloud-only tool. It is a consequence of the architecture, not a marketing decision.
+
+## What a subscription actually costs over time
+
+Run the numbers on any tool you are considering, over the horizon you will actually use it.
+
+A $12/month tool is $144 a year. Over five years, **$720**. An annual plan at $99 is $495 over the same five years. If you dictate daily — and people who search this query usually do — five years is a conservative horizon, not an aggressive one.
+
+Against that, IndianWhisper's lifetime licence is **$249, paid once**. It pays for itself against a monthly plan somewhere in year two, and everything after that is free.
+
+I have kept a monthly and annual option too, at $12 and $99, because not everyone wants to commit up front and some people genuinely prefer to rent software. Both are real, both work, and there is a 30-day money-back guarantee on all of them.
+
+But the lifetime tier is capped at the **first 100 buyers**, and I want to be straight about why rather than pretend it is artificial scarcity. Early buyers are taking a bet on a product that is still young. The permanent price is what I can offer in exchange for that bet. Once the product is established, that trade no longer makes sense for either side.
+
+## Five things to check before buying any lifetime licence
+
+This applies to any tool, not just mine. A one-time price is only a good deal if the thing behind it survives.
+
+**1. Does it work offline?** If it needs a connection, you are not buying a tool — you are buying access to a server that can change its terms. Test it on aeroplane mode before you pay.
+
+**2. Where does your audio actually go?** "Encrypted in transit" is not the same as "never leaves your device." For client work, legal drafts, medical notes, or anything under an NDA, this is the only question that matters.
+
+**3. What does "lifetime" mean in the fine print?** Lifetime of the product, or lifetime of the current major version? Ask directly. A lifetime licence that expires at version 3 is a two-year subscription wearing a costume.
+
+**4. Does it work if the company disappears?** On-device software keeps running. Cloud software stops the day the servers do. This is the strongest argument for local processing and almost nobody makes it out loud.
+
+**5. Does it handle how you actually speak?** If your sentences move between Hindi and English without pausing — "client ko bol do the invoice is ready" — most engines will transcribe one language and mangle the other. Code-switching is the primary case IndianWhisper is tuned for, not a supported edge case. Test it with a real sentence from your own week, not a clean scripted one.
+
+## The honest limitations
+
+Fair is fair.
+
+Running the model locally means the first download is large — the models range from 75MB to about 3GB depending on which accuracy you pick — and heavier models want a reasonably modern Mac. Cloud tools push that weight onto someone else's hardware, and for some people that genuinely is the better trade.
+
+It is also Mac-first today. Windows and Chrome exist; the Mac app is where the depth is.
+
+And a one-time price means I do not have recurring revenue smoothing out my months. That is my problem to solve, not yours — but it is the honest reason most founders pick subscriptions, and pretending otherwise would be dishonest.
+
+## What I would tell a friend
+
+If you dictate occasionally and always have good internet, a monthly cloud tool is fine and you should not overthink it.
+
+If you dictate every day, work with anything confidential, or simply want the thing you type with to keep working regardless of anyone's server bill — buy the local one once and stop thinking about it.
+
+That is the product I wanted for myself, which is why it exists.
+
+[See the pricing and the lifetime tier →](/pricing)`,
+  },
+  {
     slug: "wispr-flow-alternative",
     title: "Looking for a Wispr Flow Alternative? Here's What to Check Before You Switch (2026)",
     description:
@@ -237,7 +319,7 @@ The change since v2.4.0 is that dictation can be ambient. You hold a key, you ta
 
 If you tried IndianWhisper months ago and thought "fine, but not enough to change my habits," try the current build. The hotkey is no longer the rate limiter. Your patience is.
 
-You can [download the latest Mac build here](/download). If you find a bug, the most useful thing you can do is email support@indianwhisper.com with the steps to reproduce it. We read everything and we ship fixes the same week when we can.
+You can [download the latest Mac build here](/download). If you find a bug, the most useful thing you can do is email aiwithdhruv@gmail.com with the steps to reproduce it. We read everything and we ship fixes the same week when we can.
 
 — Dhruv`,
   },
@@ -424,7 +506,7 @@ v2.6.0 also ships latency instrumentation, so from now on "it feels slow" is a l
 
 If you tried IndianWhisper before and it felt a beat behind your voice — that beat is gone. [Download the latest build](/#download), turn on cloud transcription, and watch the words race you.
 
-And if it still feels slow on your machine, email support@indianwhisper.com with what you saw. The instrumentation means I can now actually find it.
+And if it still feels slow on your machine, email aiwithdhruv@gmail.com with what you saw. The instrumentation means I can now actually find it.
 
 — Dhruv`,
   },
@@ -500,7 +582,7 @@ For sensitive workflows — legal, medical, anything under NDA — the safest mo
 
 ## How to delete your data
 
-Email **support@indianwhisper.com** with the subject "Delete my data." We soft-delete on request and hard-delete the row within 7 days. Hard-delete means the row is gone — not flagged, not anonymized, gone. Soft-deleted rows also auto-purge after 30 days even without an explicit request — the row is gone either way.
+Email **aiwithdhruv@gmail.com** with the subject "Delete my data." We soft-delete on request and hard-delete the row within 7 days. Hard-delete means the row is gone — not flagged, not anonymized, gone. Soft-deleted rows also auto-purge after 30 days even without an explicit request — the row is gone either way.
 
 A user-facing "Delete my data" button in Settings is the next ship. Until then, email is the path.
 
@@ -526,7 +608,7 @@ After that: team workspaces (the \`org_id\` column is already in the schema, nul
 
 Update to v2.4.0 at [indianwhisper.com/download](https://indianwhisper.com/download). Sign in once on any device, then on the others. Same library, everywhere.
 
-If you have questions about anything in this post — what we store, where, why, or how to remove it — reply on LinkedIn or email **support@indianwhisper.com**. The whole point of this post is that the questions are welcome.`,
+If you have questions about anything in this post — what we store, where, why, or how to remove it — reply on LinkedIn or email **aiwithdhruv@gmail.com**. The whole point of this post is that the questions are welcome.`,
   },
   {
     slug: "macwhisper-vs-indianwhisper",

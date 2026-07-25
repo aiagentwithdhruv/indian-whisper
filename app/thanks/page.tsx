@@ -43,8 +43,8 @@ export default async function ThanksPage({
 
           <p className="mt-6 text-sm text-[#71717A]">
             Keep the email for your receipt and license record. Need help?{" "}
-            <a className="text-[#18D1E0]" href="mailto:support@indianwhisper.com">
-              support@indianwhisper.com
+            <a className="text-[#18D1E0]" href="mailto:aiwithdhruv@gmail.com">
+              aiwithdhruv@gmail.com
             </a>
           </p>
         </section>

@@ -85,8 +85,8 @@ export default function Footer() {
                 <li><a href="/terms" className="hover:text-[#18D1E0] transition-colors">Terms of Service</a></li>
                 <li><a href="/terms#refund" className="hover:text-[#18D1E0] transition-colors">Refunds</a></li>
                 <li>
-                  <a href="mailto:support@indianwhisper.com" className="hover:text-[#18D1E0] transition-colors break-all">
-                    support@indianwhisper.com
+                  <a href="mailto:aiwithdhruv@gmail.com" className="hover:text-[#18D1E0] transition-colors break-all">
+                    aiwithdhruv@gmail.com
                   </a>
                 </li>
               </ul>
