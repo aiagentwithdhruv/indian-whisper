@@ -18,8 +18,8 @@ const PLATFORMS: Platform[] = [
   {
     key: "mac",
     label: "Mac",
-    meta: "v3.1.0 · 4 MB · macOS 14+",
-    href: "/releases/IndianWhisper-v3.1.0.dmg",
+    meta: "v3.2.0 · 4 MB · macOS 14+",
+    href: "/releases/IndianWhisper-v3.2.0.dmg",
     external: false,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import ActivateBlock from "@/app/components/ActivateBlock";
 
 export const metadata: Metadata = {
   title: "Thanks for upgrading — IndianWhisper",
@@ -28,18 +29,10 @@ export default async function ThanksPage({
             Thanks for upgrading to <span className="gradient-text">Pro</span>
           </h1>
           <p className="mt-5 text-lg text-[#A1A1AA]">
-            Your license key is in your email. Open IndianWhisper → Settings → License,
-            paste the key, and click Activate.
+            Your license key is below and in your email. One click activates it on this Mac.
           </p>
 
-          {licenseKey && (
-            <div className="mt-8 rounded-xl border border-white/10 bg-black/30 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">
-                Your license key
-              </p>
-              <code className="mt-3 block break-all text-lg text-white">{licenseKey}</code>
-            </div>
-          )}
+          {licenseKey && <ActivateBlock licenseKey={licenseKey} />}
 
           <p className="mt-6 text-sm text-[#71717A]">
             Keep the email for your receipt and license record. Need help?{" "}
