@@ -30,8 +30,8 @@ const PLATFORMS: Platform[] = [
   {
     key: "windows",
     label: "Windows",
-    meta: "v3.0.0 · ~85 MB · Windows 10/11 (x64)",
-    href: "/releases/windows/IndianWhisper%20Setup%203.0.0.exe",
+    meta: "v3.1.0 · ~85 MB · Windows 10/11 (x64)",
+    href: "/releases/windows/IndianWhisper%20Setup%203.1.0.exe",
     external: false,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
