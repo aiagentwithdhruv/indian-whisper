@@ -64,6 +64,17 @@ export default function Navbar() {
             <div className="w-2 h-2 rounded-full bg-green-500 animate-subtle-pulse" />
             Try Live
           </a>
+          {/* Second hook: free value before they're ready to buy. */}
+          <a
+            href={anchor("calculator")}
+            aria-current={isHome && hash === "#calculator" ? "true" : undefined}
+            className="flex items-center gap-1.5 text-[#18D1E0] hover:text-[#18D1E0]/80 transition-colors font-medium"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-400">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" />
+            </svg>
+            ROI Calculator
+          </a>
           <a
             href="/pricing"
             aria-current={pathname === "/pricing" ? "page" : undefined}
