@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "IndianWhisper — Stop Typing. Start Speaking.",
     description:
-      "Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. Free forever. No subscription.",
+      "Voice-to-text for Mac, Windows, and Chrome. Hindi, Hinglish, English. Free to start, no card needed.",
     url: "https://indianwhisper.com",
     siteName: "IndianWhisper",
     type: "website",

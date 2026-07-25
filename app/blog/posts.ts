@@ -100,7 +100,7 @@ If you dictate every day, work with anything confidential, or simply want the th
 
 That is the product I wanted for myself, which is why it exists.
 
-[See the pricing and the lifetime tier →](/pricing)`,
+[See the pricing and the lifetime tier →](/pricing?src=iwblog-dictation-app-without-subscription)`,
   },
   {
     slug: "wispr-flow-alternative",
@@ -150,7 +150,9 @@ Full disclosure: I build IndianWhisper, so weigh this section accordingly. It ex
 
 [Download IndianWhisper free](/#download) — Mac, Windows, and Chrome. Turn off your Wi-Fi, hold the hotkey, and dictate the most natural mixed-language sentence you'd actually say at work. That one test — offline, in your real voice — tells you everything a comparison table can't.
 
-— Dhruv`,
+— Dhruv
+
+If the subscription is the part you are actually trying to escape: the free tier needs no card, and above it there is a **₹4,999 one-time lifetime** — no renewal date to forget about. [See the pricing →](/pricing?src=iwblog-wispr-flow-alternative)`,
   },
   {
     slug: "superwhisper-alternative",
@@ -196,7 +198,9 @@ I build IndianWhisper — bias declared. It's the same on-device philosophy as S
 
 [Download IndianWhisper free](/#download), switch off Wi-Fi, and speak the sentence you'd actually say to a colleague — accent, mixed language and all. Two minutes, no card, and your own ears are the benchmark.
 
-— Dhruv`,
+— Dhruv
+
+If you do reach the point of paying for one of these, the number worth comparing is the one that stops repeating: **₹4,999 once** here, or ₹0 forever if the free tier covers your week. [See the pricing →](/pricing?src=iwblog-superwhisper-alternative)`,
   },
   {
     slug: "why-hinglish-breaks-speech-to-text",
@@ -253,7 +257,9 @@ That's the gap IndianWhisper is built around: code-switching as the primary case
 
 If you dictate the way you actually talk — "kal ka standup move kar do, and send the summary to Rahul" — [download the Mac app](/download) and try one real sentence. That first minute is the entire pitch.
 
-— Dhruv`,
+— Dhruv
+
+The code-switching pipeline described here is most of what Pro pays for — Large V3 locally, plus Gemini Live routing for the sentences that switch language mid-breath. Start on the free tier and check it against your own Hinglish before you spend anything. [See the pricing →](/pricing?src=iwblog-why-hinglish-breaks-speech-to-text)`,
   },
   {
     slug: "we-stopped-pressing-cmd-d",
@@ -332,7 +338,9 @@ If you tried IndianWhisper months ago and thought "fine, but not enough to chang
 
 You can [download the latest Mac build here](/download). If you find a bug, the most useful thing you can do is email aiwithdhruv@gmail.com with the steps to reproduce it. We read everything and we ship fixes the same week when we can.
 
-— Dhruv`,
+— Dhruv
+
+Everything in this post works on the free tier. If you end up living in it all day, Pro is what lifts the 10-minute daily cap. [See the pricing →](/pricing?src=iwblog-we-stopped-pressing-cmd-d)`,
   },
   {
     slug: "wispr-flow-vs-indianwhisper",
@@ -400,7 +408,9 @@ Pick IndianWhisper if: you speak Hinglish or any Indian language, your dictation
 
 You can [download IndianWhisper free](/#download) — Mac, Windows, and Chrome — and judge the Hinglish difference yourself in under two minutes. That first minute of speaking naturally, without translating yourself into "dictation English" first, is the entire pitch.
 
-— Dhruv`,
+— Dhruv
+
+And if you want this comparison reduced to numbers: ₹0 free forever, ₹499/month, or **₹4,999 once**. [See the pricing →](/pricing?src=iwblog-wispr-flow-vs-indianwhisper)`,
   },
   {
     slug: "i-stopped-typing-prompts-to-my-ai-coding-agent",
@@ -448,7 +458,9 @@ Any dictation tool can technically do this. If you want the on-device, code-swit
 
 The first time you watch a long, precise prompt appear from a ten-second sentence — and the agent nails it on the first pass because you finally gave it enough context — the keyboard starts feeling like the slow way to talk to a machine.
 
-— Dhruv`,
+— Dhruv
+
+Fair warning if you adopt this properly: the free tier's 10 minutes a day will not survive a full day of talking to an agent. That is what Pro is for, and the **₹4,999 lifetime** exists so it stops being a monthly line item. [See the pricing →](/pricing?src=iwblog-i-stopped-typing-prompts-to-my-ai-coding-agent)`,
   },
   {
     slug: "words-appear-while-you-speak",
@@ -519,7 +531,9 @@ If you tried IndianWhisper before and it felt a beat behind your voice — that 
 
 And if it still feels slow on your machine, email aiwithdhruv@gmail.com with what you saw. The instrumentation means I can now actually find it.
 
-— Dhruv`,
+— Dhruv
+
+One thing worth knowing before you test it: the streaming path in this post is Gemini Live, which is a Pro feature. Free-tier local transcription is not streaming — it returns the block when you stop speaking. Different feel, same accuracy. [See the pricing →](/pricing?src=iwblog-words-appear-while-you-speak)`,
   },
   {
     slug: "we-added-cloud-sync",
@@ -619,7 +633,9 @@ After that: team workspaces (the \`org_id\` column is already in the schema, nul
 
 Update to v2.4.0 at [indianwhisper.com/download](https://indianwhisper.com/download). Sign in once on any device, then on the others. Same library, everywhere.
 
-If you have questions about anything in this post — what we store, where, why, or how to remove it — reply on LinkedIn or email **aiwithdhruv@gmail.com**. The whole point of this post is that the questions are welcome.`,
+If you have questions about anything in this post — what we store, where, why, or how to remove it — reply on LinkedIn or email **aiwithdhruv@gmail.com**. The whole point of this post is that the questions are welcome.
+
+Sync is a Pro feature. If you work on one Mac, the free tier keeps everything local and you need none of this. [See the pricing →](/pricing?src=iwblog-we-added-cloud-sync)`,
   },
   {
     slug: "macwhisper-vs-indianwhisper",
@@ -628,7 +644,9 @@ If you have questions about anything in this post — what we store, where, why,
     date: "2026-04-28",
     readTime: "8 min",
     tags: ["comparison", "macwhisper", "privacy", "voice-typing", "on-device", "hindi"],
-    content: `[MacWhisper Pro](https://goodsnooze.gumroad.com/l/macwhisper) is €59 lifetime on Gumroad, or $6.99/month on the App Store. IndianWhisper is free. Forever. No subscription, no file caps.
+    content: `[MacWhisper Pro](https://goodsnooze.gumroad.com/l/macwhisper) is €59 lifetime on Gumroad, or $6.99/month on the App Store. IndianWhisper has a free tier that stays free, and a **₹4,999 lifetime** (about €50) if you want everything.
+
+*Updated July 2026: this post originally said IndianWhisper was free with no paid tier at all. Paid tiers went live in July 2026 — the free tier is unchanged and the numbers below now reflect the real sheet.*
 
 If the comparison stopped at price, this would be a 200-word post. Both apps run OpenAI's Whisper models on your Mac. The real differences sit underneath: which accents the model handles, how far past your Mac the tool reaches, and which bytes ever leave your laptop.
 
@@ -654,7 +672,9 @@ The rest of this post is about every other workflow.
 
 **Indian accents and Hindi / Hinglish, first-class.** This is why the project exists. Whisper Large handles Indian English well; both apps benefit. IndianWhisper layers a punctuation + voice-command pass tuned on Hinglish code-switching. Say a sentence Hindi-English-Hindi mid-stride and IndianWhisper outputs clean text — Devanagari where you want it, English where you want it. MacWhisper produces Whisper's raw output, sometimes transliterated, sometimes oddly capitalised.
 
-**Free, with no asterisk.** MacWhisper free runs only the small Whisper models (Tiny + Base) and is missing batch processing, speaker diarization, and SRT/VTT export. IndianWhisper free is unlimited dictation, [all five Whisper models](https://indianwhisper.com/blog/whisper-ai-models-explained-which-one-to-use) (Tiny 75 MB → Large 3 GB), the full cleanup layer, and the Chrome extension. No paywalled Pro mode. Payment infrastructure exists but is turned off until there is a paid feature worth charging for.
+**A free tier you can actually work in, and a one-time option above it.** MacWhisper free runs only the small Whisper models (Tiny + Base) and is missing batch processing, speaker diarization, and SRT/VTT export. IndianWhisper free gives you 10 minutes a day of local transcription on Tiny + Base, three AI cleanups a day, smart punctuation, auto-type into any app, and the Chrome extension — no card, one device, forever.
+
+Above that, Pro unlocks unlimited transcription, [all five Whisper models](https://indianwhisper.com/blog/whisper-ai-models-explained-which-one-to-use) (Tiny 75 MB → Large V3 3 GB), unlimited cleanup, Gemini Live streaming and batch files. ₹499/month, ₹3,999/year, or **₹4,999 once** for lifetime — which lands within a few euros of MacWhisper's €59, and buys a different set of strengths.
 
 **Chrome extension reach.** MacWhisper is a Mac app. It dictates into the focused window via system input. The IndianWhisper Chrome extension is a different surface — a floating mic button that drops cleaned text into Gmail compose, Slack web, Google Docs, LinkedIn DMs, ChatGPT, and Notion, on any laptop where Chrome runs. If half your day is in web apps, the extension is the difference between "I dictate sometimes" and "I dictate everything."
 
@@ -670,7 +690,7 @@ What changes between the two apps is the optional layer above transcription.
 
 **MacWhisper Pro (Gumroad, €59 lifetime):** Audio stays on your machine. Transcripts stay on your machine. There is no first-party cloud step. (The App Store version has its own caveats — review the listing if you go that route.)
 
-**IndianWhisper (free):** Audio stays on your machine for Whisper transcription. If you turn on optional LLM cleanup, the *finished text transcript* (not audio) goes to whichever LLM provider's key you supplied. If you leave LLM cleanup off — the default — nothing leaves your laptop.
+**IndianWhisper (free tier or paid — identical on this point):** Audio stays on your machine for Whisper transcription. If you turn on optional LLM cleanup, the *finished text transcript* (not audio) goes to whichever LLM provider's key you supplied. If you leave LLM cleanup off — the default — nothing leaves your laptop.
 
 What this means in practice:
 
@@ -682,10 +702,10 @@ A deeper write-up on what "on-device" actually means at the network layer is in 
 
 ## The feature matrix
 
-| Feature | MacWhisper Pro (Gumroad €59 lifetime) | IndianWhisper (free) |
+| Feature | MacWhisper Pro (Gumroad €59 lifetime) | IndianWhisper |
 |---|---|---|
-| Price | €59 one-time (≈ $69 USD) | **₹0 / $0 — no subscription, no caps** |
-| Free tier | Tiny + Base models only, no batch / no diarization / no SRT export | **Unlimited dictation, all 5 Whisper models** |
+| Price | €59 one-time (≈ $69 USD) | **₹0 free · ₹499/mo · ₹3,999/yr · ₹4,999 lifetime** |
+| Free tier | Tiny + Base models only, no batch / no diarization / no SRT export | **10 min/day, Tiny + Base, 3 cleanups/day, Chrome extension, no card** |
 | On-device audio | Yes | **Yes** |
 | Optional cloud LLM cleanup | No (text stays local) | **Yes — 7 providers, your key, off by default** |
 | Indian English / Hindi tuning | Whisper default | **Tuned punctuation + Hinglish handling** |
@@ -696,10 +716,10 @@ A deeper write-up on what "on-device" actually means at the network layer is in 
 | YouTube URL transcription | **Yes (Pro)** | Not yet |
 | Voice editing commands (scratch that, delete word) | macOS dictation defaults | **Yes — built-in** |
 | System-wide hotkey | Yes | **Yes — Cmd+D, configurable** |
-| Whisper models bundled | Multiple (largest in Pro) | **All 5 (Tiny 75 MB → Large 3 GB)** |
+| Whisper models bundled | Multiple (largest in Pro) | **All 5 on Pro (Tiny 75 MB → Large V3 3 GB); Tiny + Base free** |
 | Last shipping update | Active | **Active — auto-update every 6 hours** |
 
-A quick note: this is "MacWhisper Pro on Gumroad" vs. "IndianWhisper free." The Gumroad lifetime is the version most reviewers benchmark. The Mac App Store SKU is structured differently and is priced as a subscription — I would compare against that separately if you are considering it.
+A quick note: this is "MacWhisper Pro on Gumroad" vs. "IndianWhisper," free tier and Pro together. The Gumroad lifetime is the version most reviewers benchmark. The Mac App Store SKU is structured differently and is priced as a subscription — I would compare against that separately if you are considering it.
 
 ## A 10-minute dictation session, both apps
 
@@ -720,8 +740,8 @@ If your week is 80% live web-app dictation and 20% file batch, IndianWhisper is 
 **Is IndianWhisper as accurate as MacWhisper?**
 For audio, yes — same Whisper models, same on-device runtime. IndianWhisper pulls ahead on Indian English, Hindi, and Hinglish because of the layers above Whisper. For pure American English on a clean mic, the apps are functionally tied.
 
-**Why is IndianWhisper free?**
-The Mac app is the front door. We will eventually charge for higher-volume or team features — the payment plumbing exists, turned off. Users first, revenue later.
+**Why is there a free tier at all?**
+The free tier is the front door and it is not a trial — 10 minutes a day, forever, no card. If that covers your week, keep it. Pro exists for people who dictate all day and want the Large V3 model, unlimited cleanup and Gemini Live. Because transcription runs on your own Mac, my cost when you use it heavily is zero, which is why a **₹4,999 one-time lifetime** is possible here and structurally impossible on a cloud-only tool.
 
 **Does either app send my audio to the cloud?**
 For Whisper transcription: no, both run locally. MacWhisper Pro on Gumroad has no first-party cloud step. IndianWhisper's optional LLM cleanup sends the *finished text* (not audio) to whichever provider key you supplied, only if you turn it on. Default off.
@@ -739,7 +759,9 @@ The extension runs wherever Chrome runs. The Mac app is macOS 14+. Windows and L
 
 If you are about to pay €59 for MacWhisper Pro and your work is mostly live dictation in browsers and Hindi-English mix typing, install IndianWhisper free first. Run it for a week. If file batch + speaker diarization end up being the missing piece, then buy MacWhisper Pro and keep both. You are out nothing and you have ground truth.
 
-[Download IndianWhisper free →](https://indianwhisper.com/download)`,
+[Download IndianWhisper free →](https://indianwhisper.com/download)
+
+And if you get past the free tier, the head-to-head on price is €59 once against **₹4,999 once** — close enough that the decision goes back to the feature split above, which is where it belongs. [See the pricing →](/pricing?src=iwblog-macwhisper-vs-indianwhisper)`,
   },
   {
     slug: "voice-typing-vs-keyboard-typing-speed-comparison",
@@ -801,9 +823,11 @@ This is why writers who switch to voice dictation report not just faster output,
 
 ### Try It Yourself
 
-[IndianWhisper](https://indianwhisper.com) is free, runs entirely on your Mac, and takes 60 seconds to set up. Or try the [live demo](https://indianwhisper.com/#try-it) in your browser right now — no install needed.
+[IndianWhisper](https://indianwhisper.com) has a free tier that needs no card, runs entirely on your Mac, and takes 60 seconds to set up. Or try the [live demo](https://indianwhisper.com/#try-it) in your browser right now — no install needed.
 
-The 3.75x speed gap is real. The question is whether you'll keep wasting 800 hours a year, or start speaking.`,
+The 3.75x speed gap is real. The question is whether you'll keep wasting 800 hours a year, or start speaking.
+
+If that 800-hour figure is anywhere near your own year, the arithmetic is short: **₹4,999 once**, against the value of the first week you get back. Run the free tier for a fortnight and measure it on yourself before you take my word for it. [See the pricing →](/pricing?src=iwblog-voice-typing-vs-keyboard-typing-speed-comparison)`,
   },
   {
     slug: "future-of-voice-ai-2026-predictions",
@@ -892,7 +916,9 @@ Voice is the natural replacement. WhatsApp already shows voice messages are pref
 
 We're at an inflection point. Voice AI has crossed the accuracy, speed, and privacy thresholds that held it back for decades. The tools exist today — [IndianWhisper](https://indianwhisper.com) is one of them.
 
-The question isn't whether voice will replace typing. It's when. And the people who switch early will have a 3.75x productivity advantage over everyone else.`,
+The question isn't whether voice will replace typing. It's when. And the people who switch early will have a 3.75x productivity advantage over everyone else.
+
+If you want to start on the unglamorous version of this today rather than in 2027: free tier, no card, 10 minutes a day. [See the pricing →](/pricing?src=iwblog-future-of-voice-ai-2026-predictions)`,
   },
   {
     slug: "on-device-vs-cloud-voice-recognition-privacy",
@@ -982,7 +1008,9 @@ On-device processing costs **$0**. You already own the hardware. The model downl
 
 Your voice stays on your Mac. That's not a marketing claim — it's an architectural fact. There is no server to send data to. The code is [open source](https://github.com/aiagentwithdhruv/indian-whisper) if you want to verify.
 
-Privacy shouldn't be a premium feature. It should be the default.`,
+Privacy shouldn't be a premium feature. It should be the default.
+
+Worth being concrete about that last line, since it is easy to say and rarely true: on-device transcription is in the **free tier**, not behind Pro. You do not pay here to keep your audio on your own machine. Pro buys you the bigger models and unlimited use, not your privacy back. [See the pricing →](/pricing?src=iwblog-on-device-vs-cloud-voice-recognition-privacy)`,
   },
   {
     slug: "whisper-ai-models-explained-which-one-to-use",
@@ -1049,9 +1077,11 @@ IndianWhisper adds an optional AI cleanup layer on top of Whisper that fixes any
 
 ### Try Them All
 
-[IndianWhisper](https://indianwhisper.com) gives you all 5 models for free. Switch between them in Settings → Models. The model downloads once and works offline forever.
+[IndianWhisper](https://indianwhisper.com) ships all five. Tiny and Base run on the free tier; Small, Medium and Large V3 are Pro. Switch between them in Settings → Models. Whichever you pick downloads once and works offline forever.
 
-Start with Base. If you need more accuracy, try Small. Most people never need to go higher.`,
+Start with Base. If you need more accuracy, try Small. Most people never need to go higher.
+
+If you landed here trying to pick a model, the honest short answer: start on Base, which is free, and only pay for Large V3 once you can actually hear the difference on your own voice. [See the pricing →](/pricing?src=iwblog-whisper-ai-models-explained-which-one-to-use)`,
   },
   {
     slug: "how-developers-use-voice-to-code-faster",
@@ -1142,7 +1172,9 @@ The modern developer productivity stack in 2026:
 
 Together, these tools let you build at 5-10x the speed of keyboard-only development. The keyboard isn't going away — but it's no longer the only input device that matters.
 
-Try [IndianWhisper](https://indianwhisper.com) free — the [live demo](https://indianwhisper.com/#try-it) works in your browser, no install needed.`,
+Try [IndianWhisper](https://indianwhisper.com) free — the [live demo](https://indianwhisper.com/#try-it) works in your browser, no install needed.
+
+If this becomes your default input rather than an experiment, you will outgrow 10 minutes a day fast — Pro is ₹499/month, or **₹4,999 once** if you would rather never see the charge again. [See the pricing →](/pricing?src=iwblog-how-developers-use-voice-to-code-faster)`,
   },
   {
     slug: "i-built-a-voice-ai-app-and-gave-it-away-free",
@@ -1151,7 +1183,9 @@ Try [IndianWhisper](https://indianwhisper.com) free — the [live demo](https://
     date: "2026-03-18",
     readTime: "8 min",
     tags: ["founder-story", "build-in-public", "voice-ai", "open-source"],
-    content: `## I Paid Rs.3,800 for Something I Could Build Myself
+    content: `> **Update, July 2026.** This post is from March 2026 and I am leaving it as it was written. What changed since: IndianWhisper now has paid tiers. The free tier is still free and still needs no card — 10 minutes a day of on-device transcription, forever. Above it, Pro is ₹499/month or ₹3,999/year, and there is a **₹4,999 one-time lifetime**. The argument below about access being the real moat is one I still hold; the sentence "it should all be free" turned out to be something I could not fund. Charging for the heavy end is what keeps the free end alive. [Current pricing →](/pricing?src=iwblog-i-built-a-voice-ai-app-and-gave-it-away-free)
+
+## I Paid Rs.3,800 for Something I Could Build Myself
 
 It started with frustration.
 
@@ -1283,11 +1317,12 @@ The best product is not always the most polished. Sometimes it is the one that i
 ### Try It
 
 - **Website:** [indianwhisper.com](https://indianwhisper.com)
-- **Mac Download:** [Direct DMG](https://indianwhisper.com/releases/IndianWhisper-v1.0.0.dmg)
-- **Chrome Extension:** Coming this week
+- **Mac Download:** [Latest build](https://indianwhisper.com/download)
+- **Chrome Extension:** live
 - **Live Demo:** [Try in browser](https://indianwhisper.com/#try-it) — no install needed
 - **GitHub:** [Open source](https://github.com/aiagentwithdhruv/indian-whisper)
+- **Pricing:** [free tier and the one-time lifetime](/pricing?src=iwblog-i-built-a-voice-ai-app-and-gave-it-away-free)
 
-Your voice is faster than your fingers. Stop paying for that privilege.`,
+Your voice is faster than your fingers. Start on the free tier and see whether that is true for you before you spend anything.`,
   },
 ];

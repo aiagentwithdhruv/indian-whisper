@@ -130,7 +130,7 @@ export default function DownloadPicker({
           Which one are you on?
         </h2>
         <p className="mt-1.5 text-sm text-[#A1A1AA]">
-          Free forever. No card needed.
+          Free to start. No card needed.
         </p>
 
         <div className="mt-6 space-y-3">
