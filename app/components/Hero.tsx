@@ -90,7 +90,7 @@ export default function Hero() {
           </a>
         </div>
         <div className="animate-fade-in-up animation-delay-600 mt-3 text-sm text-[#71717A]">
-          Mac · Windows · Chrome · 100% Free · No subscription
+          Mac · Windows · Chrome · Free to start · No card needed
         </div>
 
         {/* Stats */}
@@ -98,7 +98,7 @@ export default function Hero() {
           {[
             { value: "Audio", label: "Stays Local" },
             { value: "0", label: "Cloud Calls" },
-            { value: "Free", label: "No Subscription" },
+            { value: "Free", label: "To Get Started" },
             { value: "42x", label: "Real-time Speed" },
           ].map((stat) => (
             <div key={stat.label}>

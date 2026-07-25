@@ -49,11 +49,22 @@ That is the whole reason a lifetime licence exists here and cannot exist on a cl
 
 Run the numbers on any tool you are considering, over the horizon you will actually use it.
 
-A $12/month tool is $144 a year. Over five years, **$720**. An annual plan at $99 is $495 over the same five years. If you dictate daily — and people who search this query usually do — five years is a conservative horizon, not an aggressive one.
+A $10/month tool is roughly ₹850 a month, ₹10,200 a year. Over five years, about **₹51,000**. If you dictate daily — and people who search this query usually do — five years is a conservative horizon, not an aggressive one.
 
-Against that, IndianWhisper's lifetime licence is **$249, paid once**. It pays for itself against a monthly plan somewhere in year two, and everything after that is free.
+Here is IndianWhisper's actual sheet, so you can run the same maths on it:
 
-I have kept a monthly and annual option too, at $12 and $99, because not everyone wants to commit up front and some people genuinely prefer to rent software. Both are real, both work, and there is a 30-day money-back guarantee on all of them.
+| Tier | Price | Five-year cost |
+|---|---|---|
+| Free | ₹0 forever | ₹0 |
+| Pro Monthly | ₹499 / month | ₹29,940 |
+| Pro Annual | ₹3,999 / year | ₹19,995 |
+| **Lifetime** | **₹4,999 once** | **₹4,999** |
+
+The lifetime tier pays for itself against monthly in **ten months**, and against annual in about fifteen. Everything after that is free.
+
+I kept monthly and annual too, because not everyone wants to commit up front and some people genuinely prefer to rent software. All three are real, all three work, and there is a 30-day money-back guarantee on every one of them.
+
+There is also a **free tier that is actually free** — 10 minutes a day of local transcription, the Tiny and Base models, three AI cleanups a day, smart punctuation, auto-type into any app, one device, no card. If that covers your week, use it and pay me nothing.
 
 But the lifetime tier is capped at the **first 100 buyers**, and I want to be straight about why rather than pretend it is artificial scarcity. Early buyers are taking a bet on a product that is still young. The permanent price is what I can offer in exchange for that bet. Once the product is established, that trade no longer makes sense for either side.
 
@@ -613,7 +624,7 @@ If you have questions about anything in this post — what we store, where, why,
   {
     slug: "macwhisper-vs-indianwhisper",
     title: "MacWhisper vs IndianWhisper: Privacy, Price, and the India Gap",
-    description: "MacWhisper Pro is €59 lifetime. IndianWhisper is free. Real choice is not price — it is where your audio goes and how far past your Mac the tool reaches.",
+    description: "MacWhisper Pro is €59 lifetime. IndianWhisper has a free tier and a ₹4,999 lifetime. Real choice is not price — it is where your audio goes and how far past your Mac the tool reaches.",
     date: "2026-04-28",
     readTime: "8 min",
     tags: ["comparison", "macwhisper", "privacy", "voice-typing", "on-device", "hindi"],

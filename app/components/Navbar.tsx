@@ -49,11 +49,20 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-6 text-sm">
           <a
-            href={anchor("features")}
-            aria-current={isHome && hash === "#features" ? "true" : undefined}
-            className={linkClass(isHome && hash === "#features")}
+            href="/"
+            aria-current={isHome && hash === "" ? "page" : undefined}
+            className={linkClass(isHome && hash === "")}
           >
-            Features
+            Home
+          </a>
+          {/* The interactive demo is the strongest hook on the site — keep it prominent. */}
+          <a
+            href={anchor("try-it")}
+            aria-current={isHome && hash === "#try-it" ? "true" : undefined}
+            className="flex items-center gap-1.5 text-green-400 hover:text-green-300 transition-colors font-medium"
+          >
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-subtle-pulse" />
+            Try Live
           </a>
           <a
             href="/pricing"
