@@ -1,8 +1,8 @@
 version: 2.2.3
 files:
-  - url: IndianWhisper Setup 2.2.3.exe
+  - url: https://github.com/aiagentwithdhruv/releases/releases/download/indianwhisper-windows-3.1.0/IndianWhisper.Setup.2.2.3.exe
     sha512: +Js5wroApTJcTawz4f7WHOrjQ88xRfzGzrHVlsy/piIsiWGyNV6avtj9SliIudSm/eH/fjpTqL5FG/pU9tm9wA==
     size: 89337754
-path: IndianWhisper Setup 2.2.3.exe
+path: https://github.com/aiagentwithdhruv/releases/releases/download/indianwhisper-windows-3.1.0/IndianWhisper.Setup.2.2.3.exe
 sha512: +Js5wroApTJcTawz4f7WHOrjQ88xRfzGzrHVlsy/piIsiWGyNV6avtj9SliIudSm/eH/fjpTqL5FG/pU9tm9wA==
 releaseDate: '2026-07-04T16:05:29.452Z'
