@@ -57,15 +57,29 @@ Failing open would hand out our Groq credit to anyone.
 
 ## Env
 
-Required: `GROQ_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
-Optional: `IW_CLEANUP_MODEL`, `IW_CLEANUP_REASONING_EFFORT`.
+Required: `GROQ_API_KEY` (ASR, primary), `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
+Required for the default configuration: `OPENROUTER_API_KEY` (cleanup, default provider —
+Groq's paid tier is closed, see below).
+Recommended: `OPENAI_API_KEY` (ASR fallback when Groq 429s/5xxs — free tier is 2,000 req/day).
+Optional: `IW_CLEANUP_PROVIDER` (`openrouter` default | `groq`), `IW_CLEANUP_MODEL`,
+`IW_CLEANUP_REASONING_EFFORT`.
 Local dev only, never on Vercel: `IW_DEV_FAKE_LICENSE`.
 
 ## Before this can serve traffic
 
 1. Run `supabase/migrations/20260914000000_iw_usage.sql`. It has **not** been run.
-2. Set `GROQ_API_KEY` in Vercel — it is blank in `.env.local`.
-3. Decide the cleanup model. The clients' model is decommissioned on Groq; see
-   the comment on `CLEANUP_MODEL` in `_lib/groq.ts`.
-4. Move the Groq account off the free tier — 8,000 TPM / 1,000 requests a day is
-   roughly ten cleanups a minute for the entire product.
+2. Set `GROQ_API_KEY`, `OPENROUTER_API_KEY`, `OPENAI_API_KEY` in Vercel production —
+   as of 14 Sep 2026, `GROQ_API_KEY` is set; `OPENROUTER_API_KEY` and `OPENAI_API_KEY`
+   still need to be set (values ready in `~/.aiwithdhruv-secrets` on Dhruv's machine).
+3. ~~Decide the cleanup model~~ — done 14 Sep 2026. Default is now OpenRouter
+   `openai/gpt-oss-120b` (reasoning effort low), because the clients' own model
+   (`meta-llama/llama-4-scout-17b-16e-instruct`) is decommissioned on Groq and
+   Groq's paid tier is closed. See `_lib/cleanup.ts` for the measured alternatives
+   and why each needs its matching reasoning-effort cap. `IW_CLEANUP_PROVIDER=groq`
+   switches back the moment Groq sells capacity.
+4. Groq ASR stays default (free tier 2,000 req/day is enough today); `_lib/asr.ts`
+   retries once on OpenAI `gpt-4o-mini-transcribe` for 429/5xx only. Verified for
+   real 14 Sep 2026: without the bias prompt OpenAI guesses Urdu/Devanagari script
+   for Hinglish audio; **with** the same prompt the clients already send, it
+   returns correct Roman-script output — the code always sends the prompt, so
+   this is safe, but don't drop the prompt from a future refactor.
