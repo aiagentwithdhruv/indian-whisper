@@ -15,12 +15,13 @@ import {
   MAX_AUDIO_SECONDS,
   MAX_BODY_BYTES,
   errorResponse,
+  logEvent,
   rateLimited,
   readDeviceId,
 } from "../_lib/limits";
 import { readLicenseKey, resolveLicense } from "../_lib/license";
 import { consumeFreeTier, refundFreeTier } from "../_lib/usage";
-import { transcribeWithGroq } from "../_lib/groq";
+import { transcribeAudio } from "../_lib/asr";
 import { biasPrompt } from "../_lib/prompts";
 import { estimateSeconds } from "../_lib/audio";
 
@@ -104,7 +105,7 @@ export async function POST(req: Request) {
     secondsLeft = usage.secondsLeft;
   }
 
-  const result = await transcribeWithGroq(
+  const result = await transcribeAudio(
     new Blob([bytes as BlobPart], { type: file.type || "audio/wav" }),
     "dictation.wav",
     language,
@@ -112,16 +113,24 @@ export async function POST(req: Request) {
   );
 
   if (!result.ok) {
-    // Never surface `detail` to the client — a Groq 401 body can echo key context.
+    // Never surface `detail` to the client — a provider 401 body can echo key context.
     console.error("[iw/transcribe] upstream failed:", result.detail);
+    logEvent("iw/transcribe", { ok: 0, status: result.status });
     if (license !== "pro" && deviceId) {
       await refundFreeTier(deviceId, "seconds", Math.ceil(seconds));
     }
     return errorResponse("UPSTREAM", "Transcription service failed.", 502, { license });
   }
 
+  logEvent("iw/transcribe", {
+    ok: 1,
+    provider: result.value.provider,
+    license,
+    seconds: Math.ceil(seconds),
+  });
+
   return Response.json({
-    text: result.value,
+    text: result.value.text,
     tier: license === "pro" ? "pro" : "free",
     license,
     ...(secondsLeft !== undefined ? { secondsLeft } : {}),

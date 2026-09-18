@@ -71,3 +71,31 @@ export function rateLimited(deviceId: string): boolean {
   }
   return hits.length > RATE_LIMIT_REQUESTS;
 }
+
+/// One shape for every upstream call (Groq ASR, OpenAI ASR, the cleanup LLM).
+/// `status` is the HTTP status when there was one — the ASR fallback branches on
+/// it, and a transport error (timeout, DNS) legitimately has none.
+export type UpstreamResult<T> =
+  | { ok: true; value: T }
+  | { ok: false; detail: string; status?: number };
+
+/// Worth a second attempt on a different vendor: their rate limit or their
+/// outage. A 400/401/404 is our bug or our config — retrying spends money and
+/// fails the same way.
+export function isRetriableStatus(status: number | undefined): boolean {
+  return status === 429 || (status !== undefined && status >= 500 && status < 600);
+}
+
+/// One `key=value` line per served request, e.g.
+///   [iw/transcribe] ok=1 provider=groq ms=812 seconds=3
+/// Counters and provider names only — never text, never audio, never a key.
+export function logEvent(
+  route: string,
+  fields: Record<string, string | number | undefined>
+): void {
+  const line = Object.entries(fields)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => `${key}=${value}`)
+    .join(" ");
+  console.log(`[${route}] ${line}`);
+}

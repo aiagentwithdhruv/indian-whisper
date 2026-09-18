@@ -15,12 +15,13 @@
 import {
   MAX_CLEANUP_CHARS,
   errorResponse,
+  logEvent,
   rateLimited,
   readDeviceId,
 } from "../_lib/limits";
 import { readLicenseKey, resolveLicense } from "../_lib/license";
 import { consumeFreeTier, refundFreeTier } from "../_lib/usage";
-import { chatWithGroq } from "../_lib/groq";
+import { cleanupChat } from "../_lib/cleanup";
 import { cleanupSystemPrompt, summarizeSystemPrompt } from "../_lib/prompts";
 
 export const runtime = "nodejs";
@@ -109,7 +110,7 @@ export async function POST(req: Request) {
       ? summarizeSystemPrompt(language, customInstructions)
       : cleanupSystemPrompt(customInstructions, formatLists, vocabulary);
 
-  const result = await chatWithGroq(
+  const result = await cleanupChat(
     systemPrompt,
     `<text>${text}</text>`,
     mode === "summarize" ? 512 : 256
@@ -117,14 +118,24 @@ export async function POST(req: Request) {
 
   if (!result.ok) {
     console.error("[iw/cleanup] upstream failed:", result.detail);
+    logEvent("iw/cleanup", { ok: 0, status: result.status });
     if (license !== "pro" && deviceId) {
       await refundFreeTier(deviceId, "cleanup", 1);
     }
     return errorResponse("UPSTREAM", "Cleanup service failed.", 502, { license });
   }
 
+  logEvent("iw/cleanup", {
+    ok: 1,
+    provider: result.value.provider,
+    model: result.value.model,
+    tokens: result.value.tokens,
+    tokensSource: result.value.tokensSource,
+    license,
+  });
+
   return Response.json({
-    text: postProcess(result.value, text, mode),
+    text: postProcess(result.value.text, text, mode),
     tier: license === "pro" ? "pro" : "free",
     license,
     ...(cleanupsLeft !== undefined ? { cleanupsLeft } : {}),
