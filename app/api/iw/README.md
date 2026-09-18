@@ -58,25 +58,25 @@ Failing open would hand out our Groq credit to anyone.
 ## Env
 
 Required: `GROQ_API_KEY` (ASR, primary), `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
-Required for the default configuration: `OPENROUTER_API_KEY` (cleanup, default provider —
+Required for the default configuration: `GROQ_API_KEY` (transcription + cleanup, default provider —
 Groq's paid tier is closed, see below).
 Recommended: `OPENAI_API_KEY` (ASR fallback when Groq 429s/5xxs — free tier is 2,000 req/day).
-Optional: `IW_CLEANUP_PROVIDER` (`openrouter` default | `groq`), `IW_CLEANUP_MODEL`,
+Optional: `IW_CLEANUP_PROVIDER` (`groq` default | `openrouter`), `IW_CLEANUP_MODEL`,
 `IW_CLEANUP_REASONING_EFFORT`.
 Local dev only, never on Vercel: `IW_DEV_FAKE_LICENSE`.
 
 ## Before this can serve traffic
 
 1. Run `supabase/migrations/20260914000000_iw_usage.sql`. It has **not** been run.
-2. Set `GROQ_API_KEY`, `OPENROUTER_API_KEY`, `OPENAI_API_KEY` in Vercel production —
-   as of 14 Sep 2026, `GROQ_API_KEY` is set; `OPENROUTER_API_KEY` and `OPENAI_API_KEY`
-   still need to be set (values ready in `~/.aiwithdhruv-secrets` on Dhruv's machine).
-3. ~~Decide the cleanup model~~ — done 14 Sep 2026. Default is now OpenRouter
-   `openai/gpt-oss-120b` (reasoning effort low), because the clients' own model
-   (`meta-llama/llama-4-scout-17b-16e-instruct`) is decommissioned on Groq and
-   Groq's paid tier is closed. See `_lib/cleanup.ts` for the measured alternatives
-   and why each needs its matching reasoning-effort cap. `IW_CLEANUP_PROVIDER=groq`
-   switches back the moment Groq sells capacity.
+2. `GROQ_API_KEY`, `OPENAI_API_KEY`, Supabase URL + service key are set in Vercel production
+   (verified 18 Sep 2026). Nothing else is required. `OPENROUTER_API_KEY` is only needed if
+   `IW_CLEANUP_PROVIDER=openrouter` is ever set.
+3. Cleanup model — Groq `qwen/qwen3.8-27b` (reasoning effort none) since 18 Sep 2026. The
+   14 Sep choice, `qwen/qwen3.6-27b`, was decommissioned within four days; so was the clients'
+   original `meta-llama/llama-4-scout-17b-16e-instruct`. Groq's free chat tier is 8,000
+   tokens/min and 1,000 requests/day; when that wall is hit, `IW_CLEANUP_PROVIDER=openrouter`
+   moves cleanup to per-token billing. See `_lib/cleanup.ts` for the measurements and why each
+   model needs its matching reasoning-effort cap.
 4. Groq ASR stays default (free tier 2,000 req/day is enough today); `_lib/asr.ts`
    retries once on OpenAI `gpt-4o-mini-transcribe` for 429/5xx only. Verified for
    real 14 Sep 2026: without the bias prompt OpenAI guesses Urdu/Devanagari script

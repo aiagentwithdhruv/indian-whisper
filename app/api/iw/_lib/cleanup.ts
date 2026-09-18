@@ -1,11 +1,11 @@
 // The cleanup LLM call behind `/api/iw/cleanup`, with the vendor behind a switch.
 //
-// The default moved off Groq on 14 Sep 2026. Groq's paid tier is closed — the
-// console answers "Developer tier upgrades temporarily unavailable" — and the
-// free chat tier is 8,000 tokens/min and 1,000 requests/day, i.e. roughly ten
-// cleanups a minute for the entire product. OpenRouter bills per token with no
-// such wall, so it is the default; `IW_CLEANUP_PROVIDER=groq` puts it back the
-// moment Groq sells us capacity.
+// Default is Groq (18 Sep 2026): one provider, one key we already hold for ASR,
+// and the cheapest model measured below. Groq's free chat tier is 8,000 tokens/min
+// and 1,000 requests/day — roughly ten cleanups a minute for the whole product —
+// and its paid tier is closed ("Developer tier upgrades temporarily unavailable").
+// The day that wall is hit, `IW_CLEANUP_PROVIDER=openrouter` + an OPENROUTER_API_KEY
+// moves cleanup to per-token billing with no such cap. Until then it stays inert.
 //
 // Both endpoints are OpenAI-compatible chat completions, so the body is shared
 // and only the key, URL, model, extra headers and reasoning-cap field differ.
@@ -20,9 +20,9 @@ function readEnv(name: string): string | null {
 export type CleanupProvider = "openrouter" | "groq";
 
 export const CLEANUP_PROVIDER: CleanupProvider =
-  process.env.IW_CLEANUP_PROVIDER?.trim().toLowerCase() === "groq"
-    ? "groq"
-    : "openrouter";
+  process.env.IW_CLEANUP_PROVIDER?.trim().toLowerCase() === "openrouter"
+    ? "openrouter"
+    : "groq";
 
 type ProviderConfig = {
   url: string;
@@ -38,8 +38,12 @@ type ProviderConfig = {
 
 /// Model notes, measured on the real cleanup prompt with a Hinglish utterance at
 /// temperature 0:
-///   openai/gpt-oss-120b (effort low)  0.66s  correct   $0.037/M in on OpenRouter
-///   qwen/qwen3.6-27b    (effort none) 0.30s  correct   Groq
+///   qwen/qwen3.8-27b    (effort none) 0.43s  correct   Groq — 37 output tokens (18 Sep)
+///   openai/gpt-oss-120b (effort low)  0.95s  correct   Groq — 131 output tokens (18 Sep)
+///   openai/gpt-oss-120b (effort low)  0.66s  correct   OpenRouter, $0.037/M in (14 Sep)
+/// qwen/qwen3.6-27b was the Groq default from 14 Sep and was decommissioned by
+/// 18 Sep — the second dead pinned id in four days. Probe `/v1/models` before
+/// trusting any id here.
 /// Without a reasoning cap gpt-oss returns an EMPTY content field and qwen leaks
 /// a <think> block into it. Both would reach the user as a wiped or garbage
 /// dictation, so any model swap has to carry the matching effort setting — and
@@ -69,7 +73,7 @@ const PROVIDERS: Record<CleanupProvider, ProviderConfig> = {
     url: "https://api.groq.com/openai/v1/chat/completions",
     key: () => readEnv("GROQ_API_KEY"),
     keyName: "GROQ_API_KEY",
-    defaultModel: "qwen/qwen3.6-27b",
+    defaultModel: "qwen/qwen3.8-27b",
     // "none" is valid for qwen only; gpt-oss on Groq takes low|medium|high.
     defaultEffort: "none",
     reasoningField: (effort) => ({ reasoning_effort: effort }),
