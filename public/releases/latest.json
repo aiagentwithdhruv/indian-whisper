@@ -3,6 +3,6 @@
   "minimumOS": "14.0",
   "releaseDate": "2026-07-25",
   "downloadURL": "https://indianwhisper.com/releases/IndianWhisper-v3.2.0.dmg",
-  "releaseNotes": "v3.2.0 — One-click activation. Buy a licence and the thank-you page activates Pro on this Mac with a single click, no copy-paste. Also fixes two activation bugs: a first-time buyer's activation link could be swallowed during launch, and the licence service wasn't ready before the microphone prompt. Free tier is 10 minutes a day.",
-  "sha256": "99907e9eb16e26ecf401f1e5f9bd7d5daf1326da943789e026162df15958be1e"
+  "releaseNotes": "v3.2.0 \u2014 One-click activation. Buy a licence and the thank-you page activates Pro on this Mac with a single click, no copy-paste. Also fixes two activation bugs: a first-time buyer's activation link could be swallowed during launch, and the licence service wasn't ready before the microphone prompt. Free tier is 10 minutes a day.",
+  "sha256": "213134b64e2c83c557cc79940a42a5eb9ad327dae03462b64a15b1fb67cce4ad"
 }
