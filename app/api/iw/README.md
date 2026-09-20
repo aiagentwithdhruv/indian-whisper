@@ -95,7 +95,7 @@ Transcription costs Rs 0.011 per dictation and dominates; the cleanup model is n
 |---|---|---|---|
 | Groq `qwen3.8-27b` (current default) | Rs 0.011 | Rs 10 | 2.0% |
 | Gemini `gemini-2.5-flash-lite` | Rs 0.013 | Rs 12 | 2.4% |
-| **Gemini `gemini-3.1-flash-lite`** (owner's pick) | Rs 0.019 | Rs 17 | 3.5% |
+| ~~Gemini `gemini-3.1-flash-lite`~~ **REJECTED** | Rs 0.161 | Rs 145 | 29% |
 | Claude Haiku 4.5 | Rs 0.040 | Rs 36 | 7.2% |
 | Claude Sonnet 5 | Rs 0.069 | Rs 62 | 12.5% |
 
@@ -105,3 +105,20 @@ request has been sent to `gemini-3.1-flash-lite` yet, so its Hinglish output, it
 whether it leaks reasoning text into `content` are all unverified. Reasoning cannot be disabled
 on 3-series models (effort must be `low`, never `none`) and reasoning tokens bill as output, so
 confirm `usage.completion_tokens` against the table above before trusting the margin.
+
+### Measured head-to-head, 30 real Hinglish fixtures (20 Sep 2026)
+
+`tools/compare-cleanup-models.py` + `tools/cleanup-fixtures.json`. Scoring is objective only —
+Devanagari in the output, leaked `<think>`, a dropped must-keep term, or over-compression.
+
+| model | avg / max latency | clean | Rs/user/month @30min/day |
+|---|---|---|---|
+| **Groq `qwen3.8-27b`** (kept) | **0.31 s** / 0.54 | **29/30** | Rs 0 (free tier) |
+| `gemini-3.1-flash-lite` | **timed out >90 s** | — | ~Rs 145 |
+| `gemini-3.5-flash-lite` | 1.43 s / 1.82 | 28/30 | Rs 34 |
+
+Groq stays primary: 4.6x faster and marginally more accurate. The real Groq risk is not quality
+but **vendor churn** — two pinned models decommissioned four days apart in Sep 2026, each
+silently degrading every install. Mitigation is a fallback, not a different default: set
+`IW_CLEANUP_PROVIDER=openrouter` (or `gemini`) and cleanup moves to `gemini-3.5-flash-lite`,
+the measured runner-up, with no code change. Re-run the harness monthly against the incumbent.

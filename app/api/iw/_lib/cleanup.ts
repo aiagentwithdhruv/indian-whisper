@@ -59,7 +59,8 @@ const PROVIDERS: Record<CleanupProvider, ProviderConfig> = {
     url: "https://openrouter.ai/api/v1/chat/completions",
     key: () => readEnv("OPENROUTER_API_KEY"),
     keyName: "OPENROUTER_API_KEY",
-    defaultModel: "openai/gpt-oss-120b",
+    // Same model as the gemini provider, reached through OpenRouter (one key, many vendors).
+    defaultModel: "google/gemini-3.5-flash-lite",
     defaultEffort: "low",
     // OpenRouter's unified field; `reasoning_effort` is silently ignored here.
     reasoningField: (effort) => ({ reasoning: { effort } }),
@@ -80,7 +81,11 @@ const PROVIDERS: Record<CleanupProvider, ProviderConfig> = {
     url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
     key: () => readEnv("GEMINI_API_KEY"),
     keyName: "GEMINI_API_KEY",
-    defaultModel: "gemini-3.1-flash-lite",
+    // 3.1 Flash-Lite was the owner's first pick and MEASUREMENT REJECTED IT (20 Sep, 30 real
+    // Hinglish fixtures): it burns ~245 output tokens to produce a 40-token sentence because
+    // reasoning cannot be disabled on 3-series models, costing ~Rs 145/user/month, and it TIMED
+    // OUT (>90 s) on the full run. 3.5 Flash-Lite: 1.43 s avg, 28/30 clean, Rs 34/user/month.
+    defaultModel: "gemini-3.5-flash-lite",
     defaultEffort: "low",
     reasoningField: (effort) => ({ reasoning_effort: effort }),
     headers: {},

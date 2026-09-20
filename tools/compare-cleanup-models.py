@@ -19,7 +19,7 @@ wrong is silent: gpt-oss returns EMPTY content without one, qwen leaks a <think>
 the text, and Gemini 3-series REJECTS "none" outright (Google: reasoning cannot be disabled
 on 3 models). Never copy a cap from one model to another.
 """
-import json, os, sys, time, urllib.request
+import json, os, re, sys, time, urllib.request
 
 INR = 84.0
 UA = {"User-Agent": "IndianWhisper-modelcheck/1.0", "Content-Type": "application/json"}
@@ -27,18 +27,32 @@ UA = {"User-Agent": "IndianWhisper-modelcheck/1.0", "Content-Type": "application
 SYSTEM = ("Clean up this dictation. Remove fillers. Keep Hinglish in Roman script. "
           "Never translate. Fix punctuation and capitalisation. Output only the cleaned text.")
 
-# Raw dictation as Whisper actually returns it — fillers, no punctuation, mid-sentence
-# language switching. These are the cases the product lives or dies on.
-CASES = [
-    "um so main aaj subah uh office jaa raha tha aur traffic bohot zyada tha main late ho gaya "
-    "you know so boss ko bol dena ki main thoda late aaunga",
-    "haan toh client ne kaha hai ki invoice aaj hi send karna hai aur payment terms thirty days "
-    "rakhne hain but agar unka budget approve nahi hua toh we'll have to push it to next month",
-    "actually i was thinking ki hum log is feature ko next sprint mein daal dete hain kyunki "
-    "abhi bandwidth nahi hai and the team is already stretched",
-    "meeting ko reschedule kar do thursday pe aur pandrah tareekh ko jo demo tha usko bhi shift "
-    "karna padega client ko mail kar dena",
-]
+# Fixtures live in cleanup-fixtures.json so real dictations can be added without touching code.
+FIX = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  "cleanup-fixtures.json")))["cases"]
+CASES = [c["raw"] for c in FIX]
+
+# Devanagari — the product promise is Roman-script Hinglish; any Devanagari is a hard failure.
+DEVANAGARI = re.compile(r"[\u0900-\u097F]")
+
+
+def score(case, out):
+    """Objective failures only. Style is not judged here; broken promises are."""
+    bad = []
+    if not out:
+        return ["EMPTY"]
+    if "<think" in out.lower():
+        bad.append("leaked-reasoning")
+    if DEVANAGARI.search(out):
+        bad.append("devanagari")
+    for term in case.get("must_keep", []):
+        if term.lower() not in out.lower():
+            bad.append(f"dropped:{term}")
+    # A cleanup that rewrites more than it cleans is translating, not tidying.
+    if len(out) < len(case["raw"]) * 0.55:
+        bad.append("over-compressed")
+    return bad
+
 
 MODELS = [
     # (label, env key, url, model id, reasoning field builder, extra headers)
@@ -50,6 +64,14 @@ MODELS = [
      "gemini-3.1-flash-lite",
      # "none" is REJECTED on 3-series models — reasoning cannot be turned off.
      lambda: {"reasoning_effort": "low"}, {}, 0.25, 1.50),
+    ("OR Gemini 3.1 Flash-Lite", "OPENROUTER_API_KEY",
+     "https://openrouter.ai/api/v1/chat/completions", "google/gemini-3.1-flash-lite",
+     lambda: {"reasoning": {"effort": "low"}},
+     {"HTTP-Referer": "https://indianwhisper.com", "X-Title": "IndianWhisper"}, 0.25, 1.50),
+    ("OR Gemini 3.5 Flash-Lite", "OPENROUTER_API_KEY",
+     "https://openrouter.ai/api/v1/chat/completions", "google/gemini-3.5-flash-lite",
+     lambda: {"reasoning": {"effort": "low"}},
+     {"HTTP-Referer": "https://indianwhisper.com", "X-Title": "IndianWhisper"}, 0.30, 2.50),
     ("Gemini 2.5 Flash-Lite", "GEMINI_API_KEY",
      "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
      "gemini-2.5-flash-lite",
@@ -106,10 +128,12 @@ def main():
             "rs_per_minute_of_dictation": round(cost_min, 4),
             "rs_per_user_month_30min_day": round(cost_min * 30 * 30, 1),
         }
-        # A leaked reasoning block or an empty answer is a silent product failure.
-        for o in rows:
-            if not o or "<think" in o.lower():
-                results[label]["WARNING"] = "empty or leaked reasoning in output — wrong cap"
+        fails = {}
+        for c, o in zip(FIX, rows):
+            for f in score(c, o):
+                fails[f.split(":")[0]] = fails.get(f.split(":")[0], 0) + 1
+        results[label]["failures"] = fails
+        results[label]["clean_cases"] = sum(1 for c, o in zip(FIX, rows) if not score(c, o))
 
     if as_json:
         print(json.dumps(results, indent=2, ensure_ascii=False)); return
@@ -127,7 +151,8 @@ def main():
         print(f"{label:<24}{r['latency_avg_s']:>7}{r['latency_max_s']:>7}"
               f"{r['tokens_in_avg']:>6}{r['tokens_out_avg']:>6}"
               f"{r['rs_per_minute_of_dictation']:>9.3f}{r['rs_per_user_month_30min_day']:>12.0f}"
-              + ("   <-- " + r["WARNING"] if "WARNING" in r else ""))
+              + f"  {r['clean_cases']}/{len(CASES)} clean"
+              + ("  FAILS=" + str(r["failures"]) if r["failures"] else ""))
     print("\nJudge on the OUTPUT first: Hinglish must stay in Roman script, nothing invented,\n"
           "numbers/dates/names intact. Cost differences here are pennies; a wrong word is not.")
 
