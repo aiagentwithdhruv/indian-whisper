@@ -10,10 +10,15 @@
 export const FREE_CLEANUPS_PER_DAY = 3;
 export const FREE_SECONDS_PER_DAY = 10 * 60; // 10 minutes/day
 
-/// Abuse guards. 25 MB is ~13 min of 16 kHz mono 16-bit WAV, so the duration cap
-/// below is the one that actually bites; the byte cap just stops us buffering
-/// something absurd into a lambda.
-export const MAX_BODY_BYTES = 25 * 1024 * 1024;
+/// Abuse guards. The byte cap MUST stay under Vercel's platform limit: a serverless
+/// function request body over 4.5 MB is rejected by the platform BEFORE this handler
+/// runs, returning a non-JSON 413 that the client's error parser chokes on. A 25 MB
+/// constant here was dead code that made the README claim a limit we never enforced
+/// (found in the 20 Sep 2026 architecture audit). Keep headroom under 4.5 MB for the
+/// multipart envelope. At 16 kHz mono 16-bit WAV (32 kB/s) that is ~2 minutes; the
+/// A20b client must chunk or send compressed audio, not rely on this.
+export const VERCEL_BODY_LIMIT_BYTES = 4.5 * 1024 * 1024;
+export const MAX_BODY_BYTES = 4 * 1024 * 1024;
 export const MAX_AUDIO_SECONDS = 60;
 export const MAX_CLEANUP_CHARS = 8000;
 

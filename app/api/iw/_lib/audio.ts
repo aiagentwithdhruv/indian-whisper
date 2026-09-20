@@ -34,6 +34,12 @@ export function wavDurationSeconds(bytes: Uint8Array): number | null {
   return null;
 }
 
+/// 🔴 BEFORE SWITCHING THE CLIENT TO COMPRESSED AUDIO (IW-A20b), FIX THIS.
+/// The byte-rate assumption below is for 16 kHz mono 16-bit PCM (~32 kB/s). Opus/WebM is
+/// roughly 6 kB/s, so a 45 s Opus segment would meter as ~8 s: the free tier would
+/// under-charge ~6x and MAX_AUDIO_SECONDS would stop protecting anything. Found in the
+/// 20 Sep 2026 architecture audit. Either read the real duration from the container
+/// header, or branch the rate on the declared mime type — do not ship A20b without one.
 export function estimateSeconds(bytes: Uint8Array): number {
   return wavDurationSeconds(bytes) ?? bytes.length / FALLBACK_BYTES_PER_SECOND;
 }

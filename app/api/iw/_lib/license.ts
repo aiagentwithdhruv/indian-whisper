@@ -10,7 +10,13 @@ import type { LicenseStatus } from "./limits";
 
 const DODO_VALIDATE_URL = "https://live.dodopayments.com/licenses/validate";
 const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes, per the brief
-const VALIDATE_TIMEOUT_MS = 10_000;
+/// How long a provisional grant (Dodo unreachable, no cached answer) survives before we
+/// re-check. Bounded exposure: a bogus key gets Pro only for the length of a Dodo outage.
+const PROVISIONAL_TTL_MS = 5 * 60 * 1000;
+// Timeout budget: every wired timeout must sum to less than the route's maxDuration (30 s),
+// or the worst case is a platform 504 with no JSON body instead of a clean UPSTREAM error the
+// client can act on. Budget: licence 4 + ASR 15 + cleanup 8 = 27 s, leaving 3 s of headroom.
+const VALIDATE_TIMEOUT_MS = 4_000;
 
 type CacheEntry = { valid: boolean; at: number };
 
@@ -52,7 +58,14 @@ export async function resolveLicense(req: Request): Promise<LicenseStatus> {
     // Dodo unreachable. Serve the last known answer if we have one rather than
     // downgrading a paying customer mid-sentence because of someone else's outage.
     if (cached) return cached.valid ? "pro" : "invalid";
-    return "invalid";
+    // No cache either — a cold serverless instance during a Dodo outage. Failing closed here
+    // downgrades a PAYING customer to the free tier mid-sentence for someone else's downtime,
+    // which is exactly the silent degradation that has bitten this product repeatedly. The
+    // clients already carry a 7-day offline grace; the server had none. Grant provisionally,
+    // cache briefly so it re-checks soon, and say so loudly at the substitution point.
+    console.error("LICENSE PROVISIONAL: Dodo unreachable and no cache — granting pro for 5 min");
+    cache.set(key, { valid: true, at: Date.now() - (CACHE_TTL_MS - PROVISIONAL_TTL_MS) });
+    return "pro";
   }
 
   cache.set(key, { valid, at: Date.now() });
