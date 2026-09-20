@@ -61,7 +61,7 @@ Required: `GROQ_API_KEY` (ASR, primary), `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_S
 Required for the default configuration: `GROQ_API_KEY` (transcription + cleanup, default provider —
 Groq's paid tier is closed, see below).
 Recommended: `OPENAI_API_KEY` (ASR fallback when Groq 429s/5xxs — free tier is 2,000 req/day).
-Optional: `IW_CLEANUP_PROVIDER` (`groq` default | `openrouter`), `IW_CLEANUP_MODEL`,
+Optional: `IW_CLEANUP_PROVIDER` (`groq` default | `gemini` | `openrouter`), `IW_CLEANUP_MODEL`,
 `IW_CLEANUP_REASONING_EFFORT`.
 Local dev only, never on Vercel: `IW_DEV_FAKE_LICENSE`.
 
@@ -83,3 +83,25 @@ Local dev only, never on Vercel: `IW_DEV_FAKE_LICENSE`.
    for Hinglish audio; **with** the same prompt the clients already send, it
    returns correct Roman-script output — the code always sends the prompt, so
    this is safe, but don't drop the prompt from a future refactor.
+
+## Cleanup provider choice (20 Sep 2026)
+
+Measured end to end on real 11.7 s Hinglish audio: transcription (Groq `whisper-large-v3-turbo`)
+**0.87 s**, cleanup (Groq `qwen3.8-27b`) **0.40 s** — 1.27 s total, before our own proxy hop.
+Transcription costs Rs 0.011 per dictation and dominates; the cleanup model is nearly free at
+~97 in / 50 out tokens, so pick it on quality, not price.
+
+| cleanup model | per dictation | per user/month @30/day | % of Rs 499 |
+|---|---|---|---|
+| Groq `qwen3.8-27b` (current default) | Rs 0.011 | Rs 10 | 2.0% |
+| Gemini `gemini-2.5-flash-lite` | Rs 0.013 | Rs 12 | 2.4% |
+| **Gemini `gemini-3.1-flash-lite`** (owner's pick) | Rs 0.019 | Rs 17 | 3.5% |
+| Claude Haiku 4.5 | Rs 0.040 | Rs 36 | 7.2% |
+| Claude Sonnet 5 | Rs 0.069 | Rs 62 | 12.5% |
+
+Set `IW_CLEANUP_PROVIDER=gemini` + `GEMINI_API_KEY` to use it. Groq stays the default until a
+Gemini key is in Vercel and one real call has been made — the Gemini path is **unproven**: no
+request has been sent to `gemini-3.1-flash-lite` yet, so its Hinglish output, its latency, and
+whether it leaks reasoning text into `content` are all unverified. Reasoning cannot be disabled
+on 3-series models (effort must be `low`, never `none`) and reasoning tokens bill as output, so
+confirm `usage.completion_tokens` against the table above before trusting the margin.

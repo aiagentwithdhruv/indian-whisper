@@ -17,12 +17,13 @@ function readEnv(name: string): string | null {
   return value && value.length > 0 ? value : null;
 }
 
-export type CleanupProvider = "openrouter" | "groq";
+export type CleanupProvider = "openrouter" | "groq" | "gemini";
 
 export const CLEANUP_PROVIDER: CleanupProvider =
-  process.env.IW_CLEANUP_PROVIDER?.trim().toLowerCase() === "openrouter"
-    ? "openrouter"
-    : "groq";
+  (() => {
+    const v = process.env.IW_CLEANUP_PROVIDER?.trim().toLowerCase();
+    return v === "openrouter" || v === "gemini" ? v : "groq";
+  })();
 
 type ProviderConfig = {
   url: string;
@@ -69,6 +70,22 @@ const PROVIDERS: Record<CleanupProvider, ProviderConfig> = {
       "X-Title": "IndianWhisper",
     },
   },
+  // Gemini via its OpenAI-compatible endpoint (same body shape as the other two).
+  // 20 Sep 2026: 3.1 Flash-Lite measured at $0.25/$1.50 per MTok — roughly Rs 17/user/month
+  // at 30 dictations a day, ~3.5% of the Rs 499 price. NOTE: Google's docs state reasoning
+  // "cannot be turned off for Gemini 2.5 Pro or 3 models", so effort MUST be "low", never
+  // "none" — and the reasoning tokens are billed as output, so real cost runs above the
+  // headline estimate. Watch usage.completion_tokens before trusting the margin.
+  gemini: {
+    url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    key: () => readEnv("GEMINI_API_KEY"),
+    keyName: "GEMINI_API_KEY",
+    defaultModel: "gemini-3.1-flash-lite",
+    defaultEffort: "low",
+    reasoningField: (effort) => ({ reasoning_effort: effort }),
+    headers: {},
+  },
+
   groq: {
     url: "https://api.groq.com/openai/v1/chat/completions",
     key: () => readEnv("GROQ_API_KEY"),
